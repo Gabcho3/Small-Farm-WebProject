@@ -7,13 +7,6 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\SmallFarm.Core\SmallFarm.Core.csproj" />
-    <ProjectReference Include="..\SmallFarm.Infrastructure\SmallFarm.Data.csproj" />
-    <ProjectReference Include="..\SmallFarm.Web\SmallFarm.csproj" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <Folder Include="DataConstants\" />
     <Folder Include="ExceptionMessages\" />
     <Folder Include="ValidationErrors\" />
   </ItemGroup>

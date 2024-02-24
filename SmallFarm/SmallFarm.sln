@@ -6,6 +6,9 @@ MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SmallFarm", "SmallFarm.Web\SmallFarm.csproj", "{5019ECA6-9E9F-4D63-995D-5948E4B6F97D}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SmallFarm.Data", "SmallFarm.Infrastructure\SmallFarm.Data.csproj", "{35385438-6C79-4163-9990-37A38EF5BF6C}"
+	ProjectSection(ProjectDependencies) = postProject
+		{E08953F2-801A-4B6F-8B1B-10E2DE001B63} = {E08953F2-801A-4B6F-8B1B-10E2DE001B63}
+	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SmallFarm.Core", "SmallFarm.Core\SmallFarm.Core.csproj", "{7BDD2435-F8B9-48F8-AC82-9A041684416F}"
 EndProject

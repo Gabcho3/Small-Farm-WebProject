@@ -1,14 +1,28 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore;
+using SmallFarm.Data.Entities;
 
 namespace SmallFarm.Data
 {
-    public class SmallFarmDbContext : DbContext
+    public class SmallFarmDbContext : IdentityDbContext<IdentityUser>
     {
         public SmallFarmDbContext(DbContextOptions<SmallFarmDbContext> options) 
             : base(options) { }
 
+        public DbSet<Location> Locations { get; set; } = null!;
+
+        public DbSet<Manufacturer> Manufacturers { get; set; } = null!;
+
+        public DbSet<Product> Products { get; set; } = null!;
+
+        public DbSet<Cart> Carts { get; set; } = null!;
+
         protected override void OnModelCreating(ModelBuilder builder)
         {
+            builder.Entity<Cart>()
+                .HasKey(c => new { c.ProductId, c.ClientId });
+
             base.OnModelCreating(builder);
         }
     }
