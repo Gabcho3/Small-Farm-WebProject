@@ -1,0 +1,21 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net6.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\SmallFarm.Core\SmallFarm.Core.csproj" />
+    <ProjectReference Include="..\SmallFarm.Infrastructure\SmallFarm.Data.csproj" />
+    <ProjectReference Include="..\SmallFarm.Web\SmallFarm.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="DataConstants\" />
+    <Folder Include="ExceptionMessages\" />
+    <Folder Include="ValidationErrors\" />
+  </ItemGroup>
+
+</Project>
