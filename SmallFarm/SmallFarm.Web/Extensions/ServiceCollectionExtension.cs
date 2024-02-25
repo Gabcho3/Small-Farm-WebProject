@@ -8,7 +8,7 @@ namespace SmallFarm.Extensions
     {
         public static void AddApplicationServices(this IServiceCollection services)
         {
-            return services;
+            return;
         }
 
         public static void AddApplicationDbContext(this IServiceCollection services, IConfiguration config)
@@ -19,8 +19,6 @@ namespace SmallFarm.Extensions
                 options.UseSqlServer(connectionString));
 
             services.AddDatabaseDeveloperPageExceptionFilter();
-
-            return services;
         }
 
         public static void AddApplicationIdentity(this IServiceCollection services)
@@ -28,6 +26,11 @@ namespace SmallFarm.Extensions
             services.AddDefaultIdentity<IdentityUser>(options =>
                 {
                     options.SignIn.RequireConfirmedAccount = false;
+
+                    options.Password.RequireDigit = false;
+                    options.Password.RequireUppercase = false;
+                    options.Password.RequireNonAlphanumeric = false;
+                    options.Password.RequiredLength = 8;
                 })
                 .AddEntityFrameworkStores<SmallFarmDbContext>();
         }
