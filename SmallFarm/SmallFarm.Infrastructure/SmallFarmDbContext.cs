@@ -18,10 +18,17 @@ namespace SmallFarm.Data
 
         public DbSet<Cart> Carts { get; set; } = null!;
 
+        public DbSet<Order> Orders { get; set; } = null!;
+
+        public DbSet<OrderProduct> OrderProducts { get; set; } = null!;
+
         protected override void OnModelCreating(ModelBuilder builder)
         {
             builder.Entity<Cart>()
                 .HasKey(c => new { c.ProductId, c.ClientId });
+
+            builder.Entity<OrderProduct>()
+                .HasKey(x => new { x.OrderId, x.ProductId });
 
             base.OnModelCreating(builder);
         }

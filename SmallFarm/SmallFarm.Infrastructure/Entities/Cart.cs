@@ -1,6 +1,7 @@
 ﻿using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using Microsoft.AspNetCore.Identity;
+using Microsoft.EntityFrameworkCore;
 
 namespace SmallFarm.Data.Entities
 {
@@ -18,8 +19,11 @@ namespace SmallFarm.Data.Entities
         [ForeignKey(nameof(ProductId))]
         public Product Product { get; set; } = null!;
 
+        [Required]
         public int Quantity { get; set; }
 
+        [Required]
+        [Precision(18, 2)]
         public decimal Price { get; set; }
     }
 }
