@@ -1,5 +1,7 @@
 ﻿using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
+using SmallFarm.Core.Contracts;
+using SmallFarm.Core.Services;
 using SmallFarm.Data;
 
 namespace SmallFarm.Extensions
@@ -8,7 +10,7 @@ namespace SmallFarm.Extensions
     {
         public static void AddApplicationServices(this IServiceCollection services)
         {
-            return;
+            services.AddScoped<IManufacturerService, ManufacturerService>();
         }
 
         public static void AddApplicationDbContext(this IServiceCollection services, IConfiguration config)
