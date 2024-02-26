@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
+using SmallFarm.Data.Configurations;
 using SmallFarm.Data.Entities;
 
 namespace SmallFarm.Data
@@ -34,6 +35,9 @@ namespace SmallFarm.Data
 
             builder.Entity<FavouriteProduct>()
                 .HasKey(x => new { x.ClientId, x.ProductId });
+
+            builder.ApplyConfiguration(new LocationConfiguration());
+            builder.ApplyConfiguration(new ManufacturersConfiguration());
 
             base.OnModelCreating(builder);
         }

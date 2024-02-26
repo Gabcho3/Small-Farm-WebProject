@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using SmallFarm.Data;
 
@@ -11,9 +12,10 @@ using SmallFarm.Data;
 namespace SmallFarm.Data.Migrations
 {
     [DbContext(typeof(SmallFarmDbContext))]
-    partial class SmallFarmDbContextModelSnapshot : ModelSnapshot
+    [Migration("20240226205243_SeededManufacturersWithLocation")]
+    partial class SeededManufacturersWithLocation
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -329,8 +331,7 @@ namespace SmallFarm.Data.Migrations
 
                     b.Property<string>("PhoneNumber")
                         .IsRequired()
-                        .HasMaxLength(12)
-                        .HasColumnType("nvarchar(12)");
+                        .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");
 
@@ -341,7 +342,7 @@ namespace SmallFarm.Data.Migrations
                     b.HasData(
                         new
                         {
-                            Id = new Guid("740c8311-e84c-4b4d-97a1-443de0f102bf"),
+                            Id = new Guid("76861aac-065f-42a1-96fb-b903e1bfd5a2"),
                             Description = "Sunny Valley Farms is a family-owned agricultural business located in the heart of Bulgaria's fertile countryside near Veliko Tarnovo. Specializing in organic fruit and vegetable production, we pride ourselves on delivering the freshest, highest-quality produce to local markets and restaurants. From juicy peaches to crisp cucumbers, our farm-fresh offerings are sure to delight your taste buds.",
                             Email = "info@sunnyvalleyfarms.bg",
                             LocationId = 1,
@@ -350,7 +351,7 @@ namespace SmallFarm.Data.Migrations
                         },
                         new
                         {
-                            Id = new Guid("f9f061cc-2610-4853-b4c7-aecfb1abcc71"),
+                            Id = new Guid("08c95909-3e2e-4f43-b482-cc6ab78c9a94"),
                             Description = "Balkan Dairy Co-op is a cooperative of small-scale dairy farmers located in the picturesque Rhodope Mountains of Bulgaria. Our passionate farmers work tirelessly to produce the finest organic dairy products, including creamy yogurt, artisanal cheeses, and rich, velvety milk. With a commitment to sustainability and animal welfare, we strive to provide wholesome, nutritious dairy products straight from our pastures to your table.",
                             Email = "info@balkandairycoop.com",
                             LocationId = 2,
@@ -359,7 +360,7 @@ namespace SmallFarm.Data.Migrations
                         },
                         new
                         {
-                            Id = new Guid("a21c9bd0-5ab1-45ce-8129-2a95b0ab4b30"),
+                            Id = new Guid("6a5bd1e2-bed2-480b-8158-64a78b0476d0"),
                             Description = "Golden Fields Honey is a beekeeping enterprise nestled in the sun-drenched valleys of Bulgaria's Rose Valley region. Our beekeepers lovingly tend to our hives, ensuring that our pure, raw honey captures the essence of Bulgaria's diverse floral landscapes. From fragrant acacia honey to robust wildflower varieties, each jar of Golden Fields Honey is a testament to nature's bounty and our dedication to artisanal craftsmanship.",
                             Email = "sales@goldenfieldshoney.bg",
                             LocationId = 3,
