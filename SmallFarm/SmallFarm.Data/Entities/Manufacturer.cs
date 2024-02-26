@@ -8,7 +8,7 @@ namespace SmallFarm.Data.Entities
     {
         public Manufacturer()
         {
-            Id = new Guid();
+            Id = Guid.NewGuid();
             Products = new List<Product>();
         }
 

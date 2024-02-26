@@ -9,7 +9,7 @@ namespace SmallFarm.Data.Entities
     {
         public Product()
         {
-            Id = new Guid();
+            Id = Guid.NewGuid();
         }
 
         [Key]
