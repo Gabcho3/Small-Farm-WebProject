@@ -1,7 +1,4 @@
 using SmallFarm.Extensions;
-using Microsoft.AspNetCore.Identity;
-using Microsoft.EntityFrameworkCore;
-using SmallFarm.Data;
 
 var builder = WebApplication.CreateBuilder(args);
 

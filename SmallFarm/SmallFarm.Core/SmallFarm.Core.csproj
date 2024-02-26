@@ -19,6 +19,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\SmallFarm.Common\SmallFarm.Common.csproj" />
+    <ProjectReference Include="..\SmallFarm.Data\SmallFarm.Data.csproj" />
     <ProjectReference Include="..\SmallFarm.Infrastructure\SmallFarm.Data.csproj" />
   </ItemGroup>
 

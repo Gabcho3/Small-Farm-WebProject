@@ -20,15 +20,20 @@ namespace SmallFarm.Data
 
         public DbSet<Order> Orders { get; set; } = null!;
 
+        public DbSet<FavouriteProduct> FavoriteProducts { get; set; } = null!;
+
         public DbSet<OrderProduct> OrderProducts { get; set; } = null!;
 
         protected override void OnModelCreating(ModelBuilder builder)
         {
             builder.Entity<Cart>()
-                .HasKey(c => new { c.ProductId, c.ClientId });
+                .HasKey(x => new { x.ClientId, x.ProductId });
 
             builder.Entity<OrderProduct>()
                 .HasKey(x => new { x.OrderId, x.ProductId });
+
+            builder.Entity<FavouriteProduct>()
+                .HasKey(x => new { x.ClientId, x.ProductId });
 
             base.OnModelCreating(builder);
         }
