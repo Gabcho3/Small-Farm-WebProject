@@ -7,20 +7,12 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Folder Include="Contracts\" />
-    <Folder Include="Models\" />
-    <Folder Include="Helpers\" />
-    <Folder Include="Services\" />
-  </ItemGroup>
-
-  <ItemGroup>
+    <PackageReference Include="AutoMapper" Version="13.0.1" />
     <PackageReference Include="Microsoft.AspNetCore.Identity.EntityFrameworkCore" Version="6.0.27" />
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\SmallFarm.Common\SmallFarm.Common.csproj" />
     <ProjectReference Include="..\SmallFarm.Data\SmallFarm.Data.csproj" />
-    <ProjectReference Include="..\SmallFarm.Infrastructure\SmallFarm.Data.csproj" />
   </ItemGroup>
 
 </Project>
