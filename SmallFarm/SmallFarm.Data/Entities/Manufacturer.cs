@@ -24,7 +24,7 @@ namespace SmallFarm.Data.Entities
         public string Description { get; set; } = null!;
 
         [Required]
-        [RegularExpression(PhoneNumberRegex)]
+        [StringLength(PhoneNumberMaxLength)]
         public string PhoneNumber { get; set; } = null!;
 
         [Required]

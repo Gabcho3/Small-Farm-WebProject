@@ -8,6 +8,6 @@
         public const int DescriptionMinLength = 25;
         public const int DescriptionMaxLength = 500;
 
-        public const string PhoneNumberRegex = @"^([+]\d{12})|([0]\d{9})$";
+        public const int PhoneNumberMaxLength = 12;
     }
 }
