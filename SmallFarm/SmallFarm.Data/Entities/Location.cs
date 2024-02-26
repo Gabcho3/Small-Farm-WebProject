@@ -6,7 +6,7 @@ namespace SmallFarm.Data.Entities
     public class Location
     {
         [Key]
-        public Guid Id { get; set; }
+        public int Id { get; set; }
 
         [Required]
         [StringLength(AddressMaxLength)]

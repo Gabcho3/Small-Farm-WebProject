@@ -12,7 +12,7 @@ using SmallFarm.Data;
 namespace SmallFarm.Data.Migrations
 {
     [DbContext(typeof(SmallFarmDbContext))]
-    [Migration("20240225174248_InitialMigration")]
+    [Migration("20240226203612_InitialMigration")]
     partial class InitialMigration
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -228,11 +228,11 @@ namespace SmallFarm.Data.Migrations
 
             modelBuilder.Entity("SmallFarm.Data.Entities.Cart", b =>
                 {
-                    b.Property<Guid>("ProductId")
-                        .HasColumnType("uniqueidentifier");
-
                     b.Property<string>("ClientId")
                         .HasColumnType("nvarchar(450)");
+
+                    b.Property<Guid>("ProductId")
+                        .HasColumnType("uniqueidentifier");
 
                     b.Property<decimal>("Price")
                         .HasPrecision(18, 2)
@@ -241,18 +241,35 @@ namespace SmallFarm.Data.Migrations
                     b.Property<int>("Quantity")
                         .HasColumnType("int");
 
-                    b.HasKey("ProductId", "ClientId");
+                    b.HasKey("ClientId", "ProductId");
 
-                    b.HasIndex("ClientId");
+                    b.HasIndex("ProductId");
 
                     b.ToTable("Carts");
                 });
 
+            modelBuilder.Entity("SmallFarm.Data.Entities.FavouriteProduct", b =>
+                {
+                    b.Property<string>("ClientId")
+                        .HasColumnType("nvarchar(450)");
+
+                    b.Property<Guid>("ProductId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.HasKey("ClientId", "ProductId");
+
+                    b.HasIndex("ProductId");
+
+                    b.ToTable("FavoriteProducts");
+                });
+
             modelBuilder.Entity("SmallFarm.Data.Entities.Location", b =>
                 {
-                    b.Property<Guid>("Id")
+                    b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("uniqueidentifier");
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
 
                     b.Property<string>("Address")
                         .IsRequired()
@@ -284,8 +301,8 @@ namespace SmallFarm.Data.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<Guid>("LocationId")
-                        .HasColumnType("uniqueidentifier");
+                    b.Property<int>("LocationId")
+                        .HasColumnType("int");
 
                     b.Property<string>("Name")
                         .IsRequired()
@@ -429,6 +446,25 @@ namespace SmallFarm.Data.Migrations
                 });
 
             modelBuilder.Entity("SmallFarm.Data.Entities.Cart", b =>
+                {
+                    b.HasOne("Microsoft.AspNetCore.Identity.IdentityUser", "Client")
+                        .WithMany()
+                        .HasForeignKey("ClientId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("SmallFarm.Data.Entities.Product", "Product")
+                        .WithMany()
+                        .HasForeignKey("ProductId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Client");
+
+                    b.Navigation("Product");
+                });
+
+            modelBuilder.Entity("SmallFarm.Data.Entities.FavouriteProduct", b =>
                 {
                     b.HasOne("Microsoft.AspNetCore.Identity.IdentityUser", "Client")
                         .WithMany()

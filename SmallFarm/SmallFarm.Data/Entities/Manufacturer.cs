@@ -32,7 +32,7 @@ namespace SmallFarm.Data.Entities
         public string Email { get; set; } = null!;
 
         [Required]
-        public Guid LocationId { get; set; }
+        public int LocationId { get; set; }
 
         [ForeignKey(nameof(LocationId))]
         public Location Location { get; set; } = null!;

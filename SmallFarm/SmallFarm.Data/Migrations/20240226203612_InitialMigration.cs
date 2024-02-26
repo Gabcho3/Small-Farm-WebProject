@@ -52,7 +52,8 @@ namespace SmallFarm.Data.Migrations
                 name: "Locations",
                 columns: table => new
                 {
-                    Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
                     Address = table.Column<string>(type: "nvarchar(100)", maxLength: 100, nullable: false),
                     City = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: false)
                 },
@@ -196,7 +197,7 @@ namespace SmallFarm.Data.Migrations
                     Description = table.Column<string>(type: "nvarchar(500)", maxLength: 500, nullable: false),
                     PhoneNumber = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     Email = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    LocationId = table.Column<Guid>(type: "uniqueidentifier", nullable: false)
+                    LocationId = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -243,7 +244,7 @@ namespace SmallFarm.Data.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Carts", x => new { x.ProductId, x.ClientId });
+                    table.PrimaryKey("PK_Carts", x => new { x.ClientId, x.ProductId });
                     table.ForeignKey(
                         name: "FK_Carts_AspNetUsers_ClientId",
                         column: x => x.ClientId,
@@ -252,6 +253,30 @@ namespace SmallFarm.Data.Migrations
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
                         name: "FK_Carts_Products_ProductId",
+                        column: x => x.ProductId,
+                        principalTable: "Products",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "FavoriteProducts",
+                columns: table => new
+                {
+                    ClientId = table.Column<string>(type: "nvarchar(450)", nullable: false),
+                    ProductId = table.Column<Guid>(type: "uniqueidentifier", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_FavoriteProducts", x => new { x.ClientId, x.ProductId });
+                    table.ForeignKey(
+                        name: "FK_FavoriteProducts_AspNetUsers_ClientId",
+                        column: x => x.ClientId,
+                        principalTable: "AspNetUsers",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_FavoriteProducts_Products_ProductId",
                         column: x => x.ProductId,
                         principalTable: "Products",
                         principalColumn: "Id",
@@ -322,9 +347,14 @@ namespace SmallFarm.Data.Migrations
                 filter: "[NormalizedUserName] IS NOT NULL");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Carts_ClientId",
+                name: "IX_Carts_ProductId",
                 table: "Carts",
-                column: "ClientId");
+                column: "ProductId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_FavoriteProducts_ProductId",
+                table: "FavoriteProducts",
+                column: "ProductId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_Manufacturers_LocationId",
@@ -366,6 +396,9 @@ namespace SmallFarm.Data.Migrations
 
             migrationBuilder.DropTable(
                 name: "Carts");
+
+            migrationBuilder.DropTable(
+                name: "FavoriteProducts");
 
             migrationBuilder.DropTable(
                 name: "OrderProducts");
