@@ -12,8 +12,8 @@ using SmallFarm.Data;
 namespace SmallFarm.Data.Migrations
 {
     [DbContext(typeof(SmallFarmDbContext))]
-    [Migration("20240226205243_SeededManufacturersWithLocation")]
-    partial class SeededManufacturersWithLocation
+    [Migration("20240226212414_AddPhoneNumberMaxLenght")]
+    partial class AddPhoneNumberMaxLenght
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -284,26 +284,6 @@ namespace SmallFarm.Data.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Locations");
-
-                    b.HasData(
-                        new
-                        {
-                            Id = 1,
-                            Address = "123 Sunny Street",
-                            City = "Veliko Tarnovo"
-                        },
-                        new
-                        {
-                            Id = 2,
-                            Address = "456 Dairy Lane",
-                            City = "Rhodope Mountains"
-                        },
-                        new
-                        {
-                            Id = 3,
-                            Address = "789 Honey Farm Road",
-                            City = "Rose Valley"
-                        });
                 });
 
             modelBuilder.Entity("SmallFarm.Data.Entities.Manufacturer", b =>
@@ -331,42 +311,14 @@ namespace SmallFarm.Data.Migrations
 
                     b.Property<string>("PhoneNumber")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasMaxLength(12)
+                        .HasColumnType("nvarchar(12)");
 
                     b.HasKey("Id");
 
                     b.HasIndex("LocationId");
 
                     b.ToTable("Manufacturers");
-
-                    b.HasData(
-                        new
-                        {
-                            Id = new Guid("76861aac-065f-42a1-96fb-b903e1bfd5a2"),
-                            Description = "Sunny Valley Farms is a family-owned agricultural business located in the heart of Bulgaria's fertile countryside near Veliko Tarnovo. Specializing in organic fruit and vegetable production, we pride ourselves on delivering the freshest, highest-quality produce to local markets and restaurants. From juicy peaches to crisp cucumbers, our farm-fresh offerings are sure to delight your taste buds.",
-                            Email = "info@sunnyvalleyfarms.bg",
-                            LocationId = 1,
-                            Name = "Sunny Valley Farms",
-                            PhoneNumber = "+359 62 123 456"
-                        },
-                        new
-                        {
-                            Id = new Guid("08c95909-3e2e-4f43-b482-cc6ab78c9a94"),
-                            Description = "Balkan Dairy Co-op is a cooperative of small-scale dairy farmers located in the picturesque Rhodope Mountains of Bulgaria. Our passionate farmers work tirelessly to produce the finest organic dairy products, including creamy yogurt, artisanal cheeses, and rich, velvety milk. With a commitment to sustainability and animal welfare, we strive to provide wholesome, nutritious dairy products straight from our pastures to your table.",
-                            Email = "info@balkandairycoop.com",
-                            LocationId = 2,
-                            Name = "Balkan Dairy Co-op",
-                            PhoneNumber = "+359 88 765 4321"
-                        },
-                        new
-                        {
-                            Id = new Guid("6a5bd1e2-bed2-480b-8158-64a78b0476d0"),
-                            Description = "Golden Fields Honey is a beekeeping enterprise nestled in the sun-drenched valleys of Bulgaria's Rose Valley region. Our beekeepers lovingly tend to our hives, ensuring that our pure, raw honey captures the essence of Bulgaria's diverse floral landscapes. From fragrant acacia honey to robust wildflower varieties, each jar of Golden Fields Honey is a testament to nature's bounty and our dedication to artisanal craftsmanship.",
-                            Email = "sales@goldenfieldshoney.bg",
-                            LocationId = 3,
-                            Name = "Golden Fields Honey",
-                            PhoneNumber = "+359 31 234 567"
-                        });
                 });
 
             modelBuilder.Entity("SmallFarm.Data.Entities.Order", b =>
