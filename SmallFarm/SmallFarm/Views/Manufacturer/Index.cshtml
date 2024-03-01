@@ -5,7 +5,7 @@
     int counterId = 0;
 }
 
-<div class="container" style="margin-top:100px">
+<div class="container" style="margin-top:45px">
     <div class="row gap-5">
         @foreach (var manufacturer in Model)
         {
@@ -29,12 +29,12 @@
                 <ul class="list-group list-group-flush">
                     <li class="list-group-item bg-info" style="height:5em;"><strong>Phone Number:</strong> @manufacturer.PhoneNumber</li>
                     <li class="list-group-item bg-info" style="height:5em;"><strong>Email:</strong> @manufacturer.Email</li>
-                <li class="list-group-item bg-info" style="height:5em;"><strong>Address:</strong> @manufacturer.Address, @manufacturer.City</li>
+                    <li class="list-group-item bg-info" style="height:5em;"><strong>Address:</strong> @manufacturer.Address, @manufacturer.City</li>
                 </ul>
-                @* <div class="card-body">
-            <a href="#" class="card-link">Card link</a>
-            <a href="#" class="card-link">Another link</a>
-            </div> *@
+                <div class="card-body">
+                    <button class="btn btn-warning mb-2 w-100"><a asp-controller="Manufacturer" asp-action="Edit" class="text-primary" style="text-decoration:none">Edit</a></button>
+                    <button class="btn btn-danger w-100"><a asp-controller="Manufacturer" asp-action="Delete" class="text-white" style="text-decoration:none">Delete</a></button>
+                </div>
             </div>
         }
     </div>
