@@ -14,6 +14,7 @@ namespace SmallFarm.Core.Helpers
                 .ForMember(dest => dest.City,
                     opt => opt.MapFrom(src => src.Location.City));
 
+            CreateMap<ManufacturerViewModel, Manufacturer>();
         }
     }
 }
