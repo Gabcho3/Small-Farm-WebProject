@@ -1,6 +1,8 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using SmallFarm.Core.Contracts;
+using SmallFarm.Core.Models;
 using SmallFarm.Core.Services;
+using SmallFarm.Models;
 
 namespace SmallFarm.Controllers
 {
@@ -19,6 +21,27 @@ namespace SmallFarm.Controllers
             var allManufacturers = await service.GetAllManufacturersAsync();
 
             return View(allManufacturers);
+        }
+
+        [HttpGet]
+        public IActionResult Add()
+        {
+            var model = new ManufacturerViewModel();
+
+            return View(model);
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> Add(ManufacturerViewModel model)
+        {
+            if (!ModelState.IsValid)
+            {
+                return View(model);
+            }
+
+            await service.AddManufacturerAsync(model);
+
+            return RedirectToAction("Index");
         }
     }
 }
