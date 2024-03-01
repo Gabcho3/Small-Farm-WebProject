@@ -43,5 +43,26 @@ namespace SmallFarm.Controllers
 
             return RedirectToAction("Index");
         }
+
+        [HttpGet]
+        public async Task<IActionResult> Edit(Guid id)
+        {
+            var model = await service.GetManufacturerByIdAsync(id);
+
+            return View(model);
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> Edit(Guid id, ManufacturerViewModel model)
+        {
+            if (!ModelState.IsValid)
+            {
+                return View(model);
+            }
+
+            await service.EditManufacturerAsync(id, model);
+
+            return RedirectToAction("Index");
+        }
     }
 }

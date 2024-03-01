@@ -31,10 +31,12 @@
                     <li class="list-group-item bg-info" style="height:5em;"><strong>Email:</strong> @manufacturer.Email</li>
                     <li class="list-group-item bg-info" style="height:5em;"><strong>Address:</strong> @manufacturer.Address, @manufacturer.City</li>
                 </ul>
-                <div class="card-body">
-                    <button class="btn btn-warning mb-2 w-100"><a asp-controller="Manufacturer" asp-action="Edit" class="text-primary" style="text-decoration:none">Edit</a></button>
-                    <button class="btn btn-danger w-100"><a asp-controller="Manufacturer" asp-action="Delete" class="text-white" style="text-decoration:none">Delete</a></button>
-                </div>
+                <form asp-controller="Manufacturer" asp-action="Edit" class="card-body w-100 pb-0 ms-auto me-auto" asp-route-id="@manufacturer.Id" method="get">
+                    <button class="btn btn-warning  w-100">Edit</button>
+                </form>
+                <form asp-controller="Manufacturer" asp-action="Delete" class="card-body w-100 ms-auto me-auto" asp-route-id="@manufacturer.Id" method="get">
+                    <button class="btn btn-danger w-100">Delete</button>
+                </form>
             </div>
         }
     </div>
