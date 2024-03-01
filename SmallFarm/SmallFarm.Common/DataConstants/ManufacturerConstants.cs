@@ -8,6 +8,6 @@
         public const int DescriptionMinLength = 25;
         public const int DescriptionMaxLength = 500;
 
-        public const int PhoneNumberMaxLength = 12;
+        public const int PhoneNumberMaxLength = 13;
     }
 }
