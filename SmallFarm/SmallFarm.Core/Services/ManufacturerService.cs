@@ -78,5 +78,13 @@ namespace SmallFarm.Core.Services
 
             await context.SaveChangesAsync();
         }
+
+        public async Task DeleteManufacturerAsync(Guid id)
+        {
+            var manufacturerToDelete = await context.Manufacturers.FindAsync(id);
+
+            context.Manufacturers.Remove(manufacturerToDelete);
+            await context.SaveChangesAsync();
+        }
     }
 }

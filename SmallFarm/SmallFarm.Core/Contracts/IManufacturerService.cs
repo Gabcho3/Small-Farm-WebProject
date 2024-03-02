@@ -11,5 +11,7 @@ namespace SmallFarm.Core.Contracts
         Task AddManufacturerAsync(ManufacturerViewModel model);
 
         Task EditManufacturerAsync(Guid id, ManufacturerViewModel model);
+
+        Task DeleteManufacturerAsync(Guid id);
     }
 }

@@ -1,8 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using SmallFarm.Core.Contracts;
 using SmallFarm.Core.Models;
-using SmallFarm.Core.Services;
-using SmallFarm.Models;
 
 namespace SmallFarm.Controllers
 {
@@ -61,6 +59,14 @@ namespace SmallFarm.Controllers
             }
 
             await service.EditManufacturerAsync(id, model);
+
+            return RedirectToAction("Index");
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> Remove(Guid id)
+        {
+            await service.DeleteManufacturerAsync(id);
 
             return RedirectToAction("Index");
         }
