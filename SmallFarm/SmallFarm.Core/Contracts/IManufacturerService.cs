@@ -1,16 +1,19 @@
-﻿using SmallFarm.Core.Models;
+﻿using SmallFarm.Core.Models.City;
+using SmallFarm.Core.Models.Manufacturer;
 
 namespace SmallFarm.Core.Contracts
 {
     public interface IManufacturerService
     {
-        Task<ManufacturerViewModel> GetManufacturerByIdAsync(Guid id);
+        Task<ManufacturerFormModel> GetManufacturerByIdAsync(Guid id);
 
         Task<IEnumerable<ManufacturerViewModel>> GetAllManufacturersAsync();
 
-        Task AddManufacturerAsync(ManufacturerViewModel model);
+        Task<IEnumerable<CityDto>> GetAllCitiesAsync();
 
-        Task EditManufacturerAsync(Guid id, ManufacturerViewModel model);
+        Task AddManufacturerAsync(ManufacturerFormModel model);
+
+        Task EditManufacturerAsync(Guid id, ManufacturerFormModel model);
 
         Task DeleteManufacturerAsync(Guid id);
     }

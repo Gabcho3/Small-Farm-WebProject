@@ -2,7 +2,8 @@
 using Microsoft.EntityFrameworkCore;
 using SmallFarm.Core.Contracts;
 using SmallFarm.Core.Helpers;
-using SmallFarm.Core.Models;
+using SmallFarm.Core.Models.City;
+using SmallFarm.Core.Models.Manufacturer;
 using SmallFarm.Data;
 using SmallFarm.Data.Entities;
 
@@ -22,16 +23,13 @@ namespace SmallFarm.Core.Services
             }));
         }
 
-        public async Task<ManufacturerViewModel> GetManufacturerByIdAsync(Guid id)
+        public async Task<ManufacturerFormModel> GetManufacturerByIdAsync(Guid id)
         {
             var manufacturer = await context.Manufacturers
-                .Include(m => m.Location)
                 .Where(m => m.Id == id)
                 .FirstAsync();
 
-            var model = autoMapper.Map<ManufacturerViewModel>(manufacturer);
-            model.Address = manufacturer!.Location.Address;
-            model.City = manufacturer.Location.City;
+            var model = autoMapper.Map<ManufacturerFormModel>(manufacturer);
 
             return model;
         }
@@ -40,7 +38,7 @@ namespace SmallFarm.Core.Services
         {
             var allManufacturers = await context.Manufacturers
                 .AsNoTracking()
-                .Include(m => m.Location)
+                .Include(m => m.City)
                 .OrderByDescending(m => m)
                 .Select(m => autoMapper.Map<ManufacturerViewModel>(m))
                 .ToListAsync();
@@ -48,33 +46,27 @@ namespace SmallFarm.Core.Services
             return allManufacturers;
         }
 
-        public async Task AddManufacturerAsync(ManufacturerViewModel model)
+        public async Task<IEnumerable<CityDto>> GetAllCitiesAsync()
+            => await context.Cities.AsNoTracking().Select(c => autoMapper.Map<CityDto>(c)).ToArrayAsync();
+
+        public async Task AddManufacturerAsync(ManufacturerFormModel model)
         {
             Manufacturer manufacturer = autoMapper.Map<Manufacturer>(model);
-
-            manufacturer.Location = new Location()
-            {
-                Address = model.Address,
-                City = model.City
-            };
 
             await context.AddAsync(manufacturer);
             await context.SaveChangesAsync();
         }
 
-        public async Task EditManufacturerAsync(Guid id, ManufacturerViewModel model)
+        public async Task EditManufacturerAsync(Guid id, ManufacturerFormModel model)
         {
-            var manufacturerToEdit = await context.Manufacturers
-                .Include(m => m.Location)
-                .Where(m => m.Id == id)
-                .FirstAsync();
+            var manufacturerToEdit = await context.Manufacturers.FindAsync(id);
 
             manufacturerToEdit!.Name = model.Name;
             manufacturerToEdit.Description = model.Description;
             manufacturerToEdit.PhoneNumber = model.PhoneNumber;
             manufacturerToEdit.Email = model.Email;
-            manufacturerToEdit.Location.Address = model.Address;
-            manufacturerToEdit.Location.City = model.City;
+            manufacturerToEdit.Address = model.Address;
+            manufacturerToEdit.CityId = model.CityId;
 
             await context.SaveChangesAsync();
         }
@@ -83,7 +75,7 @@ namespace SmallFarm.Core.Services
         {
             var manufacturerToDelete = await context.Manufacturers.FindAsync(id);
 
-            context.Manufacturers.Remove(manufacturerToDelete);
+            context.Manufacturers.Remove(manufacturerToDelete!);
             await context.SaveChangesAsync();
         }
     }
