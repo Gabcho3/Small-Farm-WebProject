@@ -32,10 +32,14 @@ namespace SmallFarm.Data.Entities
         public string Email { get; set; } = null!;
 
         [Required]
-        public int LocationId { get; set; }
+        [StringLength(AddressMaxLength)]
+        public string Address { get; set; } = null!;
 
-        [ForeignKey(nameof(LocationId))]
-        public Location Location { get; set; } = null!;
+        [Required]
+        public int CityId { get; set; }
+
+        [ForeignKey(nameof(CityId))]
+        public City City { get; set; } = null!;
 
         public List<Product> Products { get; set; }
     }

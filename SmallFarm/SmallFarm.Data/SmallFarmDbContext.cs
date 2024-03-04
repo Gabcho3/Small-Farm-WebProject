@@ -11,7 +11,7 @@ namespace SmallFarm.Data
         public SmallFarmDbContext(DbContextOptions<SmallFarmDbContext> options) 
             : base(options) { }
 
-        public DbSet<Location> Locations { get; set; } = null!;
+        public DbSet<City> Cities { get; set; } = null!;
 
         public DbSet<Manufacturer> Manufacturers { get; set; } = null!;
 
@@ -36,7 +36,7 @@ namespace SmallFarm.Data
             builder.Entity<FavouriteProduct>()
                 .HasKey(x => new { x.ClientId, x.ProductId });
 
-            builder.ApplyConfiguration(new LocationConfiguration());
+            builder.ApplyConfiguration(new CityConfiguration());
             builder.ApplyConfiguration(new ManufacturersConfiguration());
 
             base.OnModelCreating(builder);
