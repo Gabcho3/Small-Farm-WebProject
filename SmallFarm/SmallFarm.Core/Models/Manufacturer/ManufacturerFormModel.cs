@@ -1,10 +1,11 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using SmallFarm.Core.Models.City;
+using System.ComponentModel.DataAnnotations;
 using static SmallFarm.Common.DataConstants.ManufacturerConstants;
 using static SmallFarm.Common.ValidationErrors.GeneralValidationErrors;
 
-namespace SmallFarm.Core.Models
+namespace SmallFarm.Core.Models.Manufacturer
 {
-    public class ManufacturerViewModel
+    public class ManufacturerFormModel
     {
         public Guid Id { get; set; }
 
@@ -26,9 +27,11 @@ namespace SmallFarm.Core.Models
         public string Email { get; set; } = null!;
 
         [Required]
+        [StringLength(AddressMaxLength, MinimumLength = AddressMinLength, ErrorMessage = StringMaxLengthValidationError)]
         public string Address { get; set; } = null!;
 
-        [Required]
-        public string City { get; set; } = null!;
+        public int CityId { get; set; }
+
+        public IEnumerable<CityDto> Cities { get; set; } = Enumerable.Empty<CityDto>();
     }
 }
