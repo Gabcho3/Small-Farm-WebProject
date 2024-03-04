@@ -12,8 +12,8 @@ using SmallFarm.Data;
 namespace SmallFarm.Data.Migrations
 {
     [DbContext(typeof(SmallFarmDbContext))]
-    [Migration("20240304122446_SeedCities")]
-    partial class SeedCities
+    [Migration("20240304131600_InitialMigration")]
+    partial class InitialMigration
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -269,1277 +269,717 @@ namespace SmallFarm.Data.Migrations
                         new
                         {
                             Id = 1,
-                            Name = "Ablanitsa"
+                            Name = "Alfatar"
                         },
                         new
                         {
                             Id = 2,
-                            Name = "Aheloy"
+                            Name = "Antonovo"
                         },
                         new
                         {
                             Id = 3,
-                            Name = "Aksakovo"
+                            Name = "Apriltsi"
                         },
                         new
                         {
                             Id = 4,
-                            Name = "Aldomirovtsi"
-                        },
-                        new
-                        {
-                            Id = 5,
-                            Name = "Aleksandrovo"
-                        },
-                        new
-                        {
-                            Id = 6,
-                            Name = "Asenovgrad"
-                        },
-                        new
-                        {
-                            Id = 7,
-                            Name = "Aydemir"
-                        },
-                        new
-                        {
-                            Id = 8,
                             Name = "Aytos"
                         },
                         new
                         {
+                            Id = 5,
+                            Name = "Batak"
+                        },
+                        new
+                        {
+                            Id = 6,
+                            Name = "Belene"
+                        },
+                        new
+                        {
+                            Id = 7,
+                            Name = "Belitsa"
+                        },
+                        new
+                        {
+                            Id = 8,
+                            Name = "Belogradchik"
+                        },
+                        new
+                        {
                             Id = 9,
-                            Name = "Balgarovo"
-                        },
-                        new
-                        {
-                            Id = 10,
-                            Name = "Banitsa"
-                        },
-                        new
-                        {
-                            Id = 11,
-                            Name = "Bankya"
-                        },
-                        new
-                        {
-                            Id = 12,
-                            Name = "Banya"
-                        },
-                        new
-                        {
-                            Id = 13,
-                            Name = "Basarbovo"
-                        },
-                        new
-                        {
-                            Id = 14,
-                            Name = "Bata"
-                        },
-                        new
-                        {
-                            Id = 15,
-                            Name = "Batanovtsi"
-                        },
-                        new
-                        {
-                            Id = 16,
-                            Name = "Belogradets"
-                        },
-                        new
-                        {
-                            Id = 17,
                             Name = "Beloslav"
                         },
                         new
                         {
-                            Id = 18,
-                            Name = "Benkovski"
+                            Id = 10,
+                            Name = "Berkovitsa"
                         },
                         new
                         {
-                            Id = 19,
-                            Name = "Bistritsa"
-                        },
-                        new
-                        {
-                            Id = 20,
-                            Name = "Bistritsa"
-                        },
-                        new
-                        {
-                            Id = 21,
+                            Id = 11,
                             Name = "Blagoevgrad"
                         },
                         new
                         {
-                            Id = 22,
-                            Name = "Boboshevo"
+                            Id = 12,
+                            Name = "Bobov Dol"
                         },
                         new
                         {
-                            Id = 23,
-                            Name = "Borovo"
-                        },
-                        new
-                        {
-                            Id = 24,
-                            Name = "Borovo"
-                        },
-                        new
-                        {
-                            Id = 25,
+                            Id = 13,
                             Name = "Botevgrad"
                         },
                         new
                         {
-                            Id = 26,
+                            Id = 14,
                             Name = "Bozhurishte"
                         },
                         new
                         {
-                            Id = 27,
+                            Id = 15,
                             Name = "Bregovo"
                         },
                         new
                         {
-                            Id = 28,
-                            Name = "Brestovitsa"
+                            Id = 16,
+                            Name = "Breznik"
                         },
                         new
                         {
-                            Id = 29,
-                            Name = "Buhovo"
+                            Id = 17,
+                            Name = "Brusartsi"
                         },
                         new
                         {
-                            Id = 30,
-                            Name = "Bukovlak"
-                        },
-                        new
-                        {
-                            Id = 31,
+                            Id = 18,
                             Name = "Burgas"
                         },
                         new
                         {
-                            Id = 32,
-                            Name = "Busmantsi"
+                            Id = 19,
+                            Name = "Byala Slatina"
                         },
                         new
                         {
-                            Id = 33,
-                            Name = "Byal Izvor"
+                            Id = 20,
+                            Name = "Chernomorets"
                         },
                         new
                         {
-                            Id = 34,
-                            Name = "Byala"
+                            Id = 21,
+                            Name = "Cherven Bryag"
                         },
                         new
                         {
-                            Id = 35,
-                            Name = "Chepintsi"
+                            Id = 22,
+                            Name = "Chirpan"
                         },
                         new
                         {
-                            Id = 36,
-                            Name = "Chernogorovo"
+                            Id = 23,
+                            Name = "Dalgopol"
                         },
                         new
                         {
-                            Id = 37,
-                            Name = "Cherven Breg"
-                        },
-                        new
-                        {
-                            Id = 38,
-                            Name = "Chervena Voda"
-                        },
-                        new
-                        {
-                            Id = 39,
-                            Name = "Debelets"
-                        },
-                        new
-                        {
-                            Id = 40,
+                            Id = 24,
                             Name = "Devin"
                         },
                         new
                         {
-                            Id = 41,
-                            Name = "Devnya"
-                        },
-                        new
-                        {
-                            Id = 42,
+                            Id = 25,
                             Name = "Dimitrovgrad"
                         },
                         new
                         {
-                            Id = 43,
-                            Name = "Divotino"
-                        },
-                        new
-                        {
-                            Id = 44,
-                            Name = "Dobri Dyal"
-                        },
-                        new
-                        {
-                            Id = 45,
+                            Id = 26,
                             Name = "Dobrich"
                         },
                         new
                         {
-                            Id = 46,
-                            Name = "Dobromir"
+                            Id = 27,
+                            Name = "Dolni Chiflik"
                         },
                         new
                         {
-                            Id = 47,
-                            Name = "Dobroslavtsi"
+                            Id = 28,
+                            Name = "Dospat"
                         },
                         new
                         {
-                            Id = 48,
-                            Name = "Dolen"
+                            Id = 29,
+                            Name = "Dryanovo"
                         },
                         new
                         {
-                            Id = 49,
-                            Name = "Dolna Banya"
+                            Id = 30,
+                            Name = "Dulovo"
                         },
                         new
                         {
-                            Id = 50,
-                            Name = "Dolna Oryahovitsa"
-                        },
-                        new
-                        {
-                            Id = 51,
-                            Name = "Dolni Bogrov"
-                        },
-                        new
-                        {
-                            Id = 52,
-                            Name = "Draganovo"
-                        },
-                        new
-                        {
-                            Id = 53,
-                            Name = "Dragichevo"
-                        },
-                        new
-                        {
-                            Id = 54,
+                            Id = 31,
                             Name = "Dupnitsa"
                         },
                         new
                         {
-                            Id = 55,
-                            Name = "Dzherman"
+                            Id = 32,
+                            Name = "Dve Mogili"
                         },
                         new
                         {
-                            Id = 56,
-                            Name = "Dzhulyunitsa"
+                            Id = 33,
+                            Name = "Elena"
                         },
                         new
                         {
-                            Id = 57,
+                            Id = 34,
+                            Name = "Elhovo"
+                        },
+                        new
+                        {
+                            Id = 35,
                             Name = "Elin Pelin"
                         },
                         new
                         {
-                            Id = 58,
+                            Id = 36,
                             Name = "Etropole"
                         },
                         new
                         {
-                            Id = 59,
-                            Name = "Ezerovo"
-                        },
-                        new
-                        {
-                            Id = 60,
-                            Name = "Gabrovnitsa"
-                        },
-                        new
-                        {
-                            Id = 61,
+                            Id = 37,
                             Name = "Gabrovo"
                         },
                         new
                         {
-                            Id = 62,
-                            Name = "Galabets"
+                            Id = 38,
+                            Name = "General Toshevo"
                         },
                         new
                         {
-                            Id = 63,
-                            Name = "German"
-                        },
-                        new
-                        {
-                            Id = 64,
+                            Id = 39,
                             Name = "Glavinitsa"
                         },
                         new
                         {
-                            Id = 65,
-                            Name = "Glozhene"
-                        },
-                        new
-                        {
-                            Id = 66,
-                            Name = "Gluhar"
-                        },
-                        new
-                        {
-                            Id = 67,
+                            Id = 40,
                             Name = "Gorna Oryahovitsa"
                         },
                         new
                         {
-                            Id = 68,
-                            Name = "Gorni Bogrov"
-                        },
-                        new
-                        {
-                            Id = 69,
-                            Name = "Gorski Izvor"
-                        },
-                        new
-                        {
-                            Id = 70,
+                            Id = 41,
                             Name = "Gotse Delchev"
                         },
                         new
                         {
-                            Id = 71,
-                            Name = "Gradina"
+                            Id = 42,
+                            Name = "Gramada"
                         },
                         new
                         {
-                            Id = 72,
-                            Name = "Graf Ignatievo"
+                            Id = 43,
+                            Name = "Gulubovo"
                         },
                         new
                         {
-                            Id = 73,
-                            Name = "Grivitsa"
-                        },
-                        new
-                        {
-                            Id = 74,
+                            Id = 44,
                             Name = "Gulyantsi"
                         },
                         new
                         {
-                            Id = 75,
+                            Id = 45,
                             Name = "Gurkovo"
                         },
                         new
                         {
-                            Id = 76,
-                            Name = "Gyulyovtsa"
+                            Id = 46,
+                            Name = "Harmanli"
                         },
                         new
                         {
-                            Id = 77,
-                            Name = "Hadzhievo"
-                        },
-                        new
-                        {
-                            Id = 78,
+                            Id = 47,
                             Name = "Haskovo"
                         },
                         new
                         {
-                            Id = 79,
-                            Name = "Ignatievo"
-                        },
-                        new
-                        {
-                            Id = 80,
+                            Id = 48,
                             Name = "Isperih"
                         },
                         new
                         {
-                            Id = 81,
-                            Name = "Ivaylo"
+                            Id = 49,
+                            Name = "Ivaylovgrad"
                         },
                         new
                         {
-                            Id = 82,
-                            Name = "Izvorsko"
-                        },
-                        new
-                        {
-                            Id = 83,
+                            Id = 50,
                             Name = "Kableshkovo"
                         },
                         new
                         {
-                            Id = 84,
-                            Name = "Kadievo"
-                        },
-                        new
-                        {
-                            Id = 85,
-                            Name = "Kalekovets"
-                        },
-                        new
-                        {
-                            Id = 86,
-                            Name = "Kalipetrovo"
-                        },
-                        new
-                        {
-                            Id = 87,
+                            Id = 51,
                             Name = "Kalofer"
                         },
                         new
                         {
-                            Id = 88,
-                            Name = "Kamenar"
-                        },
-                        new
-                        {
-                            Id = 89,
-                            Name = "Karabunar"
-                        },
-                        new
-                        {
-                            Id = 90,
-                            Name = "Karageorgievo"
-                        },
-                        new
-                        {
-                            Id = 91,
-                            Name = "Karapelit"
-                        },
-                        new
-                        {
-                            Id = 92,
+                            Id = 52,
                             Name = "Kardzhali"
                         },
                         new
                         {
-                            Id = 93,
-                            Name = "Karlovo"
+                            Id = 53,
+                            Name = "Karnobat"
                         },
                         new
                         {
-                            Id = 94,
+                            Id = 54,
+                            Name = "Kavarna"
+                        },
+                        new
+                        {
+                            Id = 55,
                             Name = "Kazanlak"
                         },
                         new
                         {
-                            Id = 95,
-                            Name = "Kazichene"
+                            Id = 56,
+                            Name = "Kirkovo"
                         },
                         new
                         {
-                            Id = 96,
-                            Name = "Kermen"
+                            Id = 57,
+                            Name = "Knezha"
                         },
                         new
                         {
-                            Id = 97,
-                            Name = "Kilifarevo"
+                            Id = 58,
+                            Name = "Kostenets"
                         },
                         new
                         {
-                            Id = 98,
-                            Name = "Kladnitsa"
-                        },
-                        new
-                        {
-                            Id = 99,
-                            Name = "Kokalyane"
-                        },
-                        new
-                        {
-                            Id = 100,
-                            Name = "Konstantinovo"
-                        },
-                        new
-                        {
-                            Id = 101,
-                            Name = "Kosharitsa"
-                        },
-                        new
-                        {
-                            Id = 102,
-                            Name = "Kostandovo"
-                        },
-                        new
-                        {
-                            Id = 103,
-                            Name = "Kostievo"
-                        },
-                        new
-                        {
-                            Id = 104,
-                            Name = "Kostinbrod"
-                        },
-                        new
-                        {
-                            Id = 105,
-                            Name = "Koynare"
-                        },
-                        new
-                        {
-                            Id = 106,
+                            Id = 59,
                             Name = "Kozloduy"
                         },
                         new
                         {
-                            Id = 107,
-                            Name = "Kran"
+                            Id = 60,
+                            Name = "Kuklen"
                         },
                         new
                         {
-                            Id = 108,
-                            Name = "Krastava"
+                            Id = 61,
+                            Name = "Kurdzhali"
                         },
                         new
                         {
-                            Id = 109,
-                            Name = "Kraynitsi"
-                        },
-                        new
-                        {
-                            Id = 110,
-                            Name = "Krepost"
-                        },
-                        new
-                        {
-                            Id = 111,
-                            Name = "Krichim"
-                        },
-                        new
-                        {
-                            Id = 112,
-                            Name = "Krivina"
-                        },
-                        new
-                        {
-                            Id = 113,
-                            Name = "Krushare"
-                        },
-                        new
-                        {
-                            Id = 114,
-                            Name = "Kukorevo"
-                        },
-                        new
-                        {
-                            Id = 115,
-                            Name = "Kurtovo Konare"
-                        },
-                        new
-                        {
-                            Id = 116,
+                            Id = 62,
                             Name = "Kyustendil"
                         },
                         new
                         {
-                            Id = 117,
-                            Name = "Lesnovo"
+                            Id = 63,
+                            Name = "Laki"
                         },
                         new
                         {
-                            Id = 118,
-                            Name = "Lom"
+                            Id = 64,
+                            Name = "Letnitsa"
                         },
                         new
                         {
-                            Id = 119,
+                            Id = 65,
+                            Name = "Levski"
+                        },
+                        new
+                        {
+                            Id = 66,
                             Name = "Lovech"
                         },
                         new
                         {
-                            Id = 120,
-                            Name = "Lozen"
+                            Id = 67,
+                            Name = "Loznitsa"
                         },
                         new
                         {
-                            Id = 121,
-                            Name = "Lyaskovets"
-                        },
-                        new
-                        {
-                            Id = 122,
-                            Name = "Lyuben Karavelovo"
-                        },
-                        new
-                        {
-                            Id = 123,
+                            Id = 68,
                             Name = "Madan"
                         },
                         new
                         {
-                            Id = 124,
-                            Name = "Maglen"
+                            Id = 69,
+                            Name = "Madzharovo"
                         },
                         new
                         {
-                            Id = 125,
-                            Name = "Malevo"
+                            Id = 70,
+                            Name = "Malko Tarnovo"
                         },
                         new
                         {
-                            Id = 126,
-                            Name = "Malo Konare"
-                        },
-                        new
-                        {
-                            Id = 127,
-                            Name = "Marchaevo"
-                        },
-                        new
-                        {
-                            Id = 128,
-                            Name = "Marinka"
-                        },
-                        new
-                        {
-                            Id = 129,
-                            Name = "Marten"
-                        },
-                        new
-                        {
-                            Id = 130,
+                            Id = 71,
                             Name = "Merichleri"
                         },
                         new
                         {
-                            Id = 131,
-                            Name = "Mirovyane"
+                            Id = 72,
+                            Name = "Mizia"
                         },
                         new
                         {
-                            Id = 132,
-                            Name = "Mokrishte"
+                            Id = 73,
+                            Name = "Momchilgrad"
                         },
                         new
                         {
-                            Id = 133,
+                            Id = 74,
                             Name = "Montana"
                         },
                         new
                         {
-                            Id = 134,
-                            Name = "Mortagonovo"
+                            Id = 75,
+                            Name = "Nessebar"
                         },
                         new
                         {
-                            Id = 135,
-                            Name = "Negovan"
-                        },
-                        new
-                        {
-                            Id = 136,
+                            Id = 76,
                             Name = "Nikolaevo"
                         },
                         new
                         {
-                            Id = 137,
-                            Name = "Nikolovo"
+                            Id = 77,
+                            Name = "Nikopol"
                         },
                         new
                         {
-                            Id = 138,
-                            Name = "Novi Pazar"
+                            Id = 78,
+                            Name = "Nova Zagora"
                         },
                         new
                         {
-                            Id = 139,
-                            Name = "Novo Selo"
-                        },
-                        new
-                        {
-                            Id = 140,
-                            Name = "Obzor"
-                        },
-                        new
-                        {
-                            Id = 141,
-                            Name = "Ognyanovo"
-                        },
-                        new
-                        {
-                            Id = 142,
+                            Id = 79,
                             Name = "Omurtag"
                         },
                         new
                         {
-                            Id = 143,
-                            Name = "Opalchensko"
+                            Id = 80,
+                            Name = "Opaka"
                         },
                         new
                         {
-                            Id = 144,
-                            Name = "Orizare"
-                        },
-                        new
-                        {
-                            Id = 145,
-                            Name = "Ostrovo"
-                        },
-                        new
-                        {
-                            Id = 146,
+                            Id = 81,
                             Name = "Panagyurishte"
                         },
                         new
                         {
-                            Id = 147,
-                            Name = "Pancharevo"
+                            Id = 82,
+                            Name = "Parvomay"
                         },
                         new
                         {
-                            Id = 148,
-                            Name = "Parvenets"
+                            Id = 83,
+                            Name = "Pavel Banya"
                         },
                         new
                         {
-                            Id = 149,
-                            Name = "Parvomaytsi"
-                        },
-                        new
-                        {
-                            Id = 150,
-                            Name = "Patalenitsa"
-                        },
-                        new
-                        {
-                            Id = 151,
+                            Id = 84,
                             Name = "Pazardzhik"
                         },
                         new
                         {
-                            Id = 152,
+                            Id = 85,
                             Name = "Pernik"
                         },
                         new
                         {
-                            Id = 153,
-                            Name = "Perushtitsa"
-                        },
-                        new
-                        {
-                            Id = 154,
-                            Name = "Peshtera"
-                        },
-                        new
-                        {
-                            Id = 155,
-                            Name = "Petarch"
-                        },
-                        new
-                        {
-                            Id = 156,
+                            Id = 86,
                             Name = "Petrich"
                         },
                         new
                         {
-                            Id = 157,
-                            Name = "Pisarevo"
+                            Id = 87,
+                            Name = "Pirdop"
                         },
                         new
                         {
-                            Id = 158,
-                            Name = "Planinitsa"
-                        },
-                        new
-                        {
-                            Id = 159,
+                            Id = 88,
                             Name = "Pleven"
                         },
                         new
                         {
-                            Id = 160,
+                            Id = 89,
                             Name = "Plovdiv"
                         },
                         new
                         {
-                            Id = 161,
-                            Name = "Polikrayshte"
-                        },
-                        new
-                        {
-                            Id = 162,
+                            Id = 90,
                             Name = "Pomorie"
                         },
                         new
                         {
-                            Id = 163,
-                            Name = "Prosenik"
+                            Id = 91,
+                            Name = "Popovo"
                         },
                         new
                         {
-                            Id = 164,
-                            Name = "Provadia"
+                            Id = 92,
+                            Name = "Radnevo"
                         },
                         new
                         {
-                            Id = 165,
+                            Id = 93,
+                            Name = "Radomir"
+                        },
+                        new
+                        {
+                            Id = 94,
                             Name = "Rakitovo"
                         },
                         new
                         {
-                            Id = 166,
-                            Name = "Rakovski"
-                        },
-                        new
-                        {
-                            Id = 167,
-                            Name = "Rakovski"
-                        },
-                        new
-                        {
-                            Id = 168,
-                            Name = "Ravda"
-                        },
-                        new
-                        {
-                            Id = 169,
-                            Name = "Ravnets"
-                        },
-                        new
-                        {
-                            Id = 170,
+                            Id = 95,
                             Name = "Razgrad"
                         },
                         new
                         {
-                            Id = 171,
-                            Name = "Razhitsa"
+                            Id = 96,
+                            Name = "Rila"
                         },
                         new
                         {
-                            Id = 172,
-                            Name = "Razlog"
+                            Id = 97,
+                            Name = "Roman"
                         },
                         new
                         {
-                            Id = 173,
-                            Name = "Resen"
-                        },
-                        new
-                        {
-                            Id = 174,
-                            Name = "Rogosh"
-                        },
-                        new
-                        {
-                            Id = 175,
-                            Name = "Rudartsi"
-                        },
-                        new
-                        {
-                            Id = 176,
+                            Id = 98,
                             Name = "Rudozem"
                         },
                         new
                         {
-                            Id = 177,
-                            Name = "Ruen"
-                        },
-                        new
-                        {
-                            Id = 178,
+                            Id = 99,
                             Name = "Ruse"
                         },
                         new
                         {
-                            Id = 179,
-                            Name = "Sadovo"
+                            Id = 100,
+                            Name = "Samokov"
                         },
                         new
                         {
-                            Id = 180,
-                            Name = "Saedinenie"
+                            Id = 101,
+                            Name = "Sandanski"
                         },
                         new
                         {
-                            Id = 181,
-                            Name = "Samoranovo"
-                        },
-                        new
-                        {
-                            Id = 182,
-                            Name = "Sandrovo"
-                        },
-                        new
-                        {
-                            Id = 183,
-                            Name = "Sapareva Banya"
-                        },
-                        new
-                        {
-                            Id = 184,
-                            Name = "Saraya"
-                        },
-                        new
-                        {
-                            Id = 185,
+                            Id = 102,
                             Name = "Sarnitsa"
                         },
                         new
                         {
-                            Id = 186,
-                            Name = "Seliminovo"
+                            Id = 103,
+                            Name = "Satovcha"
                         },
                         new
                         {
-                            Id = 187,
-                            Name = "Semerdzhievo"
-                        },
-                        new
-                        {
-                            Id = 188,
+                            Id = 104,
                             Name = "Septemvri"
                         },
                         new
                         {
-                            Id = 189,
-                            Name = "Shipka"
+                            Id = 105,
+                            Name = "Sevlievo"
                         },
                         new
                         {
-                            Id = 190,
+                            Id = 106,
                             Name = "Shumen"
                         },
                         new
                         {
-                            Id = 191,
+                            Id = 107,
                             Name = "Silistra"
                         },
                         new
                         {
-                            Id = 192,
-                            Name = "Sinitovo"
+                            Id = 108,
+                            Name = "Simeonovgrad"
                         },
                         new
                         {
-                            Id = 193,
-                            Name = "Skutare"
-                        },
-                        new
-                        {
-                            Id = 194,
+                            Id = 109,
                             Name = "Slavyanovo"
                         },
                         new
                         {
-                            Id = 195,
+                            Id = 110,
                             Name = "Sliven"
                         },
                         new
                         {
-                            Id = 196,
-                            Name = "Slivnitsa"
+                            Id = 111,
+                            Name = "Smyadovo"
                         },
                         new
                         {
-                            Id = 197,
-                            Name = "Slokoshtitsa"
-                        },
-                        new
-                        {
-                            Id = 198,
-                            Name = "Smolyan"
-                        },
-                        new
-                        {
-                            Id = 199,
-                            Name = "Snyagovo"
-                        },
-                        new
-                        {
-                            Id = 200,
+                            Id = 112,
                             Name = "Sofia"
                         },
                         new
                         {
-                            Id = 201,
+                            Id = 113,
                             Name = "Sopot"
                         },
                         new
                         {
-                            Id = 202,
-                            Name = "Sotirya"
-                        },
-                        new
-                        {
-                            Id = 203,
+                            Id = 114,
                             Name = "Stamboliyski"
                         },
                         new
                         {
-                            Id = 204,
+                            Id = 115,
                             Name = "Stara Zagora"
                         },
                         new
                         {
-                            Id = 205,
-                            Name = "Startsevo"
+                            Id = 116,
+                            Name = "Straldzha"
                         },
                         new
                         {
-                            Id = 206,
-                            Name = "Stefanovo"
+                            Id = 117,
+                            Name = "Strazhitsa"
                         },
                         new
                         {
-                            Id = 207,
-                            Name = "Stozher"
+                            Id = 118,
+                            Name = "Strumyani"
                         },
                         new
                         {
-                            Id = 208,
-                            Name = "Stratsin"
+                            Id = 119,
+                            Name = "Sungurlare"
                         },
                         new
                         {
-                            Id = 209,
-                            Name = "Studena"
-                        },
-                        new
-                        {
-                            Id = 210,
+                            Id = 120,
                             Name = "Suvorovo"
                         },
                         new
                         {
-                            Id = 211,
+                            Id = 121,
                             Name = "Sveti Vlas"
                         },
                         new
                         {
-                            Id = 212,
-                            Name = "Svetovrachane"
+                            Id = 122,
+                            Name = "Svilengrad"
                         },
                         new
                         {
-                            Id = 213,
+                            Id = 123,
                             Name = "Svishtov"
                         },
                         new
                         {
-                            Id = 214,
-                            Name = "Tankovo"
-                        },
-                        new
-                        {
-                            Id = 215,
+                            Id = 124,
                             Name = "Targovishte"
                         },
                         new
                         {
-                            Id = 216,
-                            Name = "Topolchane"
+                            Id = 125,
+                            Name = "Tervel"
                         },
                         new
                         {
-                            Id = 217,
-                            Name = "Topoli"
+                            Id = 126,
+                            Name = "Teteven"
                         },
                         new
                         {
-                            Id = 218,
-                            Name = "Tranak"
+                            Id = 127,
+                            Name = "Topolovgrad"
                         },
                         new
                         {
-                            Id = 219,
-                            Name = "Trivoditsi"
+                            Id = 128,
+                            Name = "Tran"
                         },
                         new
                         {
-                            Id = 220,
-                            Name = "Trud"
+                            Id = 129,
+                            Name = "Troyan"
                         },
                         new
                         {
-                            Id = 221,
-                            Name = "Tsaratsovo"
+                            Id = 130,
+                            Name = "Tsarevo"
                         },
                         new
                         {
-                            Id = 222,
-                            Name = "Tsarev Brod"
+                            Id = 131,
+                            Name = "Tutrakan"
                         },
                         new
                         {
-                            Id = 223,
-                            Name = "Uzundzhovo"
+                            Id = 132,
+                            Name = "Tvarditsa"
                         },
                         new
                         {
-                            Id = 224,
-                            Name = "Vaglen"
+                            Id = 133,
+                            Name = "Ugarchin"
                         },
                         new
                         {
-                            Id = 225,
-                            Name = "Vaklinovo"
+                            Id = 134,
+                            Name = "Valchedram"
                         },
                         new
                         {
-                            Id = 226,
-                            Name = "Valkosel"
-                        },
-                        new
-                        {
-                            Id = 227,
+                            Id = 135,
                             Name = "Varbitsa"
                         },
                         new
                         {
-                            Id = 228,
-                            Name = "Varbitsa"
-                        },
-                        new
-                        {
-                            Id = 229,
-                            Name = "Vardun"
-                        },
-                        new
-                        {
-                            Id = 230,
+                            Id = 136,
                             Name = "Varna"
                         },
                         new
                         {
-                            Id = 231,
+                            Id = 137,
                             Name = "Varshets"
                         },
                         new
                         {
-                            Id = 232,
-                            Name = "Veliki Preslav"
-                        },
-                        new
-                        {
-                            Id = 233,
+                            Id = 138,
                             Name = "Veliko Tarnovo"
                         },
                         new
                         {
-                            Id = 234,
-                            Name = "Velingrad"
-                        },
-                        new
-                        {
-                            Id = 235,
-                            Name = "Veselinovo"
-                        },
-                        new
-                        {
-                            Id = 236,
+                            Id = 139,
                             Name = "Vetovo"
                         },
                         new
                         {
-                            Id = 237,
-                            Name = "Vetren"
-                        },
-                        new
-                        {
-                            Id = 238,
+                            Id = 140,
                             Name = "Vidin"
                         },
                         new
                         {
-                            Id = 239,
-                            Name = "Vinitsa"
-                        },
-                        new
-                        {
-                            Id = 240,
-                            Name = "Vinogradets"
-                        },
-                        new
-                        {
-                            Id = 241,
-                            Name = "Vladaya"
-                        },
-                        new
-                        {
-                            Id = 242,
-                            Name = "Voluyak"
-                        },
-                        new
-                        {
-                            Id = 243,
-                            Name = "Voysil"
-                        },
-                        new
-                        {
-                            Id = 244,
-                            Name = "Voyvodinovo"
-                        },
-                        new
-                        {
-                            Id = 245,
-                            Name = "Voyvodovo"
-                        },
-                        new
-                        {
-                            Id = 246,
+                            Id = 141,
                             Name = "Vratsa"
                         },
                         new
                         {
-                            Id = 247,
-                            Name = "Vresovo"
-                        },
-                        new
-                        {
-                            Id = 248,
-                            Name = "Yabalchevo"
-                        },
-                        new
-                        {
-                            Id = 249,
-                            Name = "Yabalkovo"
-                        },
-                        new
-                        {
-                            Id = 250,
-                            Name = "Yahinovo"
-                        },
-                        new
-                        {
-                            Id = 251,
+                            Id = 142,
                             Name = "Yambol"
                         },
                         new
                         {
-                            Id = 252,
-                            Name = "Zaychar"
-                        },
-                        new
-                        {
-                            Id = 253,
-                            Name = "Zheleznitsa"
-                        },
-                        new
-                        {
-                            Id = 254,
-                            Name = "Zlatograd"
-                        },
-                        new
-                        {
-                            Id = 255,
-                            Name = "Zvezditsa"
+                            Id = 143,
+                            Name = "Zavet"
                         });
                 });
 
