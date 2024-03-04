@@ -1,6 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using SmallFarm.Core.Contracts;
-using SmallFarm.Core.Models;
+using SmallFarm.Core.Models.Manufacturer;
 
 namespace SmallFarm.Controllers
 {
@@ -22,15 +22,18 @@ namespace SmallFarm.Controllers
         }
 
         [HttpGet]
-        public IActionResult Add()
+        public async Task<IActionResult> Add()
         {
-            var model = new ManufacturerViewModel();
+            var model = new ManufacturerFormModel()
+            {
+                Cities = await service.GetAllCitiesAsync()
+            };
 
             return View(model);
         }
 
         [HttpPost]
-        public async Task<IActionResult> Add(ManufacturerViewModel model)
+        public async Task<IActionResult> Add(ManufacturerFormModel model)
         {
             if (!ModelState.IsValid)
             {
@@ -46,12 +49,13 @@ namespace SmallFarm.Controllers
         public async Task<IActionResult> Edit(Guid id)
         {
             var model = await service.GetManufacturerByIdAsync(id);
+            model.Cities = await service.GetAllCitiesAsync();
 
             return View(model);
         }
 
         [HttpPost]
-        public async Task<IActionResult> Edit(Guid id, ManufacturerViewModel model)
+        public async Task<IActionResult> Edit(Guid id, ManufacturerFormModel model)
         {
             if (!ModelState.IsValid)
             {

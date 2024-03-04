@@ -1,4 +1,4 @@
-﻿@model ManufacturerViewModel
+﻿@model ManufacturerFormModel
 
 @{
     ViewData["Title"] = "Edit Manufacturer";
@@ -31,9 +31,13 @@
         <span asp-validation-for="Address" class="small text-danger"></span>
     </div>
     <div class="col-6">
-        <label for="inputCity" class="form-label">City</label>
-        <input asp-for="City" type="text" class="form-control" id="inputCity" value="@Model.City" />
-        <span asp-validation-for="City" class="small text-danger"></span>
+        <label asp-for="CityId" class="form-label">City</label>
+        <select asp-for="CityId" class="form-control" aria-required="true">
+            @foreach (var city in Model.Cities)
+            {
+                <option value="@city.Id">@city.Name</option>
+            }
+        </select>
     </div>
     <div class="">
         <button type="submit" class="btn btn-warning">Edit Manufacturer</button>

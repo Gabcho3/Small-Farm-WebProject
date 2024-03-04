@@ -9,5 +9,8 @@
         public const int DescriptionMaxLength = 500;
 
         public const int PhoneNumberMaxLength = 13;
+
+        public const int AddressMinLength = 10;
+        public const int AddressMaxLength = 100;
     }
 }
