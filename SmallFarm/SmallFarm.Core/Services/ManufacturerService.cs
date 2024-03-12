@@ -46,8 +46,8 @@ namespace SmallFarm.Core.Services
             return allManufacturers;
         }
 
-        public async Task<IEnumerable<CityDto>> GetAllCitiesAsync()
-            => await context.Cities.AsNoTracking().Select(c => autoMapper.Map<CityDto>(c)).ToArrayAsync();
+        public async Task<IEnumerable<CityViewModel>> GetAllCitiesAsync()
+            => await context.Cities.AsNoTracking().Select(c => autoMapper.Map<CityViewModel>(c)).ToArrayAsync();
 
         public async Task AddManufacturerAsync(ManufacturerFormModel model)
         {

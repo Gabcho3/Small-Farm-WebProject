@@ -1,6 +1,6 @@
 ﻿namespace SmallFarm.Core.Models.City
 {
-    public class CityDto
+    public class CityViewModel
     {
         public int Id { get; set; }
 

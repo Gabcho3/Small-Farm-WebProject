@@ -19,7 +19,7 @@ namespace SmallFarm.Core.Helpers
                     opt => opt.MapFrom(src => src.City.Name));
 
             //Cities
-            CreateMap<City, CityDto>();
+            CreateMap<City, CityViewModel>();
         }
     }
 }

@@ -9,7 +9,7 @@ namespace SmallFarm.Core.Contracts
 
         Task<IEnumerable<ManufacturerViewModel>> GetAllManufacturersAsync();
 
-        Task<IEnumerable<CityDto>> GetAllCitiesAsync();
+        Task<IEnumerable<CityViewModel>> GetAllCitiesAsync();
 
         Task AddManufacturerAsync(ManufacturerFormModel model);
 

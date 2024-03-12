@@ -32,6 +32,6 @@ namespace SmallFarm.Core.Models.Manufacturer
 
         public int CityId { get; set; }
 
-        public IEnumerable<CityDto> Cities { get; set; } = Enumerable.Empty<CityDto>();
+        public IEnumerable<CityViewModel> Cities { get; set; } = Enumerable.Empty<CityViewModel>();
     }
 }
