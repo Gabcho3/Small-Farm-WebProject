@@ -18,9 +18,13 @@
         <span asp-validation-for="Description" class="small text-danger"></span>
     </div>
     <div class="col-6">
-        <label for="inputEmail" class="form-label">Email</label>
-        <input asp-for="Email" type="email" class="form-control" id="inputEmail" placeholder="name@example.com">
-        <span asp-validation-for="Email" class="small text-danger"></span>
+        <label asp-for="Email" class="form-label">Email</label>
+        <select asp-for="@Model.Email" class="form-control" aria-required="true">
+            @foreach (var email in Model.UserEmails)
+            {
+                <option value="@email">@email</option>
+            }
+        </select>
     </div>
     <div class="col-6">
         <label for="inputNumber" class="form-label">Phone Number</label>

@@ -32,7 +32,8 @@ namespace SmallFarm.Controllers
         {
             var model = new ManufacturerFormModel()
             {
-                Cities = await service.GetAllCitiesAsync()
+                Cities = await service.GetAllCitiesAsync(),
+                UserEmails = await userManager.Users.Select(x => x.Email).ToArrayAsync()
             };
 
             return View(model);
@@ -46,14 +47,6 @@ namespace SmallFarm.Controllers
                 return View(model);
             }
 
-            var manufacturer = await userManager.Users.FirstOrDefaultAsync(x => x.Email == model.Email);
-
-            if (manufacturer == null)
-            {
-                return View(model);
-            }
-
-            model.Id = Guid.Parse(await userManager.GetUserIdAsync(manufacturer));
             await service.AddManufacturerAsync(model);
 
             return RedirectToAction("Index");
