@@ -29,7 +29,7 @@ namespace SmallFarm.Data.Entities
         [Precision(18, 2)]
         public decimal Price { get; set; }
 
-        public byte[]? Image { get; set; }
+        public string ImageUrl { get; set; }
 
         [Required]
         public Guid ManufacturerId { get; set; }
