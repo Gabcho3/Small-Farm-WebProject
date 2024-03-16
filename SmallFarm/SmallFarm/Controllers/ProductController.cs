@@ -15,9 +15,11 @@ namespace SmallFarm.Controllers
             this.service = _service;
         }
 
-        public IActionResult Index()
+        public async Task<IActionResult> Index()
         {
-            return View();
+            var products = await service.GetProductsAsync();
+
+            return View(products);
         }
 
         [HttpGet]
