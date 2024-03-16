@@ -1,16 +1,22 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using SmallFarm.Core.Contracts;
 using SmallFarm.Core.Models.Manufacturer;
 
 namespace SmallFarm.Controllers
 {
+    [Authorize]
     public class ManufacturerController : Controller
     {
         private readonly IManufacturerService service;
+        private readonly UserManager<IdentityUser> userManager;
 
-        public ManufacturerController(IManufacturerService _service)
+        public ManufacturerController(IManufacturerService _service, UserManager<IdentityUser> _userManager)
         {
             this.service = _service;
+            this.userManager = _userManager;
         }
 
         [HttpGet]
@@ -40,6 +46,14 @@ namespace SmallFarm.Controllers
                 return View(model);
             }
 
+            var manufacturer = await userManager.Users.FirstOrDefaultAsync(x => x.Email == model.Email);
+
+            if (manufacturer == null)
+            {
+                return View(model);
+            }
+
+            model.Id = Guid.Parse(await userManager.GetUserIdAsync(manufacturer));
             await service.AddManufacturerAsync(model);
 
             return RedirectToAction("Index");
