@@ -11,6 +11,7 @@ namespace SmallFarm.Extensions
         public static void AddApplicationServices(this IServiceCollection services)
         {
             services.AddScoped<IManufacturerService, ManufacturerService>();
+            services.AddScoped<IProductService, ProductService>();
         }
 
         public static void AddApplicationDbContext(this IServiceCollection services, IConfiguration config)

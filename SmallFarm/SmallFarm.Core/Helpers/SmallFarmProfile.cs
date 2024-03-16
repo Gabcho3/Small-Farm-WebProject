@@ -1,6 +1,7 @@
 ﻿using AutoMapper;
 using SmallFarm.Core.Models.City;
 using SmallFarm.Core.Models.Manufacturer;
+using SmallFarm.Core.Models.Product;
 using SmallFarm.Data.Entities;
 
 namespace SmallFarm.Core.Helpers
@@ -9,17 +10,18 @@ namespace SmallFarm.Core.Helpers
     {
         public SmallFarmProfile()
         {
-            //Manufacturer and ManufacturerFormModel
+            //Manufacturer
             CreateMap<Manufacturer, ManufacturerFormModel>();
             CreateMap<ManufacturerFormModel, Manufacturer>();
-
-            //Manufacturer and ManufacturerViewModel
             CreateMap<Manufacturer, ManufacturerViewModel>()
                 .ForMember(dest => dest.City,
                     opt => opt.MapFrom(src => src.City.Name));
 
             //Cities
             CreateMap<City, CityViewModel>();
+
+            //Products
+            CreateMap<ProductFormModel, Product>();
         }
     }
 }
