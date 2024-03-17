@@ -14,13 +14,10 @@ namespace SmallFarm.Core.Services
         private readonly SmallFarmDbContext context;
         private readonly IMapper autoMapper;
 
-        public ManufacturerService(SmallFarmDbContext _context)
+        public ManufacturerService(SmallFarmDbContext _context, IMapper _autoMapper)
         {
             this.context = _context;
-            this.autoMapper = new Mapper(new MapperConfiguration(cfg =>
-            {
-                cfg.AddProfile<SmallFarmProfile>();
-            }));
+            this.autoMapper = _autoMapper;
         }
 
         public async Task<ManufacturerFormModel> GetManufacturerByIdAsync(Guid id)

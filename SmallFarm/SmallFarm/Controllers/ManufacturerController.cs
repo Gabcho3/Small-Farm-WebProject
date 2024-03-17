@@ -47,6 +47,9 @@ namespace SmallFarm.Controllers
                 return View(model);
             }
 
+            var manufacturer = await userManager.Users.FirstAsync(x => x.Email == model.Email);
+            model.Id = Guid.Parse(manufacturer.Id);
+
             await service.AddManufacturerAsync(model);
 
             return RedirectToAction("Index");

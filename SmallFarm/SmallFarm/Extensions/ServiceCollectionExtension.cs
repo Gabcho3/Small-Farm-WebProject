@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using SmallFarm.Core.Contracts;
+using SmallFarm.Core.Helpers;
 using SmallFarm.Core.Services;
 using SmallFarm.Data;
 
@@ -12,6 +13,8 @@ namespace SmallFarm.Extensions
         {
             services.AddScoped<IManufacturerService, ManufacturerService>();
             services.AddScoped<IProductService, ProductService>();
+
+            services.AddAutoMapper(typeof(SmallFarmProfile));
         }
 
         public static void AddApplicationDbContext(this IServiceCollection services, IConfiguration config)

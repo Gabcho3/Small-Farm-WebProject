@@ -12,14 +12,12 @@ namespace SmallFarm.Core.Services
     {
         private readonly SmallFarmDbContext context;
 
-        private readonly IMapper mapper = new Mapper(new MapperConfiguration(cfg =>
-        {
-            cfg.AddProfile<SmallFarmProfile>();
-        }));
+        private readonly IMapper mapper;
 
-        public ProductService(SmallFarmDbContext _context)
+        public ProductService(SmallFarmDbContext _context, IMapper _mapper)
         {
             this.context = _context;
+            this.mapper = _mapper;
         }
 
         public async Task<IEnumerable<ProductViewModel>> GetProductsAsync()
