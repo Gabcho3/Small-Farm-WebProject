@@ -38,7 +38,7 @@ namespace SmallFarm.Controllers
 
             await service.AddAsync(formModel);
 
-            return RedirectToAction("Index", "Home");
+            return RedirectToAction("Index");
         }
     }
 }

@@ -1,7 +1,6 @@
 ﻿using AutoMapper;
 using Microsoft.EntityFrameworkCore;
 using SmallFarm.Core.Contracts;
-using SmallFarm.Core.Helpers;
 using SmallFarm.Core.Models.City;
 using SmallFarm.Core.Models.Manufacturer;
 using SmallFarm.Data;
