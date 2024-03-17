@@ -21,8 +21,6 @@ namespace SmallFarm.Controllers
         [HttpPost]
         public async Task<IActionResult> Add(ProductToBuyModel model)
         {
-            model.Cart.UserId = userManager.GetUserId(User);
-
             if (!ModelState.IsValid)
             {
                 return RedirectToAction("Details", "Product", new{model.Id});

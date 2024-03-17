@@ -1,4 +1,8 @@
-﻿@using SmallFarm.Core.Models.Product
+﻿@using Microsoft.AspNetCore.Identity
+@inject UserManager<IdentityUser> userManager
+
+@using SmallFarm.Core.Models.Product
+
 
 @model ProductToBuyModel
 
@@ -28,6 +32,7 @@
         @*Hidden inputs*@
         <input hidden="true" asp-for="Cart.ProductId" value="@Model.Id" />
         <input hidden="true" id="totalPriceInput" asp-for="Cart.Total" />
+        <input hidden="true" asp-for="Cart.UserId" value="@userManager.GetUserId(User)" />
 
         <input hidden="true" asp-for="Id" value="@Model.Id" />
         <input hidden="true" asp-for="AvailableQuantity" value="@Model.AvailableQuantity" />
