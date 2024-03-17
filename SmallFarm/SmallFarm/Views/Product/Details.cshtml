@@ -1,0 +1,77 @@
+﻿@using SmallFarm.Core.Models.Product
+
+@model ProductToBuyModel
+
+@{
+    ViewData["Title"] = "Product Details";
+
+    var pricePerKg = Model.PricePerKg;
+}
+
+<div class="card ms-auto me-auto" style="width:18rem;margin-top:5em">
+    <img src="@Model.ImageUrl" class="card-img-top" alt="Image of @Model.Name">
+    <div class="card-body text-center">
+        <h5 class="card-title">@Model.Name</h5>
+        <p class="card-text">@Model.Description</p>
+    </div>
+    <form asp-controller="Cart" asp-action="Add" class="list-group list-group-flush text-center" method="post">
+        <li id="totalPrice" class="list-group-item text-center"></li>
+        <div class="input-group">
+            <input type="number" id="quantityInput" class="form-control" min="0.1" max="@Model.AvailableQuantity" step="0.1" value="0.1" asp-for="Cart.Quantity" />
+            <span class="input-group-text bg-success">kg</span>
+            <span class="input-group-text bg-secondary">@Model.AvailableQuantity kg left</span>
+        </div>
+        <button class="list-group-item">
+            <i class="fas fa-cart-plus text-primary" style="font-size:5em"></i>
+        </button>
+
+        @*Hidden inputs*@
+        <input hidden="true" asp-for="Cart.ProductId" value="@Model.Id" />
+        <input hidden="true" id="totalPriceInput" asp-for="Cart.Total" />
+
+        <input hidden="true" asp-for="Id" value="@Model.Id" />
+        <input hidden="true" asp-for="AvailableQuantity" value="@Model.AvailableQuantity" />
+
+    </form>
+</div>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+
+    <script>
+        var quantityInput = document.getElementById("quantityInput");
+        var totalPriceText = document.getElementById("totalPrice");
+
+        function calculateTotalPrice() {
+            
+            var quantity = parseFloat(quantityInput.value);
+            var totalPrice = (@pricePerKg * quantity).toFixed(2);
+
+            if (isNaN(totalPrice)) {
+                totalPriceText.innerText = "0.00 lv"
+            }
+
+            else {
+                totalPriceText.innerText = totalPrice + " lv";
+                totalPrice.getElementById("totalPriceInput").value = totalPrice;
+            }
+        }
+
+        function isAboveAvailableQuantity() {
+            var max = parseFloat(quantityInput.max)
+            var value = parseFloat(quantityInput.value);
+
+            if (value > max) {
+                quantityInput.value = max;
+            }
+        }
+
+        quantityInput.addEventListener("input", isAboveAvailableQuantity);
+
+        quantityInput.addEventListener("input", calculateTotalPrice);
+        totalPriceText.addEventListener("input", calculateTotalPrice);
+
+        calculateTotalPrice();
+        isAboveAvailableQuantity();
+    </script>
+}

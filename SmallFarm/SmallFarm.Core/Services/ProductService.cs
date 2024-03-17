@@ -19,6 +19,11 @@ namespace SmallFarm.Core.Services
             this.mapper = _mapper;
         }
 
+        public async Task<ProductToBuyModel> GetProductById(Guid productId)
+            => mapper.Map<ProductToBuyModel>(await context.Products
+                .Include(p => p.Manufacturer)
+                .FirstAsync(p => p.Id == productId));
+
         public async Task<IEnumerable<ProductViewModel>> GetProductsAsync()
         {
             return await context.Products.AsNoTracking()

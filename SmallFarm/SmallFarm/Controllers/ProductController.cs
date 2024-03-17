@@ -42,9 +42,10 @@ namespace SmallFarm.Controllers
         }
 
         [HttpGet]
-        public async Task<IActionResult> Details()
+        public async Task<IActionResult> Details(Guid id)
         {
-            return RedirectToAction("Index");
+            var product = await service.GetProductById(id);
+            return View(product);
         }
     }
 }
