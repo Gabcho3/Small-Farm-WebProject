@@ -4,35 +4,23 @@
 
 @{
     ViewData["Title"] = "Product Catalog";
-    int counterId = 0;
 }
 
 <div class="container" style="margin-top:35px">
     <div class="row gap-5">
         @foreach (var product in Model)
         {
-            counterId++;
+            <div class="card text-bg-success mb-3 col-1 bg-info" style="width: 15rem;padding:0;">
+                <a asp-controller="Product" asp-action="Details" style="text-decoration:none">
+                    <img src="@product.ImageUrl" class="card-img-top" alt="Image of @product.Name" style="height:100px">
 
-            <div class="card text-bg-success mb-3 col-1 bg-info" style="width: 18rem;padding:0;">
-                <img src="@product.ImageUrl" class="card-img-top" alt="Image of @product.Name" style="height:100px">
-                <h3 class="card-header bg-success text-light text-center">@product.Name</h3>
-                <div class="accordion accordion-flush" id="accordionFlush-@counterId">
-                    <div class="accordion-item">
-                        <h2 class="accordion-header">
-                            <button class="accordion-button collapsed bg-warning text-dark" type="button" data-bs-toggle="collapse" data-bs-target="#flush-@counterId" aria-expanded="false" aria-controls="flush-@counterId">
-                                <span class="text-secondary fw-bolder">More Information</span>
-                            </button>
-                        </h2>
-                        <div id="flush-@counterId" class="accordion-collapse collapse" data-bs-parent="#accordionFlush-@counterId">
-                            <p class="card-text pt-2 pb-2 bg-warning ps-4 pe-4">@product.Description</p>
-                        </div>
-                    </div>
-                </div>
-                <ul class="list-group list-group-flush">
-                    <li class="list-group-item bg-info" style="height:4em;"><strong>Quantity:</strong> @product.Quantity kg</li>
-                    <li class="list-group-item bg-info" style="height:4em;"><strong>Price:</strong> @product.Price lv</li>
-                    <li class="list-group-item bg-info" style="height:4em;"><strong>Manufacturer:</strong> @product.Manufacturer</li>
-                </ul>
+                    <h5 class="card-header bg-success text-light text-center">@product.Name</h5>
+
+                    <ul class="list-group text-center" style="font-size:12px">
+                        <li class="list-group-item bg-info" style="height:3em;">@product.Manufacturer</li>
+                        <li class="list-group-item bg-info" style="height:3em;"> @product.Price lv. per kilogram</li>
+                    </ul>
+                </a>
             </div>
         }
     </div>

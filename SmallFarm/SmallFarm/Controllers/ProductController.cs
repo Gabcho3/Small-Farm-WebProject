@@ -40,5 +40,11 @@ namespace SmallFarm.Controllers
 
             return RedirectToAction("Index");
         }
+
+        [HttpGet]
+        public async Task<IActionResult> Details()
+        {
+            return RedirectToAction("Index");
+        }
     }
 }
