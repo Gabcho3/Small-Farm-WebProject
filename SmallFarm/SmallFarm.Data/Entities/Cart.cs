@@ -20,7 +20,7 @@ namespace SmallFarm.Data.Entities
         public Product Product { get; set; } = null!;
 
         [Required]
-        public int Quantity { get; set; }
+        public double Quantity { get; set; }
 
         [Required]
         [Precision(18, 2)]
