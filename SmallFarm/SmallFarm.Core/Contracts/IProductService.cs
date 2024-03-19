@@ -4,7 +4,7 @@ namespace SmallFarm.Core.Contracts
 {
     public interface IProductService
     {
-        Task<ProductToBuyModel> GetProductById(Guid productId);
+        Task<ProductToBuyModel> GetProductByIdAsync(Guid productId);
 
         Task<IEnumerable<ProductViewModel>> GetProductsAsync();
 
