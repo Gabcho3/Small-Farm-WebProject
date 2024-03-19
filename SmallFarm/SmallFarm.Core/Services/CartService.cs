@@ -37,25 +37,26 @@ namespace SmallFarm.Core.Services
 
         public async Task AddAsync(ProductToBuyModel model)
         {
-            var usedCart = await context.Carts.FirstOrDefaultAsync(c => c.ClientId == model.UserId && c.ProductId == model.Id);
-
-            Cart cartToAdd = new Cart();
-
-            if (usedCart != null)
+            var cart = await context.Carts.FirstOrDefaultAsync(c => c.ClientId == model.UserId && c.ProductId == model.Id);
+            
+            if (cart == null)
             {
-                return;
+                Cart cartToAdd = new Cart()
+                {
+                    ClientId = model.UserId,
+                    ProductId = model.Id,
+                    Quantity = model.Quantity,
+                    Price = model.Total
+                };
+
+                await context.AddAsync(cartToAdd);
+            }
+            
+            else
+            {
+                cart.Quantity = model.Quantity;
             }
 
-
-            cartToAdd = new Cart()
-            {
-                ClientId = model.UserId,
-                ProductId = model.Id,
-                Quantity = model.Quantity,
-                Price = model.Total
-            };
-
-            await context.AddAsync(cartToAdd);
             await context.SaveChangesAsync();
         }
 
