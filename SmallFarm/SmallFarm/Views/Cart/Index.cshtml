@@ -1,3 +1,57 @@
-﻿@{
+﻿@using SmallFarm.Core.Models.Product
+
+@model IEnumerable<ProductToBuyModel>
+
+@{
     ViewData["Title"] = "Cart";
+
+    decimal pricePerKg = 0;
+    int productCount = 0;
+}
+@foreach (var product in Model)
+{
+    pricePerKg = product.PricePerKg;
+    productCount++;
+
+    <div style="display:flex; gap:10em">
+        <div class="card mb-3" style="max-width:540px;">
+            <div class="row g-0">
+                <div class="col-md-4">
+                    <img src="@product.ImageUrl" class="img-fluid rounded-start" style="margin-top:45%" alt="Image of @product.Name">
+                </div>
+                <div class="col-md-8">
+                    <div class="card-body" style="display:flex;flex-direction:column;gap:5px">
+
+                        <div style="display:flex;justify-content:space-between">
+                            <p class="card-text text-secondary" style="font-size:0.8em">@product.Manufacturer</p>
+
+                            <div>
+                                <a asp-controller="Cart" asp-action="Remove" asp-route-id="@product.Id"><i class="fas fa-trash-alt"></i></a>
+                            </div>
+                        </div>
+                        <h5 class="card-title">@product.Name</h5>
+                        <span class="card-text">@product.Description</span>
+                        <span id="kgText" class="card-text">Kilograms: @product.Quantity</span>
+                        <span class="card-text text-danger text-uppercase">@product.AvailableQuantity kg have left</span>
+
+                        <div style="display:flex;flex-direction:column;align-items:end;">
+                            <span class="card-text text-secondary"><small class="text-body-secondary">@product.PricePerKg lv. per kilogram</small></span>
+                            <span id="totalPrice" class="card-text fw-bold">@product.Total lv</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        @if (productCount == 1)
+        {
+            <div class="card text-center mb-3" style="width: 25rem;">
+                <div class="card-body" style="display:flex;flex-direction:column;gap:2em">
+                    <h5 class="card-title">Order info</h5>
+                    <p class="card-text">Total Sum: @Model.Sum(p => p.Total) lv</p>
+                    <a asp-controller="Order" asp-action="Index" class="btn btn-dark">Finalize Order</a>
+                </div>
+            </div>
+        }
+    </div>
 }

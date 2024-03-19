@@ -13,6 +13,7 @@ namespace SmallFarm.Extensions
         {
             services.AddScoped<IManufacturerService, ManufacturerService>();
             services.AddScoped<IProductService, ProductService>();
+            services.AddScoped<ICartService, CartService>();
 
             services.AddAutoMapper(typeof(SmallFarmProfile));
         }

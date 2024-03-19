@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using SmallFarm.Core.Contracts;
+using SmallFarm.Core.Models.Cart;
 using SmallFarm.Core.Models.Product;
 
 namespace SmallFarm.Controllers
@@ -44,7 +45,8 @@ namespace SmallFarm.Controllers
         [HttpGet]
         public async Task<IActionResult> Details(Guid id)
         {
-            var product = await service.GetProductById(id);
+            var product = await service.GetProductByIdAsync(id);
+
             return View(product);
         }
     }
