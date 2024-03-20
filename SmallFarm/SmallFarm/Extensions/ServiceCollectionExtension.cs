@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using SmallFarm.Core.Contracts;
 using SmallFarm.Core.Helpers;
@@ -15,6 +16,11 @@ namespace SmallFarm.Extensions
             services.AddScoped<IProductService, ProductService>();
             services.AddScoped<ICartService, CartService>();
 
+            //Preventing from Cross-Site Request Forgery [CSRF]
+            services.AddMvc(opt =>
+            {
+                opt.Filters.Add(new AutoValidateAntiforgeryTokenAttribute());
+            });
             services.AddAutoMapper(typeof(SmallFarmProfile));
         }
 
