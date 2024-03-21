@@ -46,7 +46,7 @@ namespace SmallFarm.Core.Services
                     ClientId = model.UserId,
                     ProductId = model.Id,
                     Quantity = model.Quantity,
-                    Price = model.Total
+                    Price = model.Total 
                 };
 
                 await context.AddAsync(cartToAdd);

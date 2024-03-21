@@ -5,12 +5,10 @@
 @{
     ViewData["Title"] = "Cart";
 
-    decimal pricePerKg = 0;
     int productCount = 0;
 }
 @foreach (var product in Model)
 {
-    pricePerKg = product.PricePerKg;
     productCount++;
 
     <div style="display:flex; gap:10em">
@@ -35,8 +33,8 @@
                         <span class="card-text text-danger text-uppercase">@product.AvailableQuantity kg have left</span>
 
                         <div style="display:flex;flex-direction:column;align-items:end;">
-                            <span class="card-text text-secondary"><small class="text-body-secondary">@product.PricePerKg lv. per kilogram</small></span>
-                            <span id="totalPrice" class="card-text fw-bold">@product.Total lv</span>
+                            <span class="card-text text-secondary"><small class="text-body-secondary">@product.PricePerKg € per kilogram</small></span>
+                            <span id="totalPrice" class="card-text fw-bold">@product.Total €</span>
                         </div>
                     </div>
                 </div>
@@ -48,8 +46,8 @@
             <div class="card text-center mb-3" style="width: 25rem;">
                 <div class="card-body" style="display:flex;flex-direction:column;gap:2em">
                     <h5 class="card-title">Order info</h5>
-                    <p class="card-text">Total Sum: @Model.Sum(p => p.Total) lv</p>
-                    <a asp-controller="Order" asp-action="Index" class="btn btn-dark">Finalize Order</a>
+                    <p class="card-text">Total Sum: @Model.Sum(p => p.Total) €</p>
+                    <a asp-controller="Order" asp-action="Index" class="btn btn-dark">Place an Order</a>
                 </div>
             </div>
         }

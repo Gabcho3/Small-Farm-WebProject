@@ -58,11 +58,11 @@
             var totalPrice = (@pricePerKg * quantity).toFixed(2);
 
             if (isNaN(totalPrice)) {
-                totalPriceText.innerText = "0.00 lv"
+                totalPriceText.innerText = "0.00 €"
             }
 
             else {
-                totalPriceText.innerText = totalPrice + " lv";
+                totalPriceText.innerText = totalPrice + " €";
                 totalPrice.getElementById("totalPriceInput").value = totalPrice;
             }
         }
