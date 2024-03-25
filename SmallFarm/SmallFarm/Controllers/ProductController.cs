@@ -1,7 +1,6 @@
 ﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using SmallFarm.Core.Contracts;
-using SmallFarm.Core.Models.Cart;
 using SmallFarm.Core.Models.Product;
 
 namespace SmallFarm.Controllers
@@ -16,11 +15,14 @@ namespace SmallFarm.Controllers
             this.service = _service;
         }
 
-        public async Task<IActionResult> Index()
+        public async Task<IActionResult> Index([FromQuery]AllProductsQueryModel queryModel)
         {
-            var products = await service.GetProductsAsync();
+            var result = await service.GetAllAsync(queryModel);
 
-            return View(products);
+            queryModel.TotalProductsCount = result.TotalProductsCount;
+            queryModel.Products = result.Products;
+
+            return View(queryModel);
         }
 
         [HttpGet]
@@ -45,7 +47,7 @@ namespace SmallFarm.Controllers
         [HttpGet]
         public async Task<IActionResult> Details(Guid id)
         {
-            var product = await service.GetProductByIdAsync(id);
+            var product = await service.GetByIdAsync(id);
 
             return View(product);
         }

@@ -1,27 +1,117 @@
-﻿@using SmallFarm.Core.Models.Product;
+﻿@using SmallFarm.Core.Models.Product
 
-@model IEnumerable<ProductViewModel>
+@model AllProductsQueryModel
 
 @{
     ViewData["Title"] = "Product Catalog";
+
+    var maxPage = Math.Ceiling((double)Model.TotalProductsCount / 4);
 }
 
-<div class="container" style="margin-top:35px">
-    <div class="row gap-5">
-        @foreach (var product in Model)
-        {
-            <div class="card text-bg-success mb-3 col-1 bg-info" style="width: 15rem;padding:0;">
-                <a asp-controller="Product" asp-action="Details" asp-route-id="@product.Id" style="text-decoration:none">
-                    <img src="@product.ImageUrl" class="card-img-top" alt="Image of @product.Name" style="height:100px">
+<form style="display:flex;justify-content:center;margin-bottom:5em" method="get">
+    <div class="row">
+        <div class="form-group col-3">
+            <label asp-for="SearchTerm">Search by text</label>
+            <input asp-for="SearchTerm" class="form-control" placeholder="@Model.SearchTerm">
+        </div>
 
-                    <h5 class="card-header bg-success text-light text-center">@product.Name</h5>
-
-                    <ul class="list-group text-center" style="font-size:12px">
-                        <li class="list-group-item bg-info" style="height:3em;">@product.Manufacturer</li>
-                        <li class="list-group-item bg-info" style="height:3em;">@product.Price € per kilogram</li>
-                    </ul>
-                </a>
+        <div class="form-group col-3">
+            <div class="form-group">
+                <label asp-for="Sorting"></label>
+                <select asp-for="Sorting" class="form-control">
+                    <option value="0">Ascending by price</option>
+                    <option value="1">Descending by price</option>
+                    <option value="2">Ascending by Quantity</option>
+                    <option value="3">Descending by Quantity</option>
+                </select>
             </div>
-        }
+        </div>
+
+        <div class="col-2">
+            <label for="minPriceInput">Min Price</label>
+            <div class="input-group">
+                <div class="input-group-text">€</div>
+                <input id="minPrice" asp-for="MinPrice" type="number" value="@Model.MinPrice" min="0.0" class="form-control" id="minPriceInput">
+            </div>
+        </div>
+        
+        <div class="col-2">
+            <label for="minPriceInput">Max Price</label>
+            <div class="input-group">
+                <div class="input-group-text">€</div>
+                <input id="maxPrice" asp-for="MaxPrice" type="number" value="@Model.MaxPrice" min="0.0" class="form-control" id="maxPriceInput">
+            </div>
+        </div>
+
+        <div class="col-2" style="margin-top:1.5em">
+            <button class="btn bg-success text-light">Search</button>
+        </div>
     </div>
+</form>
+
+@if (!Model.Products.Any())
+{
+    <h2 class="text-center">No Products found by the given criteria!</h2>
+}
+
+<div class="row" style="display:flex;justify-content:center">
+    @foreach (var product in Model.Products)
+    {
+        <div class="card text-bg-success mb-3 col-1 bg-info me-3" style="width: 15rem;padding:0;">
+            <a asp-controller="Product" asp-action="Details" asp-route-id="@product.Id" style="text-decoration:none">
+                <img src="@product.ImageUrl" class="card-img-top" alt="Image of @product.Name" style="height:100px">
+
+                <h5 class="card-header bg-success text-light text-center">@product.Name</h5>
+
+                <ul class="list-group text-center" style="font-size:12px">
+                    <li class="list-group-item bg-info" style="height:3em;">@product.Manufacturer</li>
+                    <li class="list-group-item bg-info" style="height:3em;">@product.Price € per kilogram</li>
+                    <li class="list-group-item bg-info" style="height:3em;">@product.Quantity kilograms have left</li>
+                </ul>
+            </a>
+        </div>
+    }
 </div>
+
+<div class="mt-5" style="display:flex;justify-content:center;">
+    <nav>
+        <ul class="pagination">
+            @for (int num = 1; num <= maxPage; num++)
+            {
+                <li class="page-item">
+                    <a asp-controller="Product"
+                       asp-action="Index"
+                       asp-route-currentPage="@num"
+                       asp-route-searchTerm="@Model.SearchTerm"
+                       asp-route-sorting="@((int)Model.Sorting)"
+                       asp-route-minPrice="@Model.MinPrice"
+                       asp-route-maxPrice="@Model.MaxPrice"
+                       class="page-link">@num</a>
+                </li>
+            }
+        </ul>
+    </nav>
+</div>
+
+<script>
+    const minPriceInput = document.getElementById('minPrice');
+    const maxPriceInput = document.getElementById('maxPrice');
+
+    minPriceInput.addEventListener('input', () => {
+        if (parseFloat(minPriceInput.value) > parseFloat(maxPriceInput.value)) {
+            maxPriceInput.value = parseFloat(minPriceInput.value) + 1;
+        }
+    });
+
+    maxPriceInput.addEventListener('input', () => {
+        if (parseFloat(maxPriceInput.value) < parseFloat(minPriceInput.value)) {
+
+            if (maxPriceInput.value - 0 <= 0) {
+                minPriceInput.value = 0;
+            }
+            else {
+                minPriceInput.value = maxPriceInput.value - 1;
+            }
+        }
+    });
+</script>
