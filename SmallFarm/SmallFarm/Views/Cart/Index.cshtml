@@ -6,12 +6,14 @@
     ViewData["Title"] = "Cart";
 
     int productCount = 0;
+    
 }
 @foreach (var product in Model)
 {
     productCount++;
+    double kgLeft = product.AvailableQuantity - product.Quantity;
 
-    <div style="display:flex; gap:10em">
+         <div style="display:flex; gap:10em">
         <div class="card mb-3" style="max-width:540px;">
             <div class="row g-0">
                 <div class="col-md-4">
@@ -30,7 +32,7 @@
                         <h5 class="card-title">@product.Name</h5>
                         <span class="card-text">@product.Description</span>
                         <span id="kgText" class="card-text">Kilograms: @product.Quantity</span>
-                        <span class="card-text text-danger text-uppercase">@product.AvailableQuantity kg have left</span>
+                        <span class="card-text text-danger text-uppercase">@kgLeft kg have left</span>
 
                         <div style="display:flex;flex-direction:column;align-items:end;">
                             <span class="card-text text-secondary"><small class="text-body-secondary">@product.PricePerKg € per kilogram</small></span>
