@@ -43,8 +43,6 @@
         <label class="form-label" for="imageInput">Image URL</label>
         <input class="form-control" type="text" id="imageInput" asp-for="ImageUrl">
     </div>
-    
-    <input hidden="true" asp-for="ManufacturerId" value="@UserManager.GetUserId(User)"/>
 
     <div>
         <button type="submit" class="btn btn-success" style="width:16.3em">Add Product</button>

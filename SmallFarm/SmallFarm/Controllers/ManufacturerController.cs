@@ -4,11 +4,11 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using SmallFarm.Core.Contracts;
 using SmallFarm.Core.Models.Manufacturer;
-using static SmallFarm.Common.DataConstants.AdministratorConstants;
+using static SmallFarm.Common.DataConstants.RoleConstants;
 
 namespace SmallFarm.Controllers
 {
-    [Authorize(Roles = AdminRoleName)]
+    [Authorize(Roles = Admin.RoleName)]
     public class ManufacturerController : Controller
     {
         private readonly IManufacturerService manufacturerService;
@@ -36,10 +36,20 @@ namespace SmallFarm.Controllers
         [HttpGet]
         public async Task<IActionResult> Add()
         {
+            List<string> manufacturersEmails = new List<string>();
+
+            foreach (var user in userManager.Users)
+            {
+                if (await userManager.IsInRoleAsync(user, Manufacturer.RoleName))
+                {
+                    manufacturersEmails.Add(user.Email);
+                }
+            }
+
             var model = new ManufacturerFormModel()
             {
                 Cities = await manufacturerService.GetAllCitiesAsync(),
-                UserEmails = await userManager.Users.Select(x => x.Email).ToArrayAsync()
+                UserEmails = manufacturersEmails
             };
 
             return View(model);

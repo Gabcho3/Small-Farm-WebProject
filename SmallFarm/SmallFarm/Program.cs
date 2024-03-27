@@ -34,6 +34,6 @@ app.MapControllerRoute(
     "{controller=Home}/{action=Index}/{id?}");
 app.MapRazorPages();
 
-await app.SeedAdmin();
+await app.SeedRoles();
 
 app.Run();

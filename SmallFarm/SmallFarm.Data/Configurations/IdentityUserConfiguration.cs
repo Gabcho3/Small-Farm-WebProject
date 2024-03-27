@@ -1,7 +1,7 @@
 ﻿using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
-using SmallFarm.Common.DataConstants;
+using static SmallFarm.Common.DataConstants.RoleConstants;
 
 namespace SmallFarm.Data.Configurations
 {
@@ -18,15 +18,23 @@ namespace SmallFarm.Data.Configurations
 
             var admin = new IdentityUser()
             {
-                UserName = AdministratorConstants.AdminEmail,
-                NormalizedUserName = AdministratorConstants.AdminEmail.ToUpper(),
-                Email = AdministratorConstants.AdminEmail,
-                NormalizedEmail = AdministratorConstants.AdminEmail.ToUpper()
+                UserName = Admin.Email,
+                NormalizedUserName = Admin.Email.ToUpper(),
+                Email = Admin.Email,
+                NormalizedEmail = Admin.Email.ToUpper()
             };
-
             admin.PasswordHash = hasher.HashPassword(admin, "admin123");
 
-            return new List<IdentityUser>() { admin };
+            var manufacturer = new IdentityUser()
+            {
+                UserName = Manufacturer.Email,
+                NormalizedUserName = Manufacturer.Email.ToUpper(),
+                Email = Manufacturer.Email,
+                NormalizedEmail = Manufacturer.Email.ToUpper()
+            };
+            manufacturer.PasswordHash = hasher.HashPassword(manufacturer, "manufacturer123");
+
+            return new List<IdentityUser>() { admin, manufacturer };
         }
     }
 }
