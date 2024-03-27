@@ -6,6 +6,7 @@ builder.Services.AddApplicationDbContext(builder.Configuration);
 builder.Services.AddApplicationIdentity();
 builder.Services.AddApplicationServices();
 
+
 builder.Services.AddControllersWithViews();
 
 var app = builder.Build();
@@ -32,5 +33,7 @@ app.MapControllerRoute(
     "default",
     "{controller=Home}/{action=Index}/{id?}");
 app.MapRazorPages();
+
+await app.SeedAdmin();
 
 app.Run();

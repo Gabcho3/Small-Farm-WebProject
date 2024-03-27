@@ -45,6 +45,7 @@ namespace SmallFarm.Extensions
                     options.Password.RequireNonAlphanumeric = false;
                     options.Password.RequiredLength = 8;
                 })
+                .AddRoles<IdentityRole>()
                 .AddEntityFrameworkStores<SmallFarmDbContext>();
         }
     }

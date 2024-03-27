@@ -38,6 +38,7 @@ namespace SmallFarm.Data
 
             builder.ApplyConfiguration(new CityConfiguration());
             builder.ApplyConfiguration(new ManufacturersConfiguration());
+            builder.ApplyConfiguration(new IdentityUserConfiguration());
 
             base.OnModelCreating(builder);
         }

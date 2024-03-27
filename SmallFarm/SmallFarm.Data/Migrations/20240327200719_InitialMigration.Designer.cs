@@ -12,8 +12,8 @@ using SmallFarm.Data;
 namespace SmallFarm.Data.Migrations
 {
     [DbContext(typeof(SmallFarmDbContext))]
-    [Migration("20240318182946_CartQuantityToDouble")]
-    partial class CartQuantityToDouble
+    [Migration("20240327200719_InitialMigration")]
+    partial class InitialMigration
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -139,6 +139,24 @@ namespace SmallFarm.Data.Migrations
                         .HasFilter("[NormalizedUserName] IS NOT NULL");
 
                     b.ToTable("AspNetUsers", (string)null);
+
+                    b.HasData(
+                        new
+                        {
+                            Id = "61a89e69-2df8-4b08-ab49-2f3d98a8516f",
+                            AccessFailedCount = 0,
+                            ConcurrencyStamp = "e906b546-304f-4f44-b2f8-8af62eda6961",
+                            Email = "admin@gmail.com",
+                            EmailConfirmed = false,
+                            LockoutEnabled = false,
+                            NormalizedEmail = "ADMIN@GMAIL.COM",
+                            NormalizedUserName = "ADMIN@GMAIL.COM",
+                            PasswordHash = "AQAAAAEAACcQAAAAEHKOa/W8txhIM3LNKkes0SY3gtwmIM0MV8lb5aIXowZvuNM1Ea8e+e9jvlgROK6THg==",
+                            PhoneNumberConfirmed = false,
+                            SecurityStamp = "19fb2ad3-1b42-4fb4-aebd-5b87878ea46f",
+                            TwoFactorEnabled = false,
+                            UserName = "admin@gmail.com"
+                        });
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserClaim<string>", b =>

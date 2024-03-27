@@ -239,7 +239,7 @@ namespace SmallFarm.Data.Migrations
                 {
                     ClientId = table.Column<string>(type: "nvarchar(450)", nullable: false),
                     ProductId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
-                    Quantity = table.Column<int>(type: "int", nullable: false),
+                    Quantity = table.Column<double>(type: "float", nullable: false),
                     Price = table.Column<decimal>(type: "decimal(18,2)", precision: 18, scale: 2, nullable: false)
                 },
                 constraints: table =>
@@ -308,6 +308,11 @@ namespace SmallFarm.Data.Migrations
                 });
 
             migrationBuilder.InsertData(
+                table: "AspNetUsers",
+                columns: new[] { "Id", "AccessFailedCount", "ConcurrencyStamp", "Email", "EmailConfirmed", "LockoutEnabled", "LockoutEnd", "NormalizedEmail", "NormalizedUserName", "PasswordHash", "PhoneNumber", "PhoneNumberConfirmed", "SecurityStamp", "TwoFactorEnabled", "UserName" },
+                values: new object[] { "61a89e69-2df8-4b08-ab49-2f3d98a8516f", 0, "e906b546-304f-4f44-b2f8-8af62eda6961", "admin@gmail.com", false, false, null, "ADMIN@GMAIL.COM", "ADMIN@GMAIL.COM", "AQAAAAEAACcQAAAAEHKOa/W8txhIM3LNKkes0SY3gtwmIM0MV8lb5aIXowZvuNM1Ea8e+e9jvlgROK6THg==", null, false, "19fb2ad3-1b42-4fb4-aebd-5b87878ea46f", false, "admin@gmail.com" });
+
+            migrationBuilder.InsertData(
                 table: "Cities",
                 columns: new[] { "Id", "Name" },
                 values: new object[,]
@@ -352,8 +357,7 @@ namespace SmallFarm.Data.Migrations
                     { 38, "General Toshevo" },
                     { 39, "Glavinitsa" },
                     { 40, "Gorna Oryahovitsa" },
-                    { 41, "Gotse Delchev" },
-                    { 42, "Gramada" }
+                    { 41, "Gotse Delchev" }
                 });
 
             migrationBuilder.InsertData(
@@ -361,6 +365,7 @@ namespace SmallFarm.Data.Migrations
                 columns: new[] { "Id", "Name" },
                 values: new object[,]
                 {
+                    { 42, "Gramada" },
                     { 43, "Gulubovo" },
                     { 44, "Gulyantsi" },
                     { 45, "Gurkovo" },
@@ -401,8 +406,7 @@ namespace SmallFarm.Data.Migrations
                     { 80, "Opaka" },
                     { 81, "Panagyurishte" },
                     { 82, "Parvomay" },
-                    { 83, "Pavel Banya" },
-                    { 84, "Pazardzhik" }
+                    { 83, "Pavel Banya" }
                 });
 
             migrationBuilder.InsertData(
@@ -410,6 +414,7 @@ namespace SmallFarm.Data.Migrations
                 columns: new[] { "Id", "Name" },
                 values: new object[,]
                 {
+                    { 84, "Pazardzhik" },
                     { 85, "Pernik" },
                     { 86, "Petrich" },
                     { 87, "Pirdop" },
@@ -450,8 +455,7 @@ namespace SmallFarm.Data.Migrations
                     { 122, "Svilengrad" },
                     { 123, "Svishtov" },
                     { 124, "Targovishte" },
-                    { 125, "Tervel" },
-                    { 126, "Teteven" }
+                    { 125, "Tervel" }
                 });
 
             migrationBuilder.InsertData(
@@ -459,6 +463,7 @@ namespace SmallFarm.Data.Migrations
                 columns: new[] { "Id", "Name" },
                 values: new object[,]
                 {
+                    { 126, "Teteven" },
                     { 127, "Topolovgrad" },
                     { 128, "Tran" },
                     { 129, "Troyan" },

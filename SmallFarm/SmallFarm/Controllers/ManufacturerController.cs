@@ -4,25 +4,31 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using SmallFarm.Core.Contracts;
 using SmallFarm.Core.Models.Manufacturer;
+using static SmallFarm.Common.DataConstants.AdministratorConstants;
 
 namespace SmallFarm.Controllers
 {
-    [Authorize]
+    [Authorize(Roles = AdminRoleName)]
     public class ManufacturerController : Controller
     {
-        private readonly IManufacturerService service;
+        private readonly IManufacturerService manufacturerService;
+        private readonly IProductService productService;
+
         private readonly UserManager<IdentityUser> userManager;
 
-        public ManufacturerController(IManufacturerService _service, UserManager<IdentityUser> _userManager)
+        public ManufacturerController(IManufacturerService manufacturerService,
+            UserManager<IdentityUser> _userManager,
+            IProductService _productService)
         {
-            this.service = _service;
+            this.manufacturerService = manufacturerService;
+            this.productService = _productService;
             this.userManager = _userManager;
         }
 
         [HttpGet]
         public async Task<IActionResult> Index()
         {
-            var allManufacturers = await service.GetAllManufacturersAsync();
+            var allManufacturers = await manufacturerService.GetAllManufacturersAsync();
 
             return View(allManufacturers);
         }
@@ -32,7 +38,7 @@ namespace SmallFarm.Controllers
         {
             var model = new ManufacturerFormModel()
             {
-                Cities = await service.GetAllCitiesAsync(),
+                Cities = await manufacturerService.GetAllCitiesAsync(),
                 UserEmails = await userManager.Users.Select(x => x.Email).ToArrayAsync()
             };
 
@@ -50,7 +56,7 @@ namespace SmallFarm.Controllers
             var manufacturer = await userManager.Users.FirstAsync(x => x.Email == model.Email);
             model.Id = Guid.Parse(manufacturer.Id);
 
-            await service.AddManufacturerAsync(model);
+            await manufacturerService.AddManufacturerAsync(model);
 
             return RedirectToAction("Index");
         }
@@ -58,8 +64,8 @@ namespace SmallFarm.Controllers
         [HttpGet]
         public async Task<IActionResult> Edit(Guid id)
         {
-            var model = await service.GetManufacturerByIdAsync(id);
-            model.Cities = await service.GetAllCitiesAsync();
+            var model = await manufacturerService.GetManufacturerByIdAsync(id);
+            model.Cities = await manufacturerService.GetAllCitiesAsync();
 
             return View(model);
         }
@@ -72,7 +78,7 @@ namespace SmallFarm.Controllers
                 return View(model);
             }
 
-            await service.EditManufacturerAsync(id, model);
+            await manufacturerService.EditManufacturerAsync(id, model);
 
             return RedirectToAction("Index");
         }
@@ -80,7 +86,7 @@ namespace SmallFarm.Controllers
         [HttpPost]
         public async Task<IActionResult> Remove(Guid id)
         {
-            await service.DeleteManufacturerAsync(id);
+            await manufacturerService.DeleteManufacturerAsync(id);
 
             return RedirectToAction("Index");
         }
