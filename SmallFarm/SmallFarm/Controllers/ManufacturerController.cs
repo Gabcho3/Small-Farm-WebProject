@@ -36,20 +36,9 @@ namespace SmallFarm.Controllers
         [HttpGet]
         public async Task<IActionResult> Add()
         {
-            List<string> manufacturersEmails = new List<string>();
-
-            foreach (var user in userManager.Users)
-            {
-                if (await userManager.IsInRoleAsync(user, Manufacturer.RoleName))
-                {
-                    manufacturersEmails.Add(user.Email);
-                }
-            }
-
             var model = new ManufacturerFormModel()
             {
-                Cities = await manufacturerService.GetAllCitiesAsync(),
-                UserEmails = manufacturersEmails
+                Cities = await manufacturerService.GetAllCitiesAsync()
             };
 
             return View(model);
@@ -60,6 +49,24 @@ namespace SmallFarm.Controllers
         {
             if (!ModelState.IsValid)
             {
+                return View(model);
+            }
+
+            var manufacturerToAdd = await userManager.FindByEmailAsync(model.Email);
+
+            if (manufacturerToAdd == null)
+            {
+                ModelState.AddModelError("WrongEmail", "Email is not existing!");
+
+                model.Cities = await manufacturerService.GetAllCitiesAsync();
+                return View(model);
+            }
+
+            if (await userManager.IsInRoleAsync(manufacturerToAdd, "Manufacturer"))
+            {
+                ModelState.AddModelError("WrongEmail", "Manufacturer has already been added!");
+
+                model.Cities = await manufacturerService.GetAllCitiesAsync();
                 return View(model);
             }
 

@@ -19,12 +19,8 @@
     </div>
     <div class="col-6">
         <label asp-for="Email" class="form-label">Email</label>
-        <select asp-for="@Model.Email" class="form-control" aria-required="true">
-            @foreach (var email in Model.UserEmails)
-            {
-                <option value="@email">@email</option>
-            }
-        </select>
+        <input type="email" asp-for="Email" class="form-control" id="inputEmail" placeholder="example@mail.com">
+        <span asp-validation-for="Email" class="small text-danger"></span>
     </div>
     <div class="col-6">
         <label for="inputNumber" class="form-label">Phone Number</label>
@@ -45,6 +41,17 @@
             }
         </select>
     </div>
+    
+    <div id="modelErrors">
+        @foreach (var modelStateEntry in ViewData.ModelState.Values)
+        {
+            foreach (var error in modelStateEntry.Errors)
+            {
+                <span class="small text-danger">@error.ErrorMessage</span>
+            }
+        }
+    </div>
+
     <div class="">
         <button type="submit" class="btn btn-success">Add Manufacturer</button>
     </div>
