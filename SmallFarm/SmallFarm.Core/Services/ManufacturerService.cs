@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using SmallFarm.Core.Contracts;
 using SmallFarm.Core.Models.City;
@@ -11,12 +12,14 @@ namespace SmallFarm.Core.Services
     public class ManufacturerService : IManufacturerService
     {
         private readonly SmallFarmDbContext context;
+        private readonly UserManager<IdentityUser> userManager;
         private readonly IMapper autoMapper;
 
-        public ManufacturerService(SmallFarmDbContext _context, IMapper _autoMapper)
+        public ManufacturerService(SmallFarmDbContext _context, IMapper _autoMapper, UserManager<IdentityUser> _userManager)
         {
             this.context = _context;
             this.autoMapper = _autoMapper;
+            this.userManager = _userManager;
         }
 
         public async Task<ManufacturerFormModel> GetManufacturerByIdAsync(Guid id)
@@ -47,6 +50,9 @@ namespace SmallFarm.Core.Services
 
         public async Task AddManufacturerAsync(ManufacturerFormModel model)
         {
+            var userManufacturer = await userManager.FindByEmailAsync(model.Email);
+            await userManager.AddToRoleAsync(userManufacturer, "Manufacturer");
+
             Manufacturer manufacturer = autoMapper.Map<Manufacturer>(model);
 
             await context.AddAsync(manufacturer);
