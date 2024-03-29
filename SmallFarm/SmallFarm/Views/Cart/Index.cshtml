@@ -6,14 +6,22 @@
     ViewData["Title"] = "Cart";
 
     int productCount = 0;
-    
+
 }
+
+@if (!Model.Any())
+{
+    <div class="text-center" style="margin-top:12em">
+        <h1>THE CART IS EMPTY</h1>
+    </div>
+}
+
 @foreach (var product in Model)
 {
     productCount++;
     double kgLeft = product.AvailableQuantity - product.Quantity;
 
-         <div style="display:flex; gap:10em">
+    <div style="display:flex; gap:10em">
         <div class="card mb-3" style="max-width:540px;">
             <div class="row g-0">
                 <div class="col-md-4">
