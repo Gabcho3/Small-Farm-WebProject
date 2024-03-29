@@ -8,7 +8,7 @@ using static SmallFarm.Common.DataConstants.RoleConstants;
 
 namespace SmallFarm.Controllers
 {
-    [Authorize]
+    [AllowAnonymous]
     public class ProductController : Controller
     {
         private readonly IProductService service;
