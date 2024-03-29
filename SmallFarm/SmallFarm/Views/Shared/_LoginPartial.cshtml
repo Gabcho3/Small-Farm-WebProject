@@ -1,15 +1,19 @@
 ﻿@using Microsoft.AspNetCore.Identity
+@using SmallFarm.Extensions
 @inject SignInManager<IdentityUser> SignInManager
 @inject UserManager<IdentityUser> UserManager
 
 <ul class="navbar-nav">
     @if (SignInManager.IsSignedIn(User))
     {
-        <li class="nav-item">
-            <a asp-controller="Cart" asp-action="Index" class="text-success">
-                <i class="fas fa-shopping-cart fs-5 mt-2 me-2"></i>
-            </a>
-        </li>
+        @if (!User.IsAdmin())
+        {
+            <li class="nav-item">
+                <a asp-controller="Cart" asp-action="Index" class="text-success">
+                    <i class="fas fa-shopping-cart fs-5 mt-2 me-2"></i>
+                </a>
+            </li>
+        }
         <li class="nav-item">
             <a class="nav-link text-dark" asp-area="Identity" asp-page="/Account/Manage/Index" title="Manage">Hello @User.Identity?.Name!</a>
         </li>
