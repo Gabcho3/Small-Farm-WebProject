@@ -18,6 +18,11 @@ namespace SmallFarm.Controllers
 
         public async Task<IActionResult> Index()
         {
+            if (!User.Identity!.IsAuthenticated)
+            {
+                return Redirect("/Identity/Account/Register");
+            }
+
             var models = await service.GetAllProductsInCartAsync(userManager.GetUserId(User));
 
             return View(models);
@@ -26,6 +31,11 @@ namespace SmallFarm.Controllers
         [HttpPost]
         public async Task<IActionResult> Add(ProductToBuyModel model)
         {
+            if (!User.Identity!.IsAuthenticated)
+            {
+                return Redirect("/Identity/Account/Register");
+            }
+
             if (!ModelState.IsValid)
             {
                 return RedirectToAction("Details", "Product", new { model.Id });
