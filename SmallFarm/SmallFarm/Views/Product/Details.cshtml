@@ -72,14 +72,24 @@
             if (value > max) {
                 quantityInput.value = max;
             }
+
+            else if (value < 0){
+                quantityInput.value = 0.1;
+            }
         }
 
-        quantityInput.addEventListener("input", isAboveAvailableQuantity);
+        function replaceSeperator() {
+            quantityInput.value = quantityInput.value.replace(",", ".");
+        }
 
+        quantityInput.addEventListener("input", replaceSeperator);
+        quantityInput.addEventListener("input", isAboveAvailableQuantity);
         quantityInput.addEventListener("input", calculateTotalPrice);
+
         totalPriceText.addEventListener("input", calculateTotalPrice);
 
         calculateTotalPrice();
         isAboveAvailableQuantity();
+        replaceSeperator();
     </script>
 }

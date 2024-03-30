@@ -17,12 +17,11 @@ namespace SmallFarm.Core.Models.Product
         public string? Description { get; set; }
 
         [Required]
-        [Range(0.01, 50.0)]
-        public double Quantity { get; set; }
+        [Range(0.01, 1000.00)]
+        public decimal Quantity { get; set; }
 
         [Required]
-        [Precision(18, 2)]
-        [Range(0.01, 1000)]
+        [Range(0.01, 1000.00)]
         public decimal Price { get; set; }
 
         public string? ImageUrl { get; set; }

@@ -10,7 +10,7 @@
 
 <form asp-controller="Product" asp-action="Add" class="row g-3" method="post" class="row" style="margin-top:4em;margin-inline:30em">
 
-    <div class="me-auto ms-auto">
+    <div class="mx-auto">
         <label class="form-label" for="inputName">Product Name</label>
         <input type="text" class="form-control" id="inputName" placeholder="Tomatoes" style="max-width:16.3em" asp-for="Name">
         <span asp-validation-for="Name" class="small text-danger"></span>
@@ -48,6 +48,23 @@
         <button type="submit" class="btn btn-success" style="width:16.3em">Add Product</button>
     </div>
 </form>
+
+<script>
+    var quantityInput = document.getElementById("quantityInput");
+    var priceInput = document.getElementById("priceInput");
+
+    function replaceSeperator(){
+        quantityInput.value = quantityInput.value.replace(",", ".");
+        priceInput.value = priceInput.value.replace(",", ".");
+    }
+
+    quantityInput.addEventListener("input", replaceSeperator);
+    priceInput.addEventListener("input", replaceSeperator);
+
+    replaceSeperator();
+
+</script>
+
 
 @section Scripts {
     <partial name="_ValidationScriptsPartial" />

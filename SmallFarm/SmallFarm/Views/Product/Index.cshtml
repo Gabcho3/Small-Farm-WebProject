@@ -52,7 +52,7 @@
 <div class="row" style="display:flex;justify-content:center">
     @foreach (var product in Model.Products)
     {
-        <div class="card text-bg-success mb-3 col-1 bg-info me-3" style="width:15rem;padding:0;">
+        <div class="card text-bg-success mb-3 col-1 bg-info me-3" style="width:12.5rem;padding:0;">
             <a asp-controller="Product" asp-action="Details" asp-route-id="@product.Id" style="text-decoration:none">
                 <img src="@product.ImageUrl" class="card-img-top" alt="Image of @product.Name" style="height:100px">
 
