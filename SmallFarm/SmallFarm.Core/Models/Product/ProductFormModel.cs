@@ -17,7 +17,7 @@ namespace SmallFarm.Core.Models.Product
         public string? Description { get; set; }
 
         [Required]
-        [Range(0.1, 50.0)]
+        [Range(0.01, 50.0)]
         public double Quantity { get; set; }
 
         [Required]

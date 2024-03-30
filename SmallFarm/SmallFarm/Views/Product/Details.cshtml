@@ -14,12 +14,12 @@
     <img src="@Model.ImageUrl" class="card-img-top" alt="Image of @Model.Name">
     <div class="card-body text-center">
         <h5 class="card-title">@Model.Name</h5>
-        <p class="card-text">@Model.Description ??</p>
+        <p class="card-text">@Model.Description</p>
     </div>
     <form asp-controller="Cart" asp-action="Add" class="list-group list-group-flush text-center" method="post">
         <li id="totalPrice" class="list-group-item text-center"></li>
         <div class="input-group">
-            <input type="number" id="quantityInput" class="form-control" min="0.1" max="@Model.AvailableQuantity" step="0.1" value="0.1" asp-for="@Model.Quantity" />
+            <input type="text" id="quantityInput" class="form-control" max="@Model.AvailableQuantity" value="0.1" asp-for="@Model.Quantity" />
             <span class="input-group-text bg-success">kg</span>
             <span class="input-group-text bg-secondary">@Model.AvailableQuantity kg left</span>
         </div>
