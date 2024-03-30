@@ -2,8 +2,6 @@
 @inject UserManager<IdentityUser> userManager
 
 @using SmallFarm.Core.Models.Product
-
-
 @model ProductToBuyModel
 
 @{
@@ -16,7 +14,7 @@
     <img src="@Model.ImageUrl" class="card-img-top" alt="Image of @Model.Name">
     <div class="card-body text-center">
         <h5 class="card-title">@Model.Name</h5>
-        <p class="card-text">@Model.Description</p>
+        <p class="card-text">@Model.Description ??</p>
     </div>
     <form asp-controller="Cart" asp-action="Add" class="list-group list-group-flush text-center" method="post">
         <li id="totalPrice" class="list-group-item text-center"></li>

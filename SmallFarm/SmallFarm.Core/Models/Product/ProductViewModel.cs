@@ -8,8 +8,6 @@ namespace SmallFarm.Core.Models.Product
 
         public string Name { get; set; }
 
-        public string? Description { get; set; }
-
         //Available Quantity
         public double Quantity { get; set; }
 

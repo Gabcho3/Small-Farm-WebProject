@@ -1,4 +1,10 @@
 ﻿@using SmallFarm.Extensions
+@using SmallFarm.Core.Models.Product
+
+@{
+    var queryModel = new AllProductsQueryModel();
+}
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -22,10 +28,16 @@
                     <span class="navbar-toggler-icon"></span>
                 </button>
                 <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
-                    <ul class="navbar-nav flex-grow-1">
+                    <ul class="navbar-nav flex-grow-1 justify-content-between">
                         <li class="nav-item">
                             <a class="nav-link text-dark" asp-area="" asp-controller="Product" asp-action="Index">Products</a>
                         </li>
+
+                        <form asp-controller="Product" asp-action="Index" class="d-flex me-5" method="get">
+                            <input asp-for="@queryModel.SearchTerm" id="searchInput" class="form-control me-2" placeholder="Search">
+                            <button class="btn btn-outline-success" type="submit">Search</button>
+                        </form>
+
                     </ul>
 
                     @if (User.IsManufacturer())

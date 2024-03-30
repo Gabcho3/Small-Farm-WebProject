@@ -10,12 +10,7 @@
 
 <form style="display:flex;justify-content:center;margin-bottom:5em" method="get">
     <div class="row">
-        <div class="form-group col-3">
-            <label asp-for="SearchTerm">Search by text</label>
-            <input asp-for="SearchTerm" class="form-control" placeholder="@Model.SearchTerm">
-        </div>
-
-        <div class="form-group col-3">
+        <div class="form-group col-4">
             <div class="form-group">
                 <label asp-for="Sorting"></label>
                 <select asp-for="Sorting" class="form-control">
@@ -27,24 +22,24 @@
             </div>
         </div>
 
-        <div class="col-2">
+        <div class="col-3">
             <label for="minPriceInput">Min Price</label>
             <div class="input-group">
                 <div class="input-group-text">€</div>
-                <input id="minPrice" asp-for="MinPrice" type="number" value="@Model.MinPrice" min="0.0" class="form-control" id="minPriceInput">
+                <input id="minPrice" asp-for="MinPrice" type="number" value="@Model.MinPrice" min="0" step="0.1" class="form-control" id="minPriceInput">
             </div>
         </div>
         
-        <div class="col-2">
+        <div class="col-3">
             <label for="minPriceInput">Max Price</label>
             <div class="input-group">
                 <div class="input-group-text">€</div>
-                <input id="maxPrice" asp-for="MaxPrice" type="number" value="@Model.MaxPrice" min="0.0" class="form-control" id="maxPriceInput">
+                <input id="maxPrice" asp-for="MaxPrice" type="number" value="@Model.MaxPrice" min="0" step="0.1" class="form-control" id="maxPriceInput">
             </div>
         </div>
 
         <div class="col-2" style="margin-top:1.5em">
-            <button class="btn bg-success text-light">Search</button>
+            <button class="btn btn-outline-success" type="submit">Search</button>
         </div>
     </div>
 </form>
@@ -57,7 +52,7 @@
 <div class="row" style="display:flex;justify-content:center">
     @foreach (var product in Model.Products)
     {
-        <div class="card text-bg-success mb-3 col-1 bg-info me-3" style="width: 15rem;padding:0;">
+        <div class="card text-bg-success mb-3 col-1 bg-info me-3" style="width:15rem;padding:0;">
             <a asp-controller="Product" asp-action="Details" asp-route-id="@product.Id" style="text-decoration:none">
                 <img src="@product.ImageUrl" class="card-img-top" alt="Image of @product.Name" style="height:100px">
 
@@ -106,7 +101,7 @@
     maxPriceInput.addEventListener('input', () => {
         if (parseFloat(maxPriceInput.value) < parseFloat(minPriceInput.value)) {
 
-            if (maxPriceInput.value - 0 <= 0) {
+            if (parse.Float(maxPriceInput.value) - 0 <= 0) {
                 minPriceInput.value = 0;
             }
             else {
