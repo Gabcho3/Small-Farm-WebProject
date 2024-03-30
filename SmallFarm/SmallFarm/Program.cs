@@ -1,4 +1,5 @@
 using SmallFarm.Extensions;
+using SmallFarm.ModelBinders;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -7,7 +8,11 @@ builder.Services.AddApplicationIdentity();
 builder.Services.AddApplicationServices();
 
 
-builder.Services.AddControllersWithViews();
+builder.Services.AddControllersWithViews()
+    .AddMvcOptions(opt =>
+    {
+        opt.ModelBinderProviders.Insert(0, new DecimalModelBinderProvider());
+    });
 
 var app = builder.Build();
 

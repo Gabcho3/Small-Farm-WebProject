@@ -22,7 +22,7 @@ namespace SmallFarm.Core.Models.Product
 
         [Required]
         [Precision(18, 2)]
-        [Range(0.10, 1000)]
+        [Range(0.01, 1000)]
         public decimal Price { get; set; }
 
         public string? ImageUrl { get; set; }
