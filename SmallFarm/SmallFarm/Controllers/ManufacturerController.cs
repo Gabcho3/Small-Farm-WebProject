@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Authorization;
+﻿using System.Linq.Expressions;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
@@ -52,9 +53,9 @@ namespace SmallFarm.Controllers
                 return View(model);
             }
 
-            var manufacturerToAdd = await userManager.FindByEmailAsync(model.Email);
+            var user = await userManager.FindByEmailAsync(model.Email);
 
-            if (manufacturerToAdd == null)
+            if (user == null)
             {
                 ModelState.AddModelError("WrongEmail", "Email is not existing!");
 
@@ -62,7 +63,9 @@ namespace SmallFarm.Controllers
                 return View(model);
             }
 
-            if (await userManager.IsInRoleAsync(manufacturerToAdd, "Manufacturer"))
+            var exists = await manufacturerService.GetManufacturerByIdAsync(Guid.Parse(user.Id)) != null;
+
+            if (exists)
             {
                 ModelState.AddModelError("WrongEmail", "Manufacturer has already been added!");
 

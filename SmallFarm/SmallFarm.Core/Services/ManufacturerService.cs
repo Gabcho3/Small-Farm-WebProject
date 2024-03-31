@@ -22,11 +22,11 @@ namespace SmallFarm.Core.Services
             this.userManager = _userManager;
         }
 
-        public async Task<ManufacturerFormModel> GetManufacturerByIdAsync(Guid id)
+        public async Task<ManufacturerFormModel?> GetManufacturerByIdAsync(Guid id)
         {
             var manufacturer = await context.Manufacturers
                 .Where(m => m.Id == id)
-                .FirstAsync();
+                .FirstOrDefaultAsync();
 
             var model = autoMapper.Map<ManufacturerFormModel>(manufacturer);
 
