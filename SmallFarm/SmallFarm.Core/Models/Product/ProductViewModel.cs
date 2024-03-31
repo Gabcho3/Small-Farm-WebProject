@@ -17,5 +17,7 @@ namespace SmallFarm.Core.Models.Product
         public string ImageUrl { get; set; }
 
         public string Manufacturer { get; set; }
+
+        public string Category { get; set; }
     }
 }

@@ -27,7 +27,7 @@
 
         <div class="input-group">
             <input type="text" id="quantityInput" class="form-control" value="0.01" asp-for="Quantity" />
-            <span class="input-group-text bg-success">kg</span>
+            <span id="quantitySpan" class="input-group-text bg-success">kg</span>
         </div>
 
         <span asp-validation-for="Quantity" class="small text-danger"></span>
@@ -35,7 +35,7 @@
 
 
     <div class="col-4">
-        <label class="form-label" for="priceInput">Price Per Kilogram</label>
+        <label id="priceLabel" class="form-label" for="priceInput">Price Per Kilogram</label>
 
         <div class="input-group">
             <input type="text" id="priceInput" class="form-control" value="0.01" asp-for="PricePerKg" />
@@ -47,7 +47,7 @@
 
     <div class="col-4">
         <label asp-for="CategoryId" class="form-label">Category</label>
-        <select asp-for="@Model.CategoryId" class="form-control" aria-required="true">
+        <select id="categoryInput" asp-for="@Model.CategoryId" class="form-control" aria-required="true">
             @foreach (var category in Model.ProductCategories)
             {
                 <option value="@category.Id">@category.Name</option>
@@ -68,6 +68,7 @@
 <script>
     var quantityInput = document.getElementById("quantityInput");
     var priceInput = document.getElementById("priceInput");
+    var categoryInput = document.getElementById("categoryInput");
 
     function replaceSeperator() {
         quantityInput.value = quantityInput.value.replace(",", ".");
@@ -88,14 +89,31 @@
         }
     }
 
+    function changeIfDrink() {
+        var value = categoryInput.value;
+
+        if (value == 3) {
+            document.getElementById("priceLabel").innerText = "Price per liter";
+            document.getElementById("quantitySpan").innerText = "Liters"
+        }
+        else {
+            document.getElementById("priceLabel").innerHTML = "Price per kilogram";
+            document.getElementById("quantitySpan").innerText = "kg"
+        }
+    }
+
     quantityInput.addEventListener("input", replaceSeperator);
     priceInput.addEventListener("input", replaceSeperator);
 
     quantityInput.addEventListener("input", checkForNegativeNumber);
     priceInput.addEventListener("input", checkForNegativeNumber);
 
+    categoryInput.addEventListener("input", changeIfDrink);
+
     replaceSeperator();
     checkForNegativeNumber();
+    changeIfDrink();
+    
 
 </script>
 

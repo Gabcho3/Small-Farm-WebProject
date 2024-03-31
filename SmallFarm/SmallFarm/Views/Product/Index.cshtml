@@ -29,7 +29,7 @@
                 <input id="minPrice" asp-for="MinPrice" type="number" value="@Model.MinPrice" min="0" step="0.1" class="form-control" id="minPriceInput">
             </div>
         </div>
-        
+
         <div class="col-3">
             <label for="minPriceInput">Max Price</label>
             <div class="input-group">
@@ -37,8 +37,8 @@
                 <input id="maxPrice" asp-for="MaxPrice" type="number" value="@Model.MaxPrice" min="0" step="0.1" class="form-control" id="maxPriceInput">
             </div>
         </div>
-        
-        <input hidden="true" asp-for="Category" value="@Model.Category"/>
+
+        <input hidden="true" asp-for="Category" value="@Model.Category" />
 
         <div class="col-2" style="margin-top:1.5em">
             <button class="btn btn-outline-success" type="submit">Search</button>
@@ -62,8 +62,17 @@
 
                 <ul class="list-group text-center" style="font-size:12px">
                     <li class="list-group-item bg-info" style="height:3em;">@product.Manufacturer</li>
-                    <li class="list-group-item bg-info" style="height:3em;">@product.Price € per kilogram</li>
-                    <li class="list-group-item bg-info" style="height:3em;">@product.Quantity kilograms have left</li>
+
+                    @if (product.Category == "Drink")
+                    {
+                        <li class="list-group-item bg-info" style="height:3em;">@product.Price € per liter</li>
+                        <li class="list-group-item bg-info" style="height:3em;">@product.Quantity liters have left</li>
+                    }
+                    else
+                    {
+                        <li class="list-group-item bg-info" style="height:3em;">@product.Price € per kilogram</li>
+                        <li class="list-group-item bg-info" style="height:3em;">@product.Quantity kilograms have left</li>
+                    }
                 </ul>
             </a>
         </div>
@@ -96,20 +105,33 @@
     const maxPriceInput = document.getElementById('maxPrice');
 
     minPriceInput.addEventListener('input', () => {
-        if (parseFloat(minPriceInput.value) > parseFloat(maxPriceInput.value)) {
-            maxPriceInput.value = parseFloat(minPriceInput.value) + 1;
+        var minValue = parseFloat(minPriceInput.value);
+        var maxValue = parseFloat(maxPriceInput.value);
+
+        if (minValue < 0) {
+            minPriceInput.value = 0;
+        }
+
+        if (minValue >= maxValue) {
+            maxPriceInput.value = minValue + 1;
+        }
+
+        if (minValue != 0 && isNaN(maxValue)) {
+            maxPriceInput.value = minValue + 1;
         }
     });
 
     maxPriceInput.addEventListener('input', () => {
-        if (parseFloat(maxPriceInput.value) < parseFloat(minPriceInput.value)) {
+        var minValue = parseFloat(minPriceInput.value);
+        var maxValue = parseFloat(maxPriceInput.value);
 
-            if (parse.Float(maxPriceInput.value) - 0 <= 0) {
-                minPriceInput.value = 0;
+        if (maxValue <= minValue) {
+
+            if (maxValue == 0) {
+                maxPriceInput.value = 1
+                maxValue = 1;
             }
-            else {
-                minPriceInput.value = maxPriceInput.value - 1;
-            }
+            minPriceInput.value = maxValue - 1;
         }
     });
 </script>

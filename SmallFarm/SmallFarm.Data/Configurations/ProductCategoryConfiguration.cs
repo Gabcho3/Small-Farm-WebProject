@@ -28,7 +28,7 @@ namespace SmallFarm.Data.Configurations
                 new ProductCategory()
                 {
                     Id = 3,
-                    Name = "Drinks"
+                    Name = "Drink"
                 }
             };
         }

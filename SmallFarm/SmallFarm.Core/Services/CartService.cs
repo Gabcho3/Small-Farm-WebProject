@@ -24,6 +24,7 @@ namespace SmallFarm.Core.Services
                 {
                     Id = c.Product.Id,
                     Name = c.Product.Name,
+                    Category = c.Product.Category.Name,
                     Description = c.Product.Description,
                     AvailableQuantity = c.Product.Quantity,
                     PricePerKg = c.Product.PricePerKg,

@@ -1,5 +1,4 @@
 ﻿using AutoMapper;
-using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using SmallFarm.Core.Contracts;
 using SmallFarm.Core.Models.Product;
@@ -24,6 +23,7 @@ namespace SmallFarm.Core.Services
         public async Task<ProductToBuyModel> GetByIdAsync(Guid productId)
             => mapper.Map<ProductToBuyModel>(await context.Products
                 .Include(p => p.Manufacturer)
+                .Include(p => p.Category)
                 .FirstAsync(p => p.Id == productId));
 
         public async Task<ProductQueryModel> GetAllAsync(AllProductsQueryModel queryModel)
@@ -32,6 +32,7 @@ namespace SmallFarm.Core.Services
 
             var products = context.Products
                 .Include(p => p.Manufacturer)
+                .Include(p => p.Category)
                 .AsQueryable();
 
             if (!string.IsNullOrEmpty(queryModel.Category))

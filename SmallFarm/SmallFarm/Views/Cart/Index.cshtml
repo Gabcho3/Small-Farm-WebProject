@@ -38,13 +38,27 @@
                         </div>
                         <h5 class="card-title">@product.Name</h5>
                         <span class="card-text">@product.Description</span>
-                        <span id="kgText" class="card-text">Kilograms: @product.Quantity</span>
-                        <span class="card-text text-danger text-uppercase">@product.AvailableQuantity kg have left</span>
 
-                        <div style="display:flex;flex-direction:column;align-items:end;">
-                            <span class="card-text text-secondary"><small class="text-body-secondary">@product.PricePerKg € per kilogram</small></span>
-                            <span id="totalPrice" class="card-text fw-bold">@product.Total €</span>
-                        </div>
+                        @if (product.Category == "Drink")
+                        {
+                            <span  class="card-text">Liters: @product.Quantity</span>
+                            <span class="card-text text-danger text-uppercase">@product.AvailableQuantity liters have left</span>
+
+                            <div style="display:flex;flex-direction:column;align-items:end;">
+                                <span class="card-text text-secondary"><small class="text-body-secondary">@product.PricePerKg € per liter</small></span>
+                                <span id="totalPrice" class="card-text fw-bold">@product.Total €</span>
+                            </div>
+                        }
+                        else
+                        {
+                            <span class="card-text">Kilograms: @product.Quantity</span>
+                            <span class="card-text text-danger text-uppercase">@product.AvailableQuantity kg have left</span>
+
+                            <div style="display:flex;flex-direction:column;align-items:end;">
+                                <span class="card-text text-secondary"><small class="text-body-secondary">@product.PricePerKg € per kilogram</small></span>
+                                <span id="totalPrice" class="card-text fw-bold">@product.Total €</span>
+                            </div>
+                        }
                     </div>
                 </div>
             </div>

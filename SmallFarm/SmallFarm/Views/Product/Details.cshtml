@@ -20,15 +20,25 @@
         <li id="totalPrice" class="list-group-item text-center"></li>
         <div class="input-group">
             <input type="text" id="quantityInput" class="form-control" max="@Model.AvailableQuantity" value="0.1" asp-for="@Model.Quantity" />
-            <span class="input-group-text bg-success">kg</span>
-            <span class="input-group-text bg-secondary">@Model.AvailableQuantity kg left</span>
+            
+            @if (Model.Category == "Drink")
+            {
+                <span class="input-group-text bg-success">Liters</span>
+                <span class="input-group-text bg-secondary">@Model.AvailableQuantity liters left</span>
+            }
+            else
+            {
+                <span class="input-group-text bg-success">kg</span>
+                <span class="input-group-text bg-secondary">@Model.AvailableQuantity kg left</span>
+            }
+
         </div>
         <button class="list-group-item">
             <i class="fas fa-cart-plus text-primary" style="font-size:5em"></i>
         </button>
 
         @*Hidden inputs for model*@
-        
+        <input hidden="true" asp-for="Category" value="@Model.Category"/>
         <input hidden="true" asp-for="Id" value="@Model.Id" />
         <input hidden="true" asp-for="Name" value="@Model.Name" />
         <input hidden="true" asp-for="Description" value="@Model.Description" />
