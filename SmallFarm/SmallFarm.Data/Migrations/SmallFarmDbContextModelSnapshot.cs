@@ -141,17 +141,17 @@ namespace SmallFarm.Data.Migrations
                     b.HasData(
                         new
                         {
-                            Id = "85c1b7b3-2415-4cad-aeb3-c50a3481d2a8",
+                            Id = "534fac62-f455-4859-8a25-af191fff1afc",
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "ee21965a-0e82-4c77-889d-26699134adc8",
+                            ConcurrencyStamp = "185d0f9f-315e-47d0-a269-033dd50d056c",
                             Email = "admin@gmail.com",
                             EmailConfirmed = false,
                             LockoutEnabled = false,
                             NormalizedEmail = "ADMIN@GMAIL.COM",
                             NormalizedUserName = "ADMIN@GMAIL.COM",
-                            PasswordHash = "AQAAAAEAACcQAAAAENtTc100SS9A0DZzcqeriTVLYVh/oCL7++fPBAUy5QXmVcG45LXvV44uLUyetFUmwg==",
+                            PasswordHash = "AQAAAAEAACcQAAAAEIKjN1hPu91jHL9goxALLVzWLDFE2K/j0UFCL9zK+CBSgOjjhjLAeCYw+DO0TD2E6A==",
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "ed92e353-df39-4012-b314-b5fee48e6b5d",
+                            SecurityStamp = "df1bb1d5-bc36-4c2f-81fa-bfe3d1b38d3d",
                             TwoFactorEnabled = false,
                             UserName = "admin@gmail.com"
                         },
@@ -159,15 +159,15 @@ namespace SmallFarm.Data.Migrations
                         {
                             Id = "f61b7997-5b5b-4b60-89f2-eba32d1a3d29",
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "b4cc36df-8fdc-4474-92bf-59d3d8df3c48",
+                            ConcurrencyStamp = "b7b205cd-184f-4734-b119-88e449703f7f",
                             Email = "manu@gmail.com",
                             EmailConfirmed = false,
                             LockoutEnabled = false,
                             NormalizedEmail = "MANU@GMAIL.COM",
                             NormalizedUserName = "MANU@GMAIL.COM",
-                            PasswordHash = "AQAAAAEAACcQAAAAECf1qTNhtYlIxXbJJ+Qz4SCZnJoa2P5/EaYiRNiFwZfaaczl6vDMI7pXt/H0TxvOFw==",
+                            PasswordHash = "AQAAAAEAACcQAAAAEAGpzWWaxcdWogbB7xLHsV+gHUx7eX4MFTcAzS/b0m7MeSCpRWcV9hRfrGk9+eTuSg==",
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "98d2e41b-0f3b-4b01-943b-a8fcbef92b38",
+                            SecurityStamp = "e2ebc0b7-913d-4ab6-8e8c-63047a9ad673",
                             TwoFactorEnabled = false,
                             UserName = "manu@gmail.com"
                         });

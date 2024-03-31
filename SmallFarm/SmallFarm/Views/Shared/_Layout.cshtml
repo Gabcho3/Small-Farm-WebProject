@@ -1,5 +1,8 @@
 ﻿@using SmallFarm.Extensions
 @using SmallFarm.Core.Models.Product
+@using Microsoft.AspNetCore.Identity
+
+@inject SignInManager<IdentityUser> SignInManager;
 
 @{
     var queryModel = new AllProductsQueryModel();
@@ -18,7 +21,7 @@
 </head>
 <body>
     <header style="font-size:18px">
-        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
+        <nav id="nav" class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light  border-bottom box-shadow">
             <div class="container-fluid">
                 <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">
                     <img src="~/Images/logo.png" style="height:2.5em" />
@@ -29,14 +32,20 @@
                 </button>
                 <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
                     <ul class="navbar-nav flex-grow-1 justify-content-between">
-                        
-                        <partial name="_CategoriesPartial"/>
+
+                        <partial name="_CategoriesPartial" />
+
+                        @if (SignInManager.IsSignedIn(User))
+                        {
+                            <li class="nav-item fs-4 text-success fw-bold">
+                                Welcome back @User.Identity.Name!
+                            </li>
+                        }
 
                         <form asp-controller="Product" asp-action="Index" class="nav-item d-flex me-5" method="get">
                             <input asp-for="@queryModel.SearchTerm" id="searchInput" class="form-control me-2" placeholder="Search">
                             <button class="btn btn-outline-success" type="submit">Search</button>
                         </form>
-
                     </ul>
 
                     @if (User.IsManufacturer())
@@ -53,20 +62,36 @@
             </div>
         </nav>
     </header>
-    <div class="container">
-        <main role="main" class="pb-3">
+
+    <div class="container mt-3">
+        <main role="main">
             @RenderBody()
         </main>
     </div>
 
-    <footer class="border-top footer text-muted">
-        <div class="container">
-            &copy; @DateTime.Now.Year - SmallFarm
-        </div>
+    <footer class="border-top footer text-muted d-flex justify-content-around">
+        <span>&copy; @DateTime.Now.Year - SmallFarm</span>
+        <span class="ms-5">Student Project made by Gabriel Dimitrov for ASP.NET Advanced in SoftUni</span>
+        <span>All images are taken from Bing Search</span>
     </footer>
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
     <script src="~/js/site.js" asp-append-version="true"></script>
     @await RenderSectionAsync("Scripts", false)
+
+    @if (User.IsManufacturer())
+    {
+        <style>
+            #nav {
+                background-color: #FAF39B;
+        </style>
+    }
+    else
+    {
+        <style>
+            #nav, #info {
+                background-color: #A4E7E0;
+        </style>
+    }
 </body>
 </html>

@@ -1,8 +1,71 @@
-﻿@{
+﻿@using SmallFarm.Extensions
+@using SmallFarm.Core.Contracts
+@inject IProductService ProductService
+
+@{
     ViewData["Title"] = "Home Page";
+
+    var randomProducts = await ProductService.GetRandomProductsAsync();
 }
 
-<div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+<div id="main">
+    <div class="p-2 text-center fs-4 fst-italic" style="background-color:#FFD6B5;">
+        <p>This platform is made for connecting easily small manufacturers with potential clients.</p>
+        <p>The main goal is to be user-friendly and easy to use.</p>
+        <p>This kind of platform has the advantage of allowing easy purchase of products and free manufacturer registration!</p>
+    </div>
+
+    <div style="height:22.6em;background-color:#B1FAA2">
+        <h3 class="text-center pt-2">SOME TOP PRODUCTS</h3>
+
+        <div class="d-flex justify-content-center pt-4">
+            @foreach (var product in randomProducts)
+            {
+                <div class="card text-bg-success bg-info me-3" style="width:12.5rem;padding:0;">
+                    <a asp-controller="Product" asp-action="Details" asp-route-id="@product.Id" style="text-decoration:none">
+                        <img src="@product.ImageUrl" class="card-img-top" alt="Image of @product.Name" style="height:100px">
+
+                        <h5 class="card-header bg-success text-light text-center">@product.Name</h5>
+
+                        <ul class="list-group text-center" style="font-size:12px">
+                            <li class="list-group-item bg-info" style="height:3em;">@product.Manufacturer</li>
+
+                            @if (product.Category == "Drink")
+                            {
+                                <li class="list-group-item bg-info" style="height:3em;">@product.Price € per liter</li>
+                                <li class="list-group-item bg-info" style="height:3em;">@product.Quantity liters have left</li>
+                            }
+                            else
+                            {
+                                <li class="list-group-item bg-info" style="height:3em;">@product.Price € per kilogram</li>
+                                <li class="list-group-item bg-info" style="height:3em;">@product.Quantity kilograms have left</li>
+                            }
+                        </ul>
+                    </a>
+                </div>
+            }
+        </div>
+
+    </div>
 </div>
+
+@if (!User.IsManufacturer())
+{
+    <div id="info" class="border-top fw-bold fst-italic ps d-flex justify-content-around p-1" style="font-size:18px;color:#FD5252">
+        <span>
+            If you want to register your Small Farm: <a style="color:#FD5252" href="#">Sent Request</a>!
+        </span>
+        <span>
+            If you want to purchase a product you should <a style="color:#FD5252" href="/Identity/Account/Register">Register</a> first!
+        </span>
+    </div>
+}
+
+<script>
+    var childDiv = document.getElementById("main");
+    var parentMain = childDiv.parentElement;
+    var containerDiv = parentMain.parentElement;
+
+    containerDiv.classList.remove("mt-3");
+    containerDiv.classList.remove("container");
+</script>

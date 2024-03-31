@@ -308,8 +308,8 @@ namespace SmallFarm.Data.Migrations
                 columns: new[] { "Id", "AccessFailedCount", "ConcurrencyStamp", "Email", "EmailConfirmed", "LockoutEnabled", "LockoutEnd", "NormalizedEmail", "NormalizedUserName", "PasswordHash", "PhoneNumber", "PhoneNumberConfirmed", "SecurityStamp", "TwoFactorEnabled", "UserName" },
                 values: new object[,]
                 {
-                    { "f61b7997-5b5b-4b60-89f2-eba32d1a3d29", 0, "35044c87-ded7-4f01-8421-b0f4ea12ba2f", "manu@gmail.com", false, false, null, "MANU@GMAIL.COM", "MANU@GMAIL.COM", "AQAAAAEAACcQAAAAEN6eKw3l3s0lzHI7yiedRdsjSqJ1JnQCEP93+IvX+lYtCw7UeNHYGO+lQIq0hSiNXg==", null, false, "d5637196-b31f-40b1-901c-2e72b650608f", false, "manu@gmail.com" },
-                    { "fa68eea0-7afb-4a2d-8808-023de951e23b", 0, "a1d48099-2d1c-459b-9449-55424d7586e7", "admin@gmail.com", false, false, null, "ADMIN@GMAIL.COM", "ADMIN@GMAIL.COM", "AQAAAAEAACcQAAAAEGenVNoRj6tve6nuK+ZJkLO6uch736VCaEjoFefbc9NRa9Iifa8nk3Dok2PMHZ3Wcg==", null, false, "bd8a1e6d-c64b-4717-848c-c46fe36541d7", false, "admin@gmail.com" }
+                    { "534fac62-f455-4859-8a25-af191fff1afc", 0, "185d0f9f-315e-47d0-a269-033dd50d056c", "admin@gmail.com", false, false, null, "ADMIN@GMAIL.COM", "ADMIN@GMAIL.COM", "AQAAAAEAACcQAAAAEIKjN1hPu91jHL9goxALLVzWLDFE2K/j0UFCL9zK+CBSgOjjhjLAeCYw+DO0TD2E6A==", null, false, "df1bb1d5-bc36-4c2f-81fa-bfe3d1b38d3d", false, "admin@gmail.com" },
+                    { "f61b7997-5b5b-4b60-89f2-eba32d1a3d29", 0, "b7b205cd-184f-4734-b119-88e449703f7f", "manu@gmail.com", false, false, null, "MANU@GMAIL.COM", "MANU@GMAIL.COM", "AQAAAAEAACcQAAAAEAGpzWWaxcdWogbB7xLHsV+gHUx7eX4MFTcAzS/b0m7MeSCpRWcV9hRfrGk9+eTuSg==", null, false, "e2ebc0b7-913d-4ab6-8e8c-63047a9ad673", false, "manu@gmail.com" }
                 });
 
             migrationBuilder.InsertData(
@@ -490,7 +490,7 @@ namespace SmallFarm.Data.Migrations
                 {
                     { 1, "Vegetable" },
                     { 2, "Fruit" },
-                    { 3, "Drinks" }
+                    { 3, "Drink" }
                 });
 
             migrationBuilder.InsertData(
