@@ -24,13 +24,15 @@ namespace SmallFarm.Core.Helpers
             CreateMap<ProductFormModel, Product>();
             CreateMap<Product, ProductViewModel>()
                 .ForMember(dest => dest.Manufacturer,
-                    opt => opt.MapFrom(src => src.Manufacturer.Name));
+                    opt => opt.MapFrom(src => src.Manufacturer.Name))
+                .ForMember(dest => dest.Price,
+                    opt => opt.MapFrom(src => src.PricePerKg));
+
             CreateMap<Product, ProductToBuyModel>()
                 .ForMember(dest => dest.Manufacturer,
                     opt => opt.MapFrom(src => src.Manufacturer.Name))
                 .ForMember(dest => dest.AvailableQuantity,
                     opt => opt.MapFrom(src => src.Quantity));
-
         }
     }
 }
