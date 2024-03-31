@@ -44,15 +44,15 @@ namespace SmallFarm.Core.Services
 
             if (queryModel.MinPrice >= 0 && queryModel.MaxPrice > 0)
             {
-                products = products.Where(p => p.Price >= queryModel.MinPrice && p.Price <= queryModel.MaxPrice);
+                products = products.Where(p => p.PricePerKg >= queryModel.MinPrice && p.PricePerKg <= queryModel.MaxPrice);
             }
 
             products = (int)queryModel.Sorting switch
             {
-                1 => products.OrderByDescending(p => p.Price),
+                1 => products.OrderByDescending(p => p.PricePerKg),
                 2 => products.OrderBy(p => p.Quantity),
                 3 => products.OrderByDescending(p => p.Quantity),
-                _ => products.OrderBy(p => p.Price),
+                _ => products.OrderBy(p => p.PricePerKg),
             };
 
             result.Products = await products

@@ -13,7 +13,19 @@ namespace SmallFarm.Data.Configurations
 
         private static List<Manufacturer> SeedManufacturers()
         {
-            return new();
+            return new List<Manufacturer>()
+            {
+                new Manufacturer()
+                {
+                    Id = Guid.NewGuid(),
+                    Name = "BestProducts EOD",
+                    Address = "Todor Kableshkov 1",
+                    CityId = 1,
+                    Description = "Our farm is one of the best on the market!",
+                    Email = "manu@gmail.com",
+                    PhoneNumber = "+359882228888"
+                },
+            };
         }
     }
 }

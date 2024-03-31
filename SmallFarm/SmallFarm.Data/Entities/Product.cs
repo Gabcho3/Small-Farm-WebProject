@@ -27,9 +27,15 @@ namespace SmallFarm.Data.Entities
 
         [Required]
         [Precision(18, 2)]
-        public decimal Price { get; set; }
+        public decimal PricePerKg { get; set; }
 
         public string ImageUrl { get; set; }
+
+        [Required]
+        public int CategoryId { get; set; }
+
+        [ForeignKey(nameof(CategoryId))]
+        public ProductCategory Category { get; set; }
 
         [Required]
         public Guid ManufacturerId { get; set; }

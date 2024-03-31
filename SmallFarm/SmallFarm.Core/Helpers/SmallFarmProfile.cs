@@ -31,7 +31,7 @@ namespace SmallFarm.Core.Helpers
                 .ForMember(dest => dest.AvailableQuantity,
                     opt => opt.MapFrom(src => src.Quantity))
                 .ForMember(dest => dest.PricePerKg,
-                    opt => opt.MapFrom(src => src.Price));
+                    opt => opt.MapFrom(src => src.PricePerKg));
 
         }
     }

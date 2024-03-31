@@ -26,7 +26,7 @@ namespace SmallFarm.Core.Services
                     Name = c.Product.Name,
                     Description = c.Product.Description,
                     AvailableQuantity = c.Product.Quantity,
-                    PricePerKg = c.Product.Price,
+                    PricePerKg = c.Product.PricePerKg,
                     ImageUrl = c.Product.ImageUrl,
                     Manufacturer = c.Product.Manufacturer.Name,
                     Quantity = c.Quantity,

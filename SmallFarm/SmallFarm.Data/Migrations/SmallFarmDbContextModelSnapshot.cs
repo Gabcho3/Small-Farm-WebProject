@@ -141,33 +141,33 @@ namespace SmallFarm.Data.Migrations
                     b.HasData(
                         new
                         {
-                            Id = "0d921142-95b0-4fdc-920b-ed1c6558adf2",
+                            Id = "1dcbec5e-146e-48d6-b170-4a80237739f0",
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "47f8f12b-1ebe-4aaf-9c82-c5835456570f",
+                            ConcurrencyStamp = "e474e6f0-9d6e-4676-87de-25b524225986",
                             Email = "admin@gmail.com",
                             EmailConfirmed = false,
                             LockoutEnabled = false,
                             NormalizedEmail = "ADMIN@GMAIL.COM",
                             NormalizedUserName = "ADMIN@GMAIL.COM",
-                            PasswordHash = "AQAAAAEAACcQAAAAEG7oK8XFme1gIbjGRHhhhg7y+7ugThnxSm7gLllQIpN5ocuN1TTQblZtqRDfS9LACA==",
+                            PasswordHash = "AQAAAAEAACcQAAAAED8Uniu4/Lx0lmyl2ciyFCDfStrM4NE3VQs/2MGqfKjtizwJMNPwni38qk7dEkF2NQ==",
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "86a4ab15-b6f2-4ebb-97f8-697fd43acb26",
+                            SecurityStamp = "7e9eb004-3244-4cdb-8343-09a560552a78",
                             TwoFactorEnabled = false,
                             UserName = "admin@gmail.com"
                         },
                         new
                         {
-                            Id = "7172a5b3-34c7-4af5-9c2b-6da17a0ed8c7",
+                            Id = "0ec4ecd2-8ad1-4bda-9fc2-94dc4f97e9c7",
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "b0982764-be8d-4e45-a255-32c3de3c2040",
+                            ConcurrencyStamp = "24b56a1d-c0e5-46f9-ba2e-c9f03cea5655",
                             Email = "manu@gmail.com",
                             EmailConfirmed = false,
                             LockoutEnabled = false,
                             NormalizedEmail = "MANU@GMAIL.COM",
                             NormalizedUserName = "MANU@GMAIL.COM",
-                            PasswordHash = "AQAAAAEAACcQAAAAELMZmg4rVjwzoA5qil7n7QrkSUjjcT1ocmTPRuh+GbGrG/9X0esWsLOvqdVX3LQvlg==",
+                            PasswordHash = "AQAAAAEAACcQAAAAEIJgvfzKw4UHLv0P4XLonfaPb8DzPwo9LkyOt/SgVuUZ912vxcU/4/Afe0anqbMEiQ==",
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "eec97c48-db74-4ef3-82d3-dfc957ab9839",
+                            SecurityStamp = "16682ee3-6ff3-4344-a5e5-45caab7fa529",
                             TwoFactorEnabled = false,
                             UserName = "manu@gmail.com"
                         });
@@ -290,8 +290,7 @@ namespace SmallFarm.Data.Migrations
 
                     b.Property<string>("Name")
                         .IsRequired()
-                        .HasMaxLength(50)
-                        .HasColumnType("nvarchar(50)");
+                        .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");
 
@@ -1015,21 +1014,6 @@ namespace SmallFarm.Data.Migrations
                         });
                 });
 
-            modelBuilder.Entity("SmallFarm.Data.Entities.FavouriteProduct", b =>
-                {
-                    b.Property<string>("ClientId")
-                        .HasColumnType("nvarchar(450)");
-
-                    b.Property<Guid>("ProductId")
-                        .HasColumnType("uniqueidentifier");
-
-                    b.HasKey("ClientId", "ProductId");
-
-                    b.HasIndex("ProductId");
-
-                    b.ToTable("FavoriteProducts");
-                });
-
             modelBuilder.Entity("SmallFarm.Data.Entities.Manufacturer", b =>
                 {
                     b.Property<Guid>("Id")
@@ -1068,6 +1052,18 @@ namespace SmallFarm.Data.Migrations
                     b.HasIndex("CityId");
 
                     b.ToTable("Manufacturers");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = new Guid("6c03e698-f6a5-4fa9-97e7-3a85cedbc4c5"),
+                            Address = "Todor Kableshkov 1",
+                            CityId = 1,
+                            Description = "Our farm is one of the best on the market!",
+                            Email = "manu@gmail.com",
+                            Name = "BestProducts EOD",
+                            PhoneNumber = "+359882228888"
+                        });
                 });
 
             modelBuilder.Entity("SmallFarm.Data.Entities.Order", b =>
@@ -1115,6 +1111,9 @@ namespace SmallFarm.Data.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uniqueidentifier");
 
+                    b.Property<int>("CategoryId")
+                        .HasColumnType("int");
+
                     b.Property<string>("Description")
                         .HasMaxLength(500)
                         .HasColumnType("nvarchar(500)");
@@ -1131,7 +1130,7 @@ namespace SmallFarm.Data.Migrations
                         .HasMaxLength(70)
                         .HasColumnType("nvarchar(70)");
 
-                    b.Property<decimal>("Price")
+                    b.Property<decimal>("PricePerKg")
                         .HasPrecision(18, 2)
                         .HasColumnType("decimal(18,2)");
 
@@ -1140,9 +1139,45 @@ namespace SmallFarm.Data.Migrations
 
                     b.HasKey("Id");
 
+                    b.HasIndex("CategoryId");
+
                     b.HasIndex("ManufacturerId");
 
                     b.ToTable("Products");
+                });
+
+            modelBuilder.Entity("SmallFarm.Data.Entities.ProductCategory", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("ProductCategories");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            Name = "Vegetable"
+                        },
+                        new
+                        {
+                            Id = 2,
+                            Name = "Fruit"
+                        },
+                        new
+                        {
+                            Id = 3,
+                            Name = "Drinks"
+                        });
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
@@ -1215,25 +1250,6 @@ namespace SmallFarm.Data.Migrations
                     b.Navigation("Product");
                 });
 
-            modelBuilder.Entity("SmallFarm.Data.Entities.FavouriteProduct", b =>
-                {
-                    b.HasOne("Microsoft.AspNetCore.Identity.IdentityUser", "Client")
-                        .WithMany()
-                        .HasForeignKey("ClientId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("SmallFarm.Data.Entities.Product", "Product")
-                        .WithMany()
-                        .HasForeignKey("ProductId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Client");
-
-                    b.Navigation("Product");
-                });
-
             modelBuilder.Entity("SmallFarm.Data.Entities.Manufacturer", b =>
                 {
                     b.HasOne("SmallFarm.Data.Entities.City", "City")
@@ -1277,11 +1293,19 @@ namespace SmallFarm.Data.Migrations
 
             modelBuilder.Entity("SmallFarm.Data.Entities.Product", b =>
                 {
+                    b.HasOne("SmallFarm.Data.Entities.ProductCategory", "Category")
+                        .WithMany()
+                        .HasForeignKey("CategoryId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
                     b.HasOne("SmallFarm.Data.Entities.Manufacturer", "Manufacturer")
                         .WithMany("Products")
                         .HasForeignKey("ManufacturerId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
+
+                    b.Navigation("Category");
 
                     b.Navigation("Manufacturer");
                 });

@@ -21,7 +21,7 @@ namespace SmallFarm.Data
 
         public DbSet<Order> Orders { get; set; } = null!;
 
-        public DbSet<FavouriteProduct> FavoriteProducts { get; set; } = null!;
+        public DbSet<ProductCategory> ProductCategories { get; set; } = null!;
 
         public DbSet<OrderProduct> OrderProducts { get; set; } = null!;
 
@@ -33,12 +33,11 @@ namespace SmallFarm.Data
             builder.Entity<OrderProduct>()
                 .HasKey(x => new { x.OrderId, x.ProductId });
 
-            builder.Entity<FavouriteProduct>()
-                .HasKey(x => new { x.ClientId, x.ProductId });
 
+            builder.ApplyConfiguration(new IdentityUserConfiguration());
+            builder.ApplyConfiguration(new ProductCategoryConfiguration());
             builder.ApplyConfiguration(new CityConfiguration());
             builder.ApplyConfiguration(new ManufacturersConfiguration());
-            builder.ApplyConfiguration(new IdentityUserConfiguration());
 
             base.OnModelCreating(builder);
         }

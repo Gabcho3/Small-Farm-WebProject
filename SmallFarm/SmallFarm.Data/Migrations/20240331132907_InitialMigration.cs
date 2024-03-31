@@ -54,11 +54,24 @@ namespace SmallFarm.Data.Migrations
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    Name = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: false)
+                    Name = table.Column<string>(type: "nvarchar(max)", nullable: false)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Cities", x => x.Id);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "ProductCategories",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    Name = table.Column<string>(type: "nvarchar(max)", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_ProductCategories", x => x.Id);
                 });
 
             migrationBuilder.CreateTable(
@@ -218,8 +231,9 @@ namespace SmallFarm.Data.Migrations
                     Name = table.Column<string>(type: "nvarchar(70)", maxLength: 70, nullable: false),
                     Description = table.Column<string>(type: "nvarchar(500)", maxLength: 500, nullable: true),
                     Quantity = table.Column<double>(type: "float", nullable: false),
-                    Price = table.Column<decimal>(type: "decimal(18,2)", precision: 18, scale: 2, nullable: false),
+                    PricePerKg = table.Column<decimal>(type: "decimal(18,2)", precision: 18, scale: 2, nullable: false),
                     ImageUrl = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    CategoryId = table.Column<int>(type: "int", nullable: false),
                     ManufacturerId = table.Column<Guid>(type: "uniqueidentifier", nullable: false)
                 },
                 constraints: table =>
@@ -229,6 +243,12 @@ namespace SmallFarm.Data.Migrations
                         name: "FK_Products_Manufacturers_ManufacturerId",
                         column: x => x.ManufacturerId,
                         principalTable: "Manufacturers",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_Products_ProductCategories_CategoryId",
+                        column: x => x.CategoryId,
+                        principalTable: "ProductCategories",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                 });
@@ -253,30 +273,6 @@ namespace SmallFarm.Data.Migrations
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
                         name: "FK_Carts_Products_ProductId",
-                        column: x => x.ProductId,
-                        principalTable: "Products",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
-                });
-
-            migrationBuilder.CreateTable(
-                name: "FavoriteProducts",
-                columns: table => new
-                {
-                    ClientId = table.Column<string>(type: "nvarchar(450)", nullable: false),
-                    ProductId = table.Column<Guid>(type: "uniqueidentifier", nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_FavoriteProducts", x => new { x.ClientId, x.ProductId });
-                    table.ForeignKey(
-                        name: "FK_FavoriteProducts_AspNetUsers_ClientId",
-                        column: x => x.ClientId,
-                        principalTable: "AspNetUsers",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
-                    table.ForeignKey(
-                        name: "FK_FavoriteProducts_Products_ProductId",
                         column: x => x.ProductId,
                         principalTable: "Products",
                         principalColumn: "Id",
@@ -310,7 +306,11 @@ namespace SmallFarm.Data.Migrations
             migrationBuilder.InsertData(
                 table: "AspNetUsers",
                 columns: new[] { "Id", "AccessFailedCount", "ConcurrencyStamp", "Email", "EmailConfirmed", "LockoutEnabled", "LockoutEnd", "NormalizedEmail", "NormalizedUserName", "PasswordHash", "PhoneNumber", "PhoneNumberConfirmed", "SecurityStamp", "TwoFactorEnabled", "UserName" },
-                values: new object[] { "61a89e69-2df8-4b08-ab49-2f3d98a8516f", 0, "e906b546-304f-4f44-b2f8-8af62eda6961", "admin@gmail.com", false, false, null, "ADMIN@GMAIL.COM", "ADMIN@GMAIL.COM", "AQAAAAEAACcQAAAAEHKOa/W8txhIM3LNKkes0SY3gtwmIM0MV8lb5aIXowZvuNM1Ea8e+e9jvlgROK6THg==", null, false, "19fb2ad3-1b42-4fb4-aebd-5b87878ea46f", false, "admin@gmail.com" });
+                values: new object[,]
+                {
+                    { "0ec4ecd2-8ad1-4bda-9fc2-94dc4f97e9c7", 0, "24b56a1d-c0e5-46f9-ba2e-c9f03cea5655", "manu@gmail.com", false, false, null, "MANU@GMAIL.COM", "MANU@GMAIL.COM", "AQAAAAEAACcQAAAAEIJgvfzKw4UHLv0P4XLonfaPb8DzPwo9LkyOt/SgVuUZ912vxcU/4/Afe0anqbMEiQ==", null, false, "16682ee3-6ff3-4344-a5e5-45caab7fa529", false, "manu@gmail.com" },
+                    { "1dcbec5e-146e-48d6-b170-4a80237739f0", 0, "e474e6f0-9d6e-4676-87de-25b524225986", "admin@gmail.com", false, false, null, "ADMIN@GMAIL.COM", "ADMIN@GMAIL.COM", "AQAAAAEAACcQAAAAED8Uniu4/Lx0lmyl2ciyFCDfStrM4NE3VQs/2MGqfKjtizwJMNPwni38qk7dEkF2NQ==", null, false, "7e9eb004-3244-4cdb-8343-09a560552a78", false, "admin@gmail.com" }
+                });
 
             migrationBuilder.InsertData(
                 table: "Cities",
@@ -356,8 +356,7 @@ namespace SmallFarm.Data.Migrations
                     { 37, "Gabrovo" },
                     { 38, "General Toshevo" },
                     { 39, "Glavinitsa" },
-                    { 40, "Gorna Oryahovitsa" },
-                    { 41, "Gotse Delchev" }
+                    { 40, "Gorna Oryahovitsa" }
                 });
 
             migrationBuilder.InsertData(
@@ -365,6 +364,7 @@ namespace SmallFarm.Data.Migrations
                 columns: new[] { "Id", "Name" },
                 values: new object[,]
                 {
+                    { 41, "Gotse Delchev" },
                     { 42, "Gramada" },
                     { 43, "Gulubovo" },
                     { 44, "Gulyantsi" },
@@ -405,8 +405,7 @@ namespace SmallFarm.Data.Migrations
                     { 79, "Omurtag" },
                     { 80, "Opaka" },
                     { 81, "Panagyurishte" },
-                    { 82, "Parvomay" },
-                    { 83, "Pavel Banya" }
+                    { 82, "Parvomay" }
                 });
 
             migrationBuilder.InsertData(
@@ -414,6 +413,7 @@ namespace SmallFarm.Data.Migrations
                 columns: new[] { "Id", "Name" },
                 values: new object[,]
                 {
+                    { 83, "Pavel Banya" },
                     { 84, "Pazardzhik" },
                     { 85, "Pernik" },
                     { 86, "Petrich" },
@@ -454,8 +454,7 @@ namespace SmallFarm.Data.Migrations
                     { 121, "Sveti Vlas" },
                     { 122, "Svilengrad" },
                     { 123, "Svishtov" },
-                    { 124, "Targovishte" },
-                    { 125, "Tervel" }
+                    { 124, "Targovishte" }
                 });
 
             migrationBuilder.InsertData(
@@ -463,6 +462,7 @@ namespace SmallFarm.Data.Migrations
                 columns: new[] { "Id", "Name" },
                 values: new object[,]
                 {
+                    { 125, "Tervel" },
                     { 126, "Teteven" },
                     { 127, "Topolovgrad" },
                     { 128, "Tran" },
@@ -482,6 +482,21 @@ namespace SmallFarm.Data.Migrations
                     { 142, "Yambol" },
                     { 143, "Zavet" }
                 });
+
+            migrationBuilder.InsertData(
+                table: "ProductCategories",
+                columns: new[] { "Id", "Name" },
+                values: new object[,]
+                {
+                    { 1, "Vegetable" },
+                    { 2, "Fruit" },
+                    { 3, "Drinks" }
+                });
+
+            migrationBuilder.InsertData(
+                table: "Manufacturers",
+                columns: new[] { "Id", "Address", "CityId", "Description", "Email", "Name", "PhoneNumber" },
+                values: new object[] { new Guid("6c03e698-f6a5-4fa9-97e7-3a85cedbc4c5"), "Todor Kableshkov 1", 1, "Our farm is one of the best on the market!", "manu@gmail.com", "BestProducts EOD", "+359882228888" });
 
             migrationBuilder.CreateIndex(
                 name: "IX_AspNetRoleClaims_RoleId",
@@ -528,11 +543,6 @@ namespace SmallFarm.Data.Migrations
                 column: "ProductId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_FavoriteProducts_ProductId",
-                table: "FavoriteProducts",
-                column: "ProductId");
-
-            migrationBuilder.CreateIndex(
                 name: "IX_Manufacturers_CityId",
                 table: "Manufacturers",
                 column: "CityId");
@@ -546,6 +556,11 @@ namespace SmallFarm.Data.Migrations
                 name: "IX_Orders_ClientId",
                 table: "Orders",
                 column: "ClientId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Products_CategoryId",
+                table: "Products",
+                column: "CategoryId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_Products_ManufacturerId",
@@ -574,9 +589,6 @@ namespace SmallFarm.Data.Migrations
                 name: "Carts");
 
             migrationBuilder.DropTable(
-                name: "FavoriteProducts");
-
-            migrationBuilder.DropTable(
                 name: "OrderProducts");
 
             migrationBuilder.DropTable(
@@ -593,6 +605,9 @@ namespace SmallFarm.Data.Migrations
 
             migrationBuilder.DropTable(
                 name: "Manufacturers");
+
+            migrationBuilder.DropTable(
+                name: "ProductCategories");
 
             migrationBuilder.DropTable(
                 name: "Cities");

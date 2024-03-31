@@ -1,5 +1,4 @@
 ﻿using System.ComponentModel.DataAnnotations;
-using static SmallFarm.Common.DataConstants.CityConstants;
 
 namespace SmallFarm.Data.Entities
 {
@@ -9,7 +8,6 @@ namespace SmallFarm.Data.Entities
         public int Id { get; set; }
 
         [Required]
-        [StringLength(CityMaxLength)]
         public string Name { get; set; } = null!;
     }
 }

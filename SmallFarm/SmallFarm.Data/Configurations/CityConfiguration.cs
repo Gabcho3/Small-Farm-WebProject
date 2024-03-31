@@ -40,11 +40,11 @@ namespace SmallFarm.Data.Configurations
             };
 
             List<City> list = new List<City>();
-            int id = 0;
+            long id = 0;
             foreach (var city in bulgarianCities.Distinct().OrderBy(c => c))
             {
                 id++;
-                list.Add(new City() { Id = id, Name = city });
+                list.Add(new City() { Id = (int)id, Name = city });
             }
 
             return list;
