@@ -27,6 +27,7 @@ namespace SmallFarm.Data.Configurations
 
             var manufacturer = new IdentityUser()
             {
+                Id = "f61b7997-5b5b-4b60-89f2-eba32d1a3d29",
                 UserName = Manufacturer.Email,
                 NormalizedUserName = Manufacturer.Email.ToUpper(),
                 Email = Manufacturer.Email,

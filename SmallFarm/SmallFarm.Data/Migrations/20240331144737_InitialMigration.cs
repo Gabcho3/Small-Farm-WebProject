@@ -308,8 +308,8 @@ namespace SmallFarm.Data.Migrations
                 columns: new[] { "Id", "AccessFailedCount", "ConcurrencyStamp", "Email", "EmailConfirmed", "LockoutEnabled", "LockoutEnd", "NormalizedEmail", "NormalizedUserName", "PasswordHash", "PhoneNumber", "PhoneNumberConfirmed", "SecurityStamp", "TwoFactorEnabled", "UserName" },
                 values: new object[,]
                 {
-                    { "0ec4ecd2-8ad1-4bda-9fc2-94dc4f97e9c7", 0, "24b56a1d-c0e5-46f9-ba2e-c9f03cea5655", "manu@gmail.com", false, false, null, "MANU@GMAIL.COM", "MANU@GMAIL.COM", "AQAAAAEAACcQAAAAEIJgvfzKw4UHLv0P4XLonfaPb8DzPwo9LkyOt/SgVuUZ912vxcU/4/Afe0anqbMEiQ==", null, false, "16682ee3-6ff3-4344-a5e5-45caab7fa529", false, "manu@gmail.com" },
-                    { "1dcbec5e-146e-48d6-b170-4a80237739f0", 0, "e474e6f0-9d6e-4676-87de-25b524225986", "admin@gmail.com", false, false, null, "ADMIN@GMAIL.COM", "ADMIN@GMAIL.COM", "AQAAAAEAACcQAAAAED8Uniu4/Lx0lmyl2ciyFCDfStrM4NE3VQs/2MGqfKjtizwJMNPwni38qk7dEkF2NQ==", null, false, "7e9eb004-3244-4cdb-8343-09a560552a78", false, "admin@gmail.com" }
+                    { "f61b7997-5b5b-4b60-89f2-eba32d1a3d29", 0, "35044c87-ded7-4f01-8421-b0f4ea12ba2f", "manu@gmail.com", false, false, null, "MANU@GMAIL.COM", "MANU@GMAIL.COM", "AQAAAAEAACcQAAAAEN6eKw3l3s0lzHI7yiedRdsjSqJ1JnQCEP93+IvX+lYtCw7UeNHYGO+lQIq0hSiNXg==", null, false, "d5637196-b31f-40b1-901c-2e72b650608f", false, "manu@gmail.com" },
+                    { "fa68eea0-7afb-4a2d-8808-023de951e23b", 0, "a1d48099-2d1c-459b-9449-55424d7586e7", "admin@gmail.com", false, false, null, "ADMIN@GMAIL.COM", "ADMIN@GMAIL.COM", "AQAAAAEAACcQAAAAEGenVNoRj6tve6nuK+ZJkLO6uch736VCaEjoFefbc9NRa9Iifa8nk3Dok2PMHZ3Wcg==", null, false, "bd8a1e6d-c64b-4717-848c-c46fe36541d7", false, "admin@gmail.com" }
                 });
 
             migrationBuilder.InsertData(
@@ -496,7 +496,7 @@ namespace SmallFarm.Data.Migrations
             migrationBuilder.InsertData(
                 table: "Manufacturers",
                 columns: new[] { "Id", "Address", "CityId", "Description", "Email", "Name", "PhoneNumber" },
-                values: new object[] { new Guid("6c03e698-f6a5-4fa9-97e7-3a85cedbc4c5"), "Todor Kableshkov 1", 1, "Our farm is one of the best on the market!", "manu@gmail.com", "BestProducts EOD", "+359882228888" });
+                values: new object[] { new Guid("f61b7997-5b5b-4b60-89f2-eba32d1a3d29"), "bul. Todor Kableshkov", 1, "We are one of the best on the market!", "manu@gmail.com", "BestProducts OOD", "+359885118198" });
 
             migrationBuilder.CreateIndex(
                 name: "IX_AspNetRoleClaims_RoleId",

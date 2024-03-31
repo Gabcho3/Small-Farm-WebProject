@@ -12,7 +12,7 @@ using SmallFarm.Data;
 namespace SmallFarm.Data.Migrations
 {
     [DbContext(typeof(SmallFarmDbContext))]
-    [Migration("20240331132907_InitialMigration")]
+    [Migration("20240331144737_InitialMigration")]
     partial class InitialMigration
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -143,33 +143,33 @@ namespace SmallFarm.Data.Migrations
                     b.HasData(
                         new
                         {
-                            Id = "1dcbec5e-146e-48d6-b170-4a80237739f0",
+                            Id = "fa68eea0-7afb-4a2d-8808-023de951e23b",
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "e474e6f0-9d6e-4676-87de-25b524225986",
+                            ConcurrencyStamp = "a1d48099-2d1c-459b-9449-55424d7586e7",
                             Email = "admin@gmail.com",
                             EmailConfirmed = false,
                             LockoutEnabled = false,
                             NormalizedEmail = "ADMIN@GMAIL.COM",
                             NormalizedUserName = "ADMIN@GMAIL.COM",
-                            PasswordHash = "AQAAAAEAACcQAAAAED8Uniu4/Lx0lmyl2ciyFCDfStrM4NE3VQs/2MGqfKjtizwJMNPwni38qk7dEkF2NQ==",
+                            PasswordHash = "AQAAAAEAACcQAAAAEGenVNoRj6tve6nuK+ZJkLO6uch736VCaEjoFefbc9NRa9Iifa8nk3Dok2PMHZ3Wcg==",
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "7e9eb004-3244-4cdb-8343-09a560552a78",
+                            SecurityStamp = "bd8a1e6d-c64b-4717-848c-c46fe36541d7",
                             TwoFactorEnabled = false,
                             UserName = "admin@gmail.com"
                         },
                         new
                         {
-                            Id = "0ec4ecd2-8ad1-4bda-9fc2-94dc4f97e9c7",
+                            Id = "f61b7997-5b5b-4b60-89f2-eba32d1a3d29",
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "24b56a1d-c0e5-46f9-ba2e-c9f03cea5655",
+                            ConcurrencyStamp = "35044c87-ded7-4f01-8421-b0f4ea12ba2f",
                             Email = "manu@gmail.com",
                             EmailConfirmed = false,
                             LockoutEnabled = false,
                             NormalizedEmail = "MANU@GMAIL.COM",
                             NormalizedUserName = "MANU@GMAIL.COM",
-                            PasswordHash = "AQAAAAEAACcQAAAAEIJgvfzKw4UHLv0P4XLonfaPb8DzPwo9LkyOt/SgVuUZ912vxcU/4/Afe0anqbMEiQ==",
+                            PasswordHash = "AQAAAAEAACcQAAAAEN6eKw3l3s0lzHI7yiedRdsjSqJ1JnQCEP93+IvX+lYtCw7UeNHYGO+lQIq0hSiNXg==",
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "16682ee3-6ff3-4344-a5e5-45caab7fa529",
+                            SecurityStamp = "d5637196-b31f-40b1-901c-2e72b650608f",
                             TwoFactorEnabled = false,
                             UserName = "manu@gmail.com"
                         });
@@ -1058,13 +1058,13 @@ namespace SmallFarm.Data.Migrations
                     b.HasData(
                         new
                         {
-                            Id = new Guid("6c03e698-f6a5-4fa9-97e7-3a85cedbc4c5"),
-                            Address = "Todor Kableshkov 1",
+                            Id = new Guid("f61b7997-5b5b-4b60-89f2-eba32d1a3d29"),
+                            Address = "bul. Todor Kableshkov",
                             CityId = 1,
-                            Description = "Our farm is one of the best on the market!",
+                            Description = "We are one of the best on the market!",
                             Email = "manu@gmail.com",
-                            Name = "BestProducts EOD",
-                            PhoneNumber = "+359882228888"
+                            Name = "BestProducts OOD",
+                            PhoneNumber = "+359885118198"
                         });
                 });
 
