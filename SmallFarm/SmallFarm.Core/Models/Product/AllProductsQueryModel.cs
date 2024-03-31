@@ -4,6 +4,8 @@ namespace SmallFarm.Core.Models.Product
 {
     public class AllProductsQueryModel
     {
+        public string Category { get; set; } = string.Empty;
+
         public string? SearchTerm { get; set; } = string.Empty;
 
         public ProductSorting Sorting { get; set; }

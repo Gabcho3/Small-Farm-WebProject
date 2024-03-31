@@ -34,6 +34,11 @@ namespace SmallFarm.Core.Services
                 .Include(p => p.Manufacturer)
                 .AsQueryable();
 
+            if (!string.IsNullOrEmpty(queryModel.Category))
+            {
+                products = products.Where(p => p.Category.Name == queryModel.Category);
+            }
+
             if (!string.IsNullOrEmpty(queryModel.SearchTerm))
             {
                 var searchTerm = $"%{queryModel.SearchTerm.ToLower()}%";
