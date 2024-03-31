@@ -20,7 +20,7 @@ namespace SmallFarm.Controllers
             this.userManager = _userManager;
         }
 
-        public async Task<IActionResult> Index([FromQuery]AllProductsQueryModel queryModel)
+        public async Task<IActionResult> Index([FromQuery] AllProductsQueryModel queryModel)
         {
             var result = await service.GetAllAsync(queryModel);
 
@@ -32,9 +32,14 @@ namespace SmallFarm.Controllers
 
         [HttpGet]
         [Authorize(Roles = Manufacturer.RoleName)]
-        public IActionResult Add()
+        public async Task<IActionResult> Add()
         {
-            return View(new ProductFormModel());
+            var model = new ProductFormModel()
+            {
+                ProductCategories = await service.GetAllCategoriesAsync()
+            };
+
+            return View(model);
         }
 
         [HttpPost]

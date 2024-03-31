@@ -1,4 +1,5 @@
 ﻿using SmallFarm.Core.Models.Product;
+using SmallFarm.Core.Models.ProductCategory;
 
 namespace SmallFarm.Core.Contracts
 {
@@ -7,6 +8,8 @@ namespace SmallFarm.Core.Contracts
         Task<ProductToBuyModel> GetByIdAsync(Guid productId);
 
         Task<ProductQueryModel> GetAllAsync(AllProductsQueryModel queryModel);
+
+        Task<List<ProductCategoryViewModel>> GetAllCategoriesAsync();
 
         Task AddAsync(ProductFormModel productForm);
     }

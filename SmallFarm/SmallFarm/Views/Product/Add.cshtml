@@ -8,44 +8,60 @@
     ViewData["Title"] = "Add Product";
 }
 
-<form asp-controller="Product" asp-action="Add" class="row g-3" method="post" class="row" style="margin-top:4em;margin-inline:30em">
+<form asp-controller="Product" asp-action="Add" class="row g-3" method="post">
 
-    <div class="mx-auto">
+    <div class="mx-auto col-12">
         <label class="form-label" for="inputName">Product Name</label>
-        <input type="text" class="form-control" id="inputName" placeholder="Tomatoes" style="max-width:16.3em" asp-for="Name">
+        <input type="text" class="form-control " id="inputName" placeholder="Tomatoes" asp-for="Name">
         <span asp-validation-for="Name" class="small text-danger"></span>
     </div>
 
-    <div>
+    <div class="col-12">
         <label class="form-label" for="inputDescription">Description</label>
-        <textarea class="form-control" placeholder="Leave a description here" id="inputDescription" style="width:16.3em;height:100px" asp-for="Description"></textarea>
+        <textarea class="form-control" placeholder="Leave a description here" id="inputDescription" style="height:100px" asp-for="Description"></textarea>
         <span asp-validation-for="Description" class="small text-danger"></span>
     </div>
 
+    <div class="col-4">
+        <label class="form-label" for="quantityInput">Available Quantity</label>
 
-    <div class="row g-2">
-        <div class="input-group" style="width:9em">
-            <label class="form-label" for="quantityInput">Available Quantity</label>
-            <input type="text" id="quantityInput" class="form-control" value="0.01" asp-for="Quantity"/>
+        <div class="input-group">
+            <input type="text" id="quantityInput" class="form-control" value="0.01" asp-for="Quantity" />
             <span class="input-group-text bg-success">kg</span>
-            <span asp-validation-for="Quantity" class="small text-danger"></span>
         </div>
 
-        <div class="input-group" style="width:9em">
-            <label class="form-label" for="priceInput">Price Per Kilogram</label>
-            <input type="text" id="priceInput" class="form-control" value="0.01" asp-for="Price"/>
-            <span class="input-group-text bg-warning">€</span>
-            <span asp-validation-for="Price" class="small text-danger"></span>
-        </div>
+        <span asp-validation-for="Quantity" class="small text-danger"></span>
     </div>
 
-    <div style="width:17.3em">
+
+    <div class="col-4">
+        <label class="form-label" for="priceInput">Price Per Kilogram</label>
+
+        <div class="input-group">
+            <input type="text" id="priceInput" class="form-control" value="0.01" asp-for="PricePerKg" />
+            <span class="input-group-text bg-warning">€</span>
+        </div>
+
+        <span asp-validation-for="PricePerKg" class="small text-danger"></span>
+    </div>
+
+    <div class="col-4">
+        <label asp-for="CategoryId" class="form-label">Category</label>
+        <select asp-for="@Model.CategoryId" class="form-control" aria-required="true">
+            @foreach (var category in Model.ProductCategories)
+            {
+                <option value="@category.Id">@category.Name</option>
+            }
+        </select>
+    </div>
+
+    <div class="col-12">
         <label class="form-label" for="imageInput">Image URL</label>
         <input class="form-control" type="text" id="imageInput" asp-for="ImageUrl">
     </div>
 
-    <div>
-        <button type="submit" class="btn btn-success" style="width:16.3em">Add Product</button>
+    <div class="">
+        <button type="submit" class="btn btn-success w-100">Add Product</button>
     </div>
 </form>
 
@@ -53,15 +69,33 @@
     var quantityInput = document.getElementById("quantityInput");
     var priceInput = document.getElementById("priceInput");
 
-    function replaceSeperator(){
+    function replaceSeperator() {
         quantityInput.value = quantityInput.value.replace(",", ".");
         priceInput.value = priceInput.value.replace(",", ".");
+    }
+
+    function checkForNegativeNumber() {
+        var quantity = parseFloat(quantityInput.value);
+        var price = parseFloat(priceInput.value);
+
+
+        if (quantity < 0) {
+            quantityInput.value = 0.01;
+        }
+
+        if (price < 0) {
+            priceInput.value = 0.01;
+        }
     }
 
     quantityInput.addEventListener("input", replaceSeperator);
     priceInput.addEventListener("input", replaceSeperator);
 
+    quantityInput.addEventListener("input", checkForNegativeNumber);
+    priceInput.addEventListener("input", checkForNegativeNumber);
+
     replaceSeperator();
+    checkForNegativeNumber();
 
 </script>
 

@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using SmallFarm.Core.Contracts;
 using SmallFarm.Core.Models.Product;
+using SmallFarm.Core.Models.ProductCategory;
 using SmallFarm.Data;
 using SmallFarm.Data.Entities;
 
@@ -38,7 +39,7 @@ namespace SmallFarm.Core.Services
                 var searchTerm = $"%{queryModel.SearchTerm.ToLower()}%";
 
                 products = products
-                    .Where(p => EF.Functions.Like(p.Name.ToLower(),searchTerm) ||
+                    .Where(p => EF.Functions.Like(p.Name.ToLower(), searchTerm) ||
                                 EF.Functions.Like(p.Manufacturer.Name.ToLower(), searchTerm));
             }
 
@@ -64,6 +65,14 @@ namespace SmallFarm.Core.Services
             result.TotalProductsCount = await products.CountAsync();
 
             return result;
+        }
+
+        public async Task<List<ProductCategoryViewModel>> GetAllCategoriesAsync()
+        {
+            return await context.ProductCategories
+                .AsNoTracking()
+                .Select(p => new ProductCategoryViewModel() { Id = p.Id, Name = p.Name })
+                .ToListAsync();
         }
 
         public async Task AddAsync(ProductFormModel productForm)

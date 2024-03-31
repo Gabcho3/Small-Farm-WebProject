@@ -5,7 +5,7 @@ namespace SmallFarm.Core.Contracts
 {
     public interface IManufacturerService
     {
-        Task<ManufacturerFormModel> GetManufacturerByIdAsync(Guid id);
+        Task<ManufacturerFormModel?> GetManufacturerByIdAsync(Guid id);
 
         Task<IEnumerable<ManufacturerViewModel>> GetAllManufacturersAsync();
 
