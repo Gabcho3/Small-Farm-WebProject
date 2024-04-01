@@ -20,8 +20,8 @@ namespace SmallFarm.Core.Services
             this.mapper = _mapper;
         }
 
-        public async Task<ProductToBuyModel> GetByIdAsync(Guid productId)
-            => mapper.Map<ProductToBuyModel>(await context.Products
+        public async Task<T> GetByIdAsync<T>(Guid productId)
+            => mapper.Map<T>(await context.Products
                 .Include(p => p.Manufacturer)
                 .Include(p => p.Category)
                 .FirstAsync(p => p.Id == productId));
@@ -92,15 +92,15 @@ namespace SmallFarm.Core.Services
                 .ToListAsync();
         }
 
-        public async Task<List<ProductViewModel>> GetManufacturerProductsAsync(string name)
+        public async Task<List<ProductViewModel>> GetManufacturerProductsAsync(string nameOrEmail)
         {
             return await context.Products
                 .AsNoTracking()
                 .Include(p => p.Manufacturer)
-                .Where(p => p.Manufacturer.Name == name)
+                .Include(p => p.Category)
+                .Where(p => p.Manufacturer.Email == nameOrEmail || p.Manufacturer.Name == nameOrEmail)
                 .OrderByDescending(x => x.Id)
                 .Select(p => mapper.Map<ProductViewModel>(p))
-                .Take(10)
                 .ToListAsync();
         }
 
@@ -109,6 +109,28 @@ namespace SmallFarm.Core.Services
             var productToAdd = mapper.Map<Product>(productForm);
 
             await context.AddAsync(productToAdd);
+            await context.SaveChangesAsync();
+        }
+
+        public async Task EditAsync(Guid id, ProductFormModel productForm)
+        {
+            var productToEdit = await context.Products.FindAsync(id);
+
+            productToEdit!.Name = productForm.Name!;
+            productToEdit.Description = productForm.Description;
+            productToEdit.PricePerKg = productForm.PricePerKg;
+            productToEdit.ImageUrl = productForm.ImageUrl;
+            productToEdit.Quantity = (double)productForm.Quantity;
+            productToEdit.CategoryId = productForm.CategoryId;
+
+            await context.SaveChangesAsync();
+        }
+
+        public async Task RemoveAsync(Guid id)
+        {
+            var productToRemove = await context.Products.FindAsync(id);
+
+            context.Products.Remove(productToRemove);
             await context.SaveChangesAsync();
         }
     }

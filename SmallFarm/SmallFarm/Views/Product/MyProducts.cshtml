@@ -1,0 +1,76 @@
+﻿@using SmallFarm.Core.Models.Product
+
+@model List<ProductViewModel>
+
+@{
+    ViewData["Title"] = "My products";
+
+    int counterId = 0;
+}
+
+<div class="container" style="margin-top:35px">
+    <div class="row gap-5">
+        @foreach (var product in Model)
+        {
+            counterId++;
+
+            <div class="card text-bg-success mb-3 col-1 bg-info" style="width: 18rem;padding:0;">
+                <img src="@product.ImageUrl" class="card-img-top" alt="Image of @product.Name" style="height:7em">
+                <h3 class="card-header bg-success text-light text-center">@product.Name</h3>
+                <div class="accordion accordion-flush" id="accordionFlush-@counterId">
+                    <div class="accordion-item">
+                        <h2 class="accordion-header">
+                            <button class="accordion-button collapsed bg-warning text-dark" type="button" data-bs-toggle="collapse" data-bs-target="#flush-@counterId" aria-expanded="false" aria-controls="flush-@counterId">
+                                <span class="text-secondary fw-bolder">More Information</span>
+                            </button>
+                        </h2>
+                        <div id="flush-@counterId" class="accordion-collapse collapse" data-bs-parent="#accordionFlush-@counterId">
+                            <p class="card-text pt-2 pb-2 bg-warning ps-4 pe-4">@product.Description</p>
+                        </div>
+                    </div>
+                </div>
+                <ul class="list-group list-group-flush">
+                    
+                    @if (product.Category != "Drink")
+                    {
+                        <li class="list-group-item bg-info" style="height:2em;"><strong>Available quantity:</strong> @product.Quantity kilograms</li>
+                    }
+                    else
+                    {
+                        <li class="list-group-item bg-info" style="height:2em;"><strong>Available quantity:</strong> @product.Quantity liters</li>
+                    }
+
+                    <li class="list-group-item bg-info" style="height:2em;"><strong>Price:</strong> @product.Price €</li>
+                    <li class="list-group-item bg-info" style="height:2em;"><strong>Category:</strong> @product.Category</li>
+                </ul>
+                <form asp-controller="Product" asp-action="Edit" class="card-body w-100 pb-0 ms-auto me-auto" asp-route-id="@product.Id" method="get">
+                    <button class="btn btn-warning  w-100">Edit</button>
+                </form>
+                <div class="card-body w-100 ms-auto me-auto">
+                    <button class="btn btn-danger w-100" data-bs-toggle="modal" data-bs-target="#deleteModal">Delete</button>
+                </div>
+            </div>
+
+            <!-- Modal -->
+            <div class="modal fade" id="deleteModal" tabindex="-1" aria-labelledby="deleteModalLabel" aria-hidden="true">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h1 class="modal-title fs-5" id="deleteModalLabel">Remove Product</h1>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body">
+                            Are you sure you want to remove @product.Name?
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">No</button>
+                            <form asp-controller="Product" asp-action="Remove" asp-route-id="@product.Id" method="post">
+                                <button class="btn btn-danger">Yes</button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        }
+    </div>
+</div>

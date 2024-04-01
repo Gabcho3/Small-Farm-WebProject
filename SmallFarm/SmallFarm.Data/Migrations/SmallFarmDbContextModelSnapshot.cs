@@ -236,9 +236,9 @@ namespace SmallFarm.Data.Migrations
                     b.HasData(
                         new
                         {
-                            Id = "3ecc01e9-0c2c-4d5f-92e8-acd8bebde763",
+                            Id = "0c0f6178-0503-4eeb-9e4b-0374ad277df3",
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "fcf0ade2-8e2d-430c-8cdd-0a1832369db2",
+                            ConcurrencyStamp = "b1017a05-4a41-4282-a5e7-98676a9f934c",
                             Email = "admin@gmail.com",
                             EmailConfirmed = false,
                             FirstName = "Gabriel",
@@ -246,9 +246,9 @@ namespace SmallFarm.Data.Migrations
                             LockoutEnabled = false,
                             NormalizedEmail = "ADMIN@GMAIL.COM",
                             NormalizedUserName = "ADMIN@GMAIL.COM",
-                            PasswordHash = "AQAAAAEAACcQAAAAEFDPgILtYX5yRz15XO2KzzAh8K0cVfc/I1CdCc9bsOu24as5Vk4X0fOhNT3W2bE0EQ==",
+                            PasswordHash = "AQAAAAEAACcQAAAAEOAe9LzrbAOWHHUXmWx5t3aajb93+LRazSeLIS7zpaQEmye3Tq/9qPp7TMFYc1sdtA==",
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "754a2131-3b77-4086-b1b3-95bccef08867",
+                            SecurityStamp = "408f28b2-8673-4c68-b3ca-c6e7bb2458ce",
                             TwoFactorEnabled = false,
                             UserName = "admin@gmail.com"
                         },
@@ -256,7 +256,7 @@ namespace SmallFarm.Data.Migrations
                         {
                             Id = "f61b7997-5b5b-4b60-89f2-eba32d1a3d29",
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "e1e90059-cfa8-48bd-b38a-edfd14e1366a",
+                            ConcurrencyStamp = "a2da2d8c-ae40-429f-9304-92aa2c78c1d5",
                             Email = "manu@gmail.com",
                             EmailConfirmed = false,
                             FirstName = "Ivan",
@@ -264,9 +264,9 @@ namespace SmallFarm.Data.Migrations
                             LockoutEnabled = false,
                             NormalizedEmail = "MANU@GMAIL.COM",
                             NormalizedUserName = "MANU@GMAIL.COM",
-                            PasswordHash = "AQAAAAEAACcQAAAAEPb7JeEuYlstJzBHAwGE7Q4NhqVZ1qDax5dZudk5lhf3PqIIs1QGiUW/G2QE9gJaOA==",
+                            PasswordHash = "AQAAAAEAACcQAAAAEM4okSB/uenoG+t7kMiSbEOCKTD+xKG8gaMSUSZkuQsvHWpfQjGBGryHvkIfSyipcQ==",
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "f413ae91-48df-4a3e-9c64-467e7097382c",
+                            SecurityStamp = "f2c0e0a8-33d4-4314-8efa-c512c7cd2378",
                             TwoFactorEnabled = false,
                             UserName = "manu@gmail.com"
                         });
@@ -1194,6 +1194,46 @@ namespace SmallFarm.Data.Migrations
                         });
                 });
 
+            modelBuilder.Entity("SmallFarm.Data.Entities.Request", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<bool>("IsActive")
+                        .HasColumnType("bit");
+
+                    b.Property<string>("ManufacturerAddress")
+                        .IsRequired()
+                        .HasMaxLength(100)
+                        .HasColumnType("nvarchar(100)");
+
+                    b.Property<string>("ManufacturerDescription")
+                        .IsRequired()
+                        .HasMaxLength(500)
+                        .HasColumnType("nvarchar(500)");
+
+                    b.Property<string>("ManufacturerName")
+                        .IsRequired()
+                        .HasMaxLength(70)
+                        .HasColumnType("nvarchar(70)");
+
+                    b.Property<string>("ManufacturerPhoneNumber")
+                        .IsRequired()
+                        .HasMaxLength(13)
+                        .HasColumnType("nvarchar(13)");
+
+                    b.Property<string>("UserId")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(450)");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("UserId");
+
+                    b.ToTable("Requests");
+                });
+
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
                 {
                     b.HasOne("Microsoft.AspNetCore.Identity.IdentityRole", null)
@@ -1322,6 +1362,17 @@ namespace SmallFarm.Data.Migrations
                     b.Navigation("Category");
 
                     b.Navigation("Manufacturer");
+                });
+
+            modelBuilder.Entity("SmallFarm.Data.Entities.Request", b =>
+                {
+                    b.HasOne("SmallFarm.Data.Entities.ApplicationUser", "User")
+                        .WithMany()
+                        .HasForeignKey("UserId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("User");
                 });
 
             modelBuilder.Entity("SmallFarm.Data.Entities.Manufacturer", b =>

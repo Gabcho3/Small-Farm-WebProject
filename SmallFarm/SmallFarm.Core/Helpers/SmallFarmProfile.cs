@@ -22,6 +22,8 @@ namespace SmallFarm.Core.Helpers
 
             //Products
             CreateMap<ProductFormModel, Product>();
+            CreateMap<Product, ProductFormModel>();
+
             CreateMap<Product, ProductViewModel>()
                 .ForMember(dest => dest.Manufacturer,
                     opt => opt.MapFrom(src => src.Manufacturer.Name))

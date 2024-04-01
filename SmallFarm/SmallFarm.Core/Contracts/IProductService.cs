@@ -5,7 +5,7 @@ namespace SmallFarm.Core.Contracts
 {
     public interface IProductService
     {
-        Task<ProductToBuyModel> GetByIdAsync(Guid productId);
+        Task<T> GetByIdAsync<T>(Guid productId);
 
         Task<ProductQueryModel> GetAllAsync(AllProductsQueryModel queryModel);
 
@@ -15,6 +15,11 @@ namespace SmallFarm.Core.Contracts
 
         Task<List<ProductViewModel>> GetManufacturerProductsAsync(string name);
 
+
         Task AddAsync(ProductFormModel productForm);
+
+        Task EditAsync(Guid id, ProductFormModel productForm);
+
+        Task RemoveAsync(Guid id);
     }
 }

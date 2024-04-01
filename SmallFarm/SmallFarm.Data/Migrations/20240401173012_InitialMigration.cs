@@ -203,6 +203,29 @@ namespace SmallFarm.Data.Migrations
                 });
 
             migrationBuilder.CreateTable(
+                name: "Requests",
+                columns: table => new
+                {
+                    Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    ManufacturerName = table.Column<string>(type: "nvarchar(70)", maxLength: 70, nullable: false),
+                    ManufacturerDescription = table.Column<string>(type: "nvarchar(500)", maxLength: 500, nullable: false),
+                    ManufacturerPhoneNumber = table.Column<string>(type: "nvarchar(13)", maxLength: 13, nullable: false),
+                    ManufacturerAddress = table.Column<string>(type: "nvarchar(100)", maxLength: 100, nullable: false),
+                    IsActive = table.Column<bool>(type: "bit", nullable: false),
+                    UserId = table.Column<string>(type: "nvarchar(450)", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Requests", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_Requests_AspNetUsers_UserId",
+                        column: x => x.UserId,
+                        principalTable: "AspNetUsers",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "Manufacturers",
                 columns: table => new
                 {
@@ -310,8 +333,8 @@ namespace SmallFarm.Data.Migrations
                 columns: new[] { "Id", "AccessFailedCount", "ConcurrencyStamp", "Email", "EmailConfirmed", "FirstName", "LastName", "LockoutEnabled", "LockoutEnd", "NormalizedEmail", "NormalizedUserName", "PasswordHash", "PhoneNumber", "PhoneNumberConfirmed", "SecurityStamp", "TwoFactorEnabled", "UserName" },
                 values: new object[,]
                 {
-                    { "3ecc01e9-0c2c-4d5f-92e8-acd8bebde763", 0, "fcf0ade2-8e2d-430c-8cdd-0a1832369db2", "admin@gmail.com", false, "Gabriel", "Dimitrov", false, null, "ADMIN@GMAIL.COM", "ADMIN@GMAIL.COM", "AQAAAAEAACcQAAAAEFDPgILtYX5yRz15XO2KzzAh8K0cVfc/I1CdCc9bsOu24as5Vk4X0fOhNT3W2bE0EQ==", null, false, "754a2131-3b77-4086-b1b3-95bccef08867", false, "admin@gmail.com" },
-                    { "f61b7997-5b5b-4b60-89f2-eba32d1a3d29", 0, "e1e90059-cfa8-48bd-b38a-edfd14e1366a", "manu@gmail.com", false, "Ivan", "Dragiev", false, null, "MANU@GMAIL.COM", "MANU@GMAIL.COM", "AQAAAAEAACcQAAAAEPb7JeEuYlstJzBHAwGE7Q4NhqVZ1qDax5dZudk5lhf3PqIIs1QGiUW/G2QE9gJaOA==", null, false, "f413ae91-48df-4a3e-9c64-467e7097382c", false, "manu@gmail.com" }
+                    { "0c0f6178-0503-4eeb-9e4b-0374ad277df3", 0, "b1017a05-4a41-4282-a5e7-98676a9f934c", "admin@gmail.com", false, "Gabriel", "Dimitrov", false, null, "ADMIN@GMAIL.COM", "ADMIN@GMAIL.COM", "AQAAAAEAACcQAAAAEOAe9LzrbAOWHHUXmWx5t3aajb93+LRazSeLIS7zpaQEmye3Tq/9qPp7TMFYc1sdtA==", null, false, "408f28b2-8673-4c68-b3ca-c6e7bb2458ce", false, "admin@gmail.com" },
+                    { "f61b7997-5b5b-4b60-89f2-eba32d1a3d29", 0, "a2da2d8c-ae40-429f-9304-92aa2c78c1d5", "manu@gmail.com", false, "Ivan", "Dragiev", false, null, "MANU@GMAIL.COM", "MANU@GMAIL.COM", "AQAAAAEAACcQAAAAEM4okSB/uenoG+t7kMiSbEOCKTD+xKG8gaMSUSZkuQsvHWpfQjGBGryHvkIfSyipcQ==", null, false, "f2c0e0a8-33d4-4314-8efa-c512c7cd2378", false, "manu@gmail.com" }
                 });
 
             migrationBuilder.InsertData(
@@ -568,6 +591,11 @@ namespace SmallFarm.Data.Migrations
                 name: "IX_Products_ManufacturerId",
                 table: "Products",
                 column: "ManufacturerId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Requests_UserId",
+                table: "Requests",
+                column: "UserId");
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
@@ -592,6 +620,9 @@ namespace SmallFarm.Data.Migrations
 
             migrationBuilder.DropTable(
                 name: "OrderProducts");
+
+            migrationBuilder.DropTable(
+                name: "Requests");
 
             migrationBuilder.DropTable(
                 name: "AspNetRoles");

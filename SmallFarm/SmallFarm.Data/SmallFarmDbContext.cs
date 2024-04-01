@@ -24,7 +24,9 @@ namespace SmallFarm.Data
 
         public DbSet<OrderProduct> OrderProducts { get; set; } = null!;
 
-        public DbSet<ApplicationUser> Users { get; set; }
+        public DbSet<Request> Requests { get; set; } = null!;
+
+        public DbSet<ApplicationUser> Users { get; set; } = null!;
 
         protected override void OnModelCreating(ModelBuilder builder)
         {
