@@ -1,7 +1,8 @@
 ﻿@using Microsoft.AspNetCore.Identity
-@inject UserManager<IdentityUser> UserManager
+@inject UserManager<ApplicationUser> UserManager
 
 @using SmallFarm.Core.Models.Product
+@using SmallFarm.Data.Entities
 @model ProductFormModel
 
 @{
@@ -26,7 +27,7 @@
         <label class="form-label" for="quantityInput">Available Quantity</label>
 
         <div class="input-group">
-            <input type="text" id="quantityInput" class="form-control" value="0.01" asp-for="Quantity" />
+            <input type="text" id="quantityInput" class="form-control" value="0.1" asp-for="Quantity" />
             <span id="quantitySpan" class="input-group-text bg-success">kg</span>
         </div>
 
@@ -75,17 +76,29 @@
         priceInput.value = priceInput.value.replace(",", ".");
     }
 
-    function checkForNegativeNumber() {
+    function checkNumberInputs() {
         var quantity = parseFloat(quantityInput.value);
         var price = parseFloat(priceInput.value);
 
 
         if (quantity < 0) {
-            quantityInput.value = 0.01;
+            quantityInput.value = 0.1;
         }
 
-        if (price < 0) {
-            priceInput.value = 0.01;
+        if (price < 0.0) {
+            priceInput.value = 0.1;
+        }
+
+        var index = quantityInput.value.indexOf(".");
+        var afterSeperator = quantityInput.value.substring(index + 1).length;
+        if (afterSeperator > 1) {
+            quantityInput.value = quantityInput.value.substring(0, afterSeperator + 2);
+        }
+
+        index = priceInput.value.indexOf(".");
+        afterSeperator = priceInput.value.substring(index + 1).length;
+        if (afterSeperator > 2) {
+            priceInput.value = priceInput.value.substring(0, afterSeperator + 2);
         }
     }
 
@@ -105,13 +118,13 @@
     quantityInput.addEventListener("input", replaceSeperator);
     priceInput.addEventListener("input", replaceSeperator);
 
-    quantityInput.addEventListener("input", checkForNegativeNumber);
-    priceInput.addEventListener("input", checkForNegativeNumber);
+    quantityInput.addEventListener("input", checkNumberInputs);
+    priceInput.addEventListener("input", checkNumberInputs);
 
     categoryInput.addEventListener("input", changeIfDrink);
 
     replaceSeperator();
-    checkForNegativeNumber();
+    checkNumberInputs();
     changeIfDrink();
     
 

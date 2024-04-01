@@ -5,6 +5,7 @@ using SmallFarm.Core.Contracts;
 using SmallFarm.Core.Helpers;
 using SmallFarm.Core.Services;
 using SmallFarm.Data;
+using SmallFarm.Data.Entities;
 
 namespace SmallFarm.Extensions
 {
@@ -15,6 +16,7 @@ namespace SmallFarm.Extensions
             services.AddScoped<IManufacturerService, ManufacturerService>();
             services.AddScoped<IProductService, ProductService>();
             services.AddScoped<ICartService, CartService>();
+            services.AddScoped<IApplicationUserService, ApplicationUserService>();
 
             //Preventing from Cross-Site Request Forgery [CSRF]
             services.AddMvc(opt =>
@@ -36,10 +38,9 @@ namespace SmallFarm.Extensions
 
         public static void AddApplicationIdentity(this IServiceCollection services)
         {
-            services.AddDefaultIdentity<IdentityUser>(options =>
+            services.AddDefaultIdentity<ApplicationUser>(options =>
                 {
                     options.SignIn.RequireConfirmedAccount = false;
-
                     options.Password.RequireDigit = false;
                     options.Password.RequireUppercase = false;
                     options.Password.RequireNonAlphanumeric = false;

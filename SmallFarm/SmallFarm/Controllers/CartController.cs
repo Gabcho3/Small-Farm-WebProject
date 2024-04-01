@@ -1,16 +1,19 @@
-﻿using Microsoft.AspNetCore.Identity;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using SmallFarm.Core.Contracts;
 using SmallFarm.Core.Models.Product;
+using SmallFarm.Data.Entities;
+using SmallFarm.Extensions;
 
 namespace SmallFarm.Controllers
 {
     public class CartController : Controller
     {
-        private readonly UserManager<IdentityUser> userManager;
+        private readonly UserManager<ApplicationUser> userManager;
         private readonly ICartService service;
 
-        public CartController(UserManager<IdentityUser> _userManager, ICartService _service)
+        public CartController(UserManager<ApplicationUser> _userManager, ICartService _service)
         {
             this.userManager = _userManager;
             this.service = _service;
@@ -21,6 +24,11 @@ namespace SmallFarm.Controllers
             if (!User.Identity!.IsAuthenticated)
             {
                 return Redirect("/Identity/Account/Register");
+            }
+
+            if (User.IsManufacturer())
+            {
+                return RedirectToAction("Index", "Product");
             }
 
             var models = await service.GetAllProductsInCartAsync(userManager.GetUserId(User));

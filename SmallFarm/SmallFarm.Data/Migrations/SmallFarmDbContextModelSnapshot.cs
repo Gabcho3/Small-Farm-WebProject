@@ -74,105 +74,6 @@ namespace SmallFarm.Data.Migrations
                     b.ToTable("AspNetRoleClaims", (string)null);
                 });
 
-            modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUser", b =>
-                {
-                    b.Property<string>("Id")
-                        .HasColumnType("nvarchar(450)");
-
-                    b.Property<int>("AccessFailedCount")
-                        .HasColumnType("int");
-
-                    b.Property<string>("ConcurrencyStamp")
-                        .IsConcurrencyToken()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Email")
-                        .HasMaxLength(256)
-                        .HasColumnType("nvarchar(256)");
-
-                    b.Property<bool>("EmailConfirmed")
-                        .HasColumnType("bit");
-
-                    b.Property<bool>("LockoutEnabled")
-                        .HasColumnType("bit");
-
-                    b.Property<DateTimeOffset?>("LockoutEnd")
-                        .HasColumnType("datetimeoffset");
-
-                    b.Property<string>("NormalizedEmail")
-                        .HasMaxLength(256)
-                        .HasColumnType("nvarchar(256)");
-
-                    b.Property<string>("NormalizedUserName")
-                        .HasMaxLength(256)
-                        .HasColumnType("nvarchar(256)");
-
-                    b.Property<string>("PasswordHash")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("PhoneNumber")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<bool>("PhoneNumberConfirmed")
-                        .HasColumnType("bit");
-
-                    b.Property<string>("SecurityStamp")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<bool>("TwoFactorEnabled")
-                        .HasColumnType("bit");
-
-                    b.Property<string>("UserName")
-                        .HasMaxLength(256)
-                        .HasColumnType("nvarchar(256)");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("NormalizedEmail")
-                        .HasDatabaseName("EmailIndex");
-
-                    b.HasIndex("NormalizedUserName")
-                        .IsUnique()
-                        .HasDatabaseName("UserNameIndex")
-                        .HasFilter("[NormalizedUserName] IS NOT NULL");
-
-                    b.ToTable("AspNetUsers", (string)null);
-
-                    b.HasData(
-                        new
-                        {
-                            Id = "534fac62-f455-4859-8a25-af191fff1afc",
-                            AccessFailedCount = 0,
-                            ConcurrencyStamp = "185d0f9f-315e-47d0-a269-033dd50d056c",
-                            Email = "admin@gmail.com",
-                            EmailConfirmed = false,
-                            LockoutEnabled = false,
-                            NormalizedEmail = "ADMIN@GMAIL.COM",
-                            NormalizedUserName = "ADMIN@GMAIL.COM",
-                            PasswordHash = "AQAAAAEAACcQAAAAEIKjN1hPu91jHL9goxALLVzWLDFE2K/j0UFCL9zK+CBSgOjjhjLAeCYw+DO0TD2E6A==",
-                            PhoneNumberConfirmed = false,
-                            SecurityStamp = "df1bb1d5-bc36-4c2f-81fa-bfe3d1b38d3d",
-                            TwoFactorEnabled = false,
-                            UserName = "admin@gmail.com"
-                        },
-                        new
-                        {
-                            Id = "f61b7997-5b5b-4b60-89f2-eba32d1a3d29",
-                            AccessFailedCount = 0,
-                            ConcurrencyStamp = "b7b205cd-184f-4734-b119-88e449703f7f",
-                            Email = "manu@gmail.com",
-                            EmailConfirmed = false,
-                            LockoutEnabled = false,
-                            NormalizedEmail = "MANU@GMAIL.COM",
-                            NormalizedUserName = "MANU@GMAIL.COM",
-                            PasswordHash = "AQAAAAEAACcQAAAAEAGpzWWaxcdWogbB7xLHsV+gHUx7eX4MFTcAzS/b0m7MeSCpRWcV9hRfrGk9+eTuSg==",
-                            PhoneNumberConfirmed = false,
-                            SecurityStamp = "e2ebc0b7-913d-4ab6-8e8c-63047a9ad673",
-                            TwoFactorEnabled = false,
-                            UserName = "manu@gmail.com"
-                        });
-                });
-
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserClaim<string>", b =>
                 {
                     b.Property<int>("Id")
@@ -256,6 +157,119 @@ namespace SmallFarm.Data.Migrations
                     b.HasKey("UserId", "LoginProvider", "Name");
 
                     b.ToTable("AspNetUserTokens", (string)null);
+                });
+
+            modelBuilder.Entity("SmallFarm.Data.Entities.ApplicationUser", b =>
+                {
+                    b.Property<string>("Id")
+                        .HasColumnType("nvarchar(450)");
+
+                    b.Property<int>("AccessFailedCount")
+                        .HasColumnType("int");
+
+                    b.Property<string>("ConcurrencyStamp")
+                        .IsConcurrencyToken()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Email")
+                        .HasMaxLength(256)
+                        .HasColumnType("nvarchar(256)");
+
+                    b.Property<bool>("EmailConfirmed")
+                        .HasColumnType("bit");
+
+                    b.Property<string>("FirstName")
+                        .IsRequired()
+                        .HasMaxLength(30)
+                        .HasColumnType("nvarchar(30)");
+
+                    b.Property<string>("LastName")
+                        .IsRequired()
+                        .HasMaxLength(30)
+                        .HasColumnType("nvarchar(30)");
+
+                    b.Property<bool>("LockoutEnabled")
+                        .HasColumnType("bit");
+
+                    b.Property<DateTimeOffset?>("LockoutEnd")
+                        .HasColumnType("datetimeoffset");
+
+                    b.Property<string>("NormalizedEmail")
+                        .HasMaxLength(256)
+                        .HasColumnType("nvarchar(256)");
+
+                    b.Property<string>("NormalizedUserName")
+                        .HasMaxLength(256)
+                        .HasColumnType("nvarchar(256)");
+
+                    b.Property<string>("PasswordHash")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("PhoneNumber")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<bool>("PhoneNumberConfirmed")
+                        .HasColumnType("bit");
+
+                    b.Property<string>("SecurityStamp")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<bool>("TwoFactorEnabled")
+                        .HasColumnType("bit");
+
+                    b.Property<string>("UserName")
+                        .HasMaxLength(256)
+                        .HasColumnType("nvarchar(256)");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("NormalizedEmail")
+                        .HasDatabaseName("EmailIndex");
+
+                    b.HasIndex("NormalizedUserName")
+                        .IsUnique()
+                        .HasDatabaseName("UserNameIndex")
+                        .HasFilter("[NormalizedUserName] IS NOT NULL");
+
+                    b.ToTable("AspNetUsers", (string)null);
+
+                    b.HasData(
+                        new
+                        {
+                            Id = "3ecc01e9-0c2c-4d5f-92e8-acd8bebde763",
+                            AccessFailedCount = 0,
+                            ConcurrencyStamp = "fcf0ade2-8e2d-430c-8cdd-0a1832369db2",
+                            Email = "admin@gmail.com",
+                            EmailConfirmed = false,
+                            FirstName = "Gabriel",
+                            LastName = "Dimitrov",
+                            LockoutEnabled = false,
+                            NormalizedEmail = "ADMIN@GMAIL.COM",
+                            NormalizedUserName = "ADMIN@GMAIL.COM",
+                            PasswordHash = "AQAAAAEAACcQAAAAEFDPgILtYX5yRz15XO2KzzAh8K0cVfc/I1CdCc9bsOu24as5Vk4X0fOhNT3W2bE0EQ==",
+                            PhoneNumberConfirmed = false,
+                            SecurityStamp = "754a2131-3b77-4086-b1b3-95bccef08867",
+                            TwoFactorEnabled = false,
+                            UserName = "admin@gmail.com"
+                        },
+                        new
+                        {
+                            Id = "f61b7997-5b5b-4b60-89f2-eba32d1a3d29",
+                            AccessFailedCount = 0,
+                            ConcurrencyStamp = "e1e90059-cfa8-48bd-b38a-edfd14e1366a",
+                            Email = "manu@gmail.com",
+                            EmailConfirmed = false,
+                            FirstName = "Ivan",
+                            LastName = "Dragiev",
+                            LockoutEnabled = false,
+                            NormalizedEmail = "MANU@GMAIL.COM",
+                            NormalizedUserName = "MANU@GMAIL.COM",
+                            PasswordHash = "AQAAAAEAACcQAAAAEPb7JeEuYlstJzBHAwGE7Q4NhqVZ1qDax5dZudk5lhf3PqIIs1QGiUW/G2QE9gJaOA==",
+                            PhoneNumberConfirmed = false,
+                            SecurityStamp = "f413ae91-48df-4a3e-9c64-467e7097382c",
+                            TwoFactorEnabled = false,
+                            UserName = "manu@gmail.com"
+                        });
                 });
 
             modelBuilder.Entity("SmallFarm.Data.Entities.Cart", b =>
@@ -1191,7 +1205,7 @@ namespace SmallFarm.Data.Migrations
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserClaim<string>", b =>
                 {
-                    b.HasOne("Microsoft.AspNetCore.Identity.IdentityUser", null)
+                    b.HasOne("SmallFarm.Data.Entities.ApplicationUser", null)
                         .WithMany()
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -1200,7 +1214,7 @@ namespace SmallFarm.Data.Migrations
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserLogin<string>", b =>
                 {
-                    b.HasOne("Microsoft.AspNetCore.Identity.IdentityUser", null)
+                    b.HasOne("SmallFarm.Data.Entities.ApplicationUser", null)
                         .WithMany()
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -1215,7 +1229,7 @@ namespace SmallFarm.Data.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("Microsoft.AspNetCore.Identity.IdentityUser", null)
+                    b.HasOne("SmallFarm.Data.Entities.ApplicationUser", null)
                         .WithMany()
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -1224,7 +1238,7 @@ namespace SmallFarm.Data.Migrations
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserToken<string>", b =>
                 {
-                    b.HasOne("Microsoft.AspNetCore.Identity.IdentityUser", null)
+                    b.HasOne("SmallFarm.Data.Entities.ApplicationUser", null)
                         .WithMany()
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -1233,7 +1247,7 @@ namespace SmallFarm.Data.Migrations
 
             modelBuilder.Entity("SmallFarm.Data.Entities.Cart", b =>
                 {
-                    b.HasOne("Microsoft.AspNetCore.Identity.IdentityUser", "Client")
+                    b.HasOne("SmallFarm.Data.Entities.ApplicationUser", "Client")
                         .WithMany()
                         .HasForeignKey("ClientId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -1263,7 +1277,7 @@ namespace SmallFarm.Data.Migrations
 
             modelBuilder.Entity("SmallFarm.Data.Entities.Order", b =>
                 {
-                    b.HasOne("Microsoft.AspNetCore.Identity.IdentityUser", "Client")
+                    b.HasOne("SmallFarm.Data.Entities.ApplicationUser", "Client")
                         .WithMany()
                         .HasForeignKey("ClientId")
                         .OnDelete(DeleteBehavior.Cascade)

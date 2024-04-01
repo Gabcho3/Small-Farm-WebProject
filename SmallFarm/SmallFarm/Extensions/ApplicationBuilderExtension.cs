@@ -1,4 +1,6 @@
 ﻿using Microsoft.AspNetCore.Identity;
+using SmallFarm.Common.DataConstants;
+using SmallFarm.Data.Entities;
 using static SmallFarm.Common.DataConstants.RoleConstants;
 
 namespace SmallFarm.Extensions
@@ -8,7 +10,7 @@ namespace SmallFarm.Extensions
         public static async Task<IApplicationBuilder> SeedRoles(this IApplicationBuilder app)
         {
             await app.SeedRole(Admin.RoleName, Admin.Email);
-            await app.SeedRole(Manufacturer.RoleName, Manufacturer.Email);
+            await app.SeedRole(RoleConstants.Manufacturer.RoleName, RoleConstants.Manufacturer.Email);
 
             return app;
         }
@@ -20,7 +22,7 @@ namespace SmallFarm.Extensions
 
             var services = scopedServices.ServiceProvider;
 
-            var userManager = services.GetRequiredService<UserManager<IdentityUser>>();
+            var userManager = services.GetRequiredService<UserManager<ApplicationUser>>();
             var roleManager = services.GetRequiredService<RoleManager<IdentityRole>>();
 
             if (await roleManager.RoleExistsAsync(roleName))

@@ -1,12 +1,11 @@
-﻿using Microsoft.AspNetCore.Identity;
-using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
+﻿using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 using SmallFarm.Data.Configurations;
 using SmallFarm.Data.Entities;
 
 namespace SmallFarm.Data
 {
-    public class SmallFarmDbContext : IdentityDbContext<IdentityUser>
+    public class SmallFarmDbContext : IdentityDbContext<ApplicationUser>
     {
         public SmallFarmDbContext(DbContextOptions<SmallFarmDbContext> options) 
             : base(options) { }
@@ -25,6 +24,8 @@ namespace SmallFarm.Data
 
         public DbSet<OrderProduct> OrderProducts { get; set; } = null!;
 
+        public DbSet<ApplicationUser> Users { get; set; }
+
         protected override void OnModelCreating(ModelBuilder builder)
         {
             builder.Entity<Cart>()
@@ -34,7 +35,7 @@ namespace SmallFarm.Data
                 .HasKey(x => new { x.OrderId, x.ProductId });
 
 
-            builder.ApplyConfiguration(new IdentityUserConfiguration());
+            builder.ApplyConfiguration(new ApplicationUserConfiguration());
             builder.ApplyConfiguration(new ProductCategoryConfiguration());
             builder.ApplyConfiguration(new CityConfiguration());
             builder.ApplyConfiguration(new ManufacturersConfiguration());

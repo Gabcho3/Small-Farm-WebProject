@@ -1,16 +1,32 @@
-﻿@using Microsoft.AspNetCore.Identity
-@inject UserManager<IdentityUser> userManager
+﻿@using SmallFarm.Core.Models.Product
+@using SmallFarm.Data.Entities
+@using SmallFarm.Extensions
+@using Microsoft.AspNetCore.Identity
+@using SmallFarm.Core.Contracts
 
-@using SmallFarm.Core.Models.Product
+@inject SignInManager<ApplicationUser> signInManager
+@inject IProductService productService;
+
 @model ProductToBuyModel
 
 @{
     ViewData["Title"] = "Product Details";
 
     var pricePerKg = Model.PricePerKg;
+    var otherProducts = await productService.GetManufacturerProductsAsync(@Model.Manufacturer);
 }
 
-<div class="card ms-auto me-auto" style="width:18rem;margin-top:5em">
+<div id="dropdown" class="dropdown">
+    <button class="btn btn-info dropdown-toggle text-light" data-bs-toggle="dropdown" aria-expanded="false">Other products from @Model.Manufacturer</button>
+    <ul class="dropdown-menu bg-info w-25 text-center">
+        @foreach (var product in otherProducts)
+        {
+            <li><a asp-controller="Product" asp-action="Details" asp-route-id="@product.Id" class="dropdown-item">@product.Name</a></li>
+        }
+    </ul>
+</div>
+
+<div class="card ms-auto me-auto mt-5" style="max-width:18em;">
     <img src="@Model.ImageUrl" class="card-img-top" alt="Image of @Model.Name">
     <div class="card-body text-center">
         <h5 class="card-title">@Model.Name</h5>
@@ -20,7 +36,7 @@
         <li id="totalPrice" class="list-group-item text-center"></li>
         <div class="input-group">
             <input type="text" id="quantityInput" class="form-control" max="@Model.AvailableQuantity" value="0.1" asp-for="@Model.Quantity" />
-            
+
             @if (Model.Category == "Drink")
             {
                 <span class="input-group-text bg-success">Liters</span>
@@ -29,16 +45,54 @@
             else
             {
                 <span class="input-group-text bg-success">kg</span>
-                <span class="input-group-text bg-secondary">@Model.AvailableQuantity kg left</span>
+                <span id="kgLeft" class="input-group-text bg-secondary">@Model.AvailableQuantity kg left</span>
             }
 
         </div>
-        <button class="list-group-item">
-            <i class="fas fa-cart-plus text-primary" style="font-size:5em"></i>
-        </button>
+        <div class="my-2">
+            @if (!signInManager.IsSignedIn(User))
+            {
+                <a href="/Identity/Account/Register" class="btn btn-outline-info border-2 w-75 fs-5" style="border-radius:2em;">
+                    Add to cart
+                </a>
+            }
+            else
+            {
+                <button class="btn btn-outline-info border-2 w-75 fs-5" style="border-radius:2em;">
+                    Add to cart
+                </button>
+            }
+
+            <div id="modelErrors">
+                @if (User.IsManufacturer())
+                {
+                    <span class="small text-danger">
+                        You are logged in as a Manufacturer and you cannot purchase a product with this account!
+                        <a class="btn btn-outline-primary" style="font-size:12px" href="/Identity/Account/Login">Log in</a> with another account!
+                    </span>
+                }
+            </div>
+
+            <style>
+                .btn:hover {
+                    color: white;
+                }
+
+                #quantityInput {
+                    border-top-left-radius: 2em;
+                    border-bottom-left-radius: 2em;
+                }
+
+                .input-group-text {
+                    border-top-right-radius: 2em;
+                    border-bottom-right-radius: 2em;
+                }
+            </style>
+
+        </div>
 
         @*Hidden inputs for model*@
-        <input hidden="true" asp-for="Category" value="@Model.Category"/>
+        <input hidden="true" asp-for="Category" value="@Model.Category" />
         <input hidden="true" asp-for="Id" value="@Model.Id" />
         <input hidden="true" asp-for="Name" value="@Model.Name" />
         <input hidden="true" asp-for="Description" value="@Model.Description" />
@@ -48,7 +102,7 @@
         <input hidden="true" asp-for="ImageUrl" value="@Model.ImageUrl" />
         <input hidden="true" asp-for="Manufacturer" value="@Model.Manufacturer" />
         <input hidden="true" id="totalPriceInput" asp-for="@Model.Total" />
-        <input hidden="true" asp-for="@Model.UserId" value="@userManager.GetUserId(User)" />
+        <input hidden="true" asp-for="@Model.UserId" value="@signInManager.UserManager.GetUserId(User)" />
 
     </form>
 </div>
@@ -61,7 +115,7 @@
         var totalPriceText = document.getElementById("totalPrice");
 
         function calculateTotalPrice() {
-            
+
             var quantity = parseFloat(quantityInput.value);
             var totalPrice = (@pricePerKg * quantity).toFixed(2);
 
@@ -75,16 +129,31 @@
             }
         }
 
-        function isAboveAvailableQuantity() {
+        function checkQuantityInput() {
             var max = parseFloat(quantityInput.max)
             var value = parseFloat(quantityInput.value);
 
             if (value > max) {
-                quantityInput.value = max;
+                quantityInput.value = max + ".0";
+                document.getElementById("kgLeft").classList.remove("bg-secondary");
+                document.getElementById("kgLeft").classList.add("bg-danger");
             }
 
-            else if (value < 0){
+            else if (value < 0.0) {
                 quantityInput.value = 0.1;
+                document.getElementById("kgLeft").classList.remove("bg-danger");
+                document.getElementById("kgLeft").classList.add("bg-secondary");
+            }
+            else {
+                document.getElementById("kgLeft").classList.remove("bg-danger");
+                document.getElementById("kgLeft").classList.add("bg-secondary");
+            }
+
+            var index = quantityInput.value.indexOf(".");
+            var afterSeperator = quantityInput.value.substring(index + 1).length;
+
+            if (afterSeperator > 1) {
+                quantityInput.value = quantityInput.value.substring(0, afterSeperator + 1);
             }
         }
 
@@ -93,13 +162,13 @@
         }
 
         quantityInput.addEventListener("input", replaceSeperator);
-        quantityInput.addEventListener("input", isAboveAvailableQuantity);
+        quantityInput.addEventListener("input", checkQuantityInput);
         quantityInput.addEventListener("input", calculateTotalPrice);
 
         totalPriceText.addEventListener("input", calculateTotalPrice);
 
-        calculateTotalPrice();
-        isAboveAvailableQuantity();
         replaceSeperator();
+        checkQuantityInput();
+        calculateTotalPrice();
     </script>
 }

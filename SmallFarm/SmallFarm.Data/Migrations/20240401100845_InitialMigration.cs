@@ -28,6 +28,8 @@ namespace SmallFarm.Data.Migrations
                 columns: table => new
                 {
                     Id = table.Column<string>(type: "nvarchar(450)", nullable: false),
+                    FirstName = table.Column<string>(type: "nvarchar(30)", maxLength: 30, nullable: false),
+                    LastName = table.Column<string>(type: "nvarchar(30)", maxLength: 30, nullable: false),
                     UserName = table.Column<string>(type: "nvarchar(256)", maxLength: 256, nullable: true),
                     NormalizedUserName = table.Column<string>(type: "nvarchar(256)", maxLength: 256, nullable: true),
                     Email = table.Column<string>(type: "nvarchar(256)", maxLength: 256, nullable: true),
@@ -305,11 +307,11 @@ namespace SmallFarm.Data.Migrations
 
             migrationBuilder.InsertData(
                 table: "AspNetUsers",
-                columns: new[] { "Id", "AccessFailedCount", "ConcurrencyStamp", "Email", "EmailConfirmed", "LockoutEnabled", "LockoutEnd", "NormalizedEmail", "NormalizedUserName", "PasswordHash", "PhoneNumber", "PhoneNumberConfirmed", "SecurityStamp", "TwoFactorEnabled", "UserName" },
+                columns: new[] { "Id", "AccessFailedCount", "ConcurrencyStamp", "Email", "EmailConfirmed", "FirstName", "LastName", "LockoutEnabled", "LockoutEnd", "NormalizedEmail", "NormalizedUserName", "PasswordHash", "PhoneNumber", "PhoneNumberConfirmed", "SecurityStamp", "TwoFactorEnabled", "UserName" },
                 values: new object[,]
                 {
-                    { "534fac62-f455-4859-8a25-af191fff1afc", 0, "185d0f9f-315e-47d0-a269-033dd50d056c", "admin@gmail.com", false, false, null, "ADMIN@GMAIL.COM", "ADMIN@GMAIL.COM", "AQAAAAEAACcQAAAAEIKjN1hPu91jHL9goxALLVzWLDFE2K/j0UFCL9zK+CBSgOjjhjLAeCYw+DO0TD2E6A==", null, false, "df1bb1d5-bc36-4c2f-81fa-bfe3d1b38d3d", false, "admin@gmail.com" },
-                    { "f61b7997-5b5b-4b60-89f2-eba32d1a3d29", 0, "b7b205cd-184f-4734-b119-88e449703f7f", "manu@gmail.com", false, false, null, "MANU@GMAIL.COM", "MANU@GMAIL.COM", "AQAAAAEAACcQAAAAEAGpzWWaxcdWogbB7xLHsV+gHUx7eX4MFTcAzS/b0m7MeSCpRWcV9hRfrGk9+eTuSg==", null, false, "e2ebc0b7-913d-4ab6-8e8c-63047a9ad673", false, "manu@gmail.com" }
+                    { "3ecc01e9-0c2c-4d5f-92e8-acd8bebde763", 0, "fcf0ade2-8e2d-430c-8cdd-0a1832369db2", "admin@gmail.com", false, "Gabriel", "Dimitrov", false, null, "ADMIN@GMAIL.COM", "ADMIN@GMAIL.COM", "AQAAAAEAACcQAAAAEFDPgILtYX5yRz15XO2KzzAh8K0cVfc/I1CdCc9bsOu24as5Vk4X0fOhNT3W2bE0EQ==", null, false, "754a2131-3b77-4086-b1b3-95bccef08867", false, "admin@gmail.com" },
+                    { "f61b7997-5b5b-4b60-89f2-eba32d1a3d29", 0, "e1e90059-cfa8-48bd-b38a-edfd14e1366a", "manu@gmail.com", false, "Ivan", "Dragiev", false, null, "MANU@GMAIL.COM", "MANU@GMAIL.COM", "AQAAAAEAACcQAAAAEPb7JeEuYlstJzBHAwGE7Q4NhqVZ1qDax5dZudk5lhf3PqIIs1QGiUW/G2QE9gJaOA==", null, false, "f413ae91-48df-4a3e-9c64-467e7097382c", false, "manu@gmail.com" }
                 });
 
             migrationBuilder.InsertData(

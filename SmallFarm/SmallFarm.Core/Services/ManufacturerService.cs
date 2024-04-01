@@ -12,10 +12,10 @@ namespace SmallFarm.Core.Services
     public class ManufacturerService : IManufacturerService
     {
         private readonly SmallFarmDbContext context;
-        private readonly UserManager<IdentityUser> userManager;
+        private readonly UserManager<ApplicationUser> userManager;
         private readonly IMapper autoMapper;
 
-        public ManufacturerService(SmallFarmDbContext _context, IMapper _autoMapper, UserManager<IdentityUser> _userManager)
+        public ManufacturerService(SmallFarmDbContext _context, IMapper _autoMapper, UserManager<ApplicationUser> _userManager)
         {
             this.context = _context;
             this.autoMapper = _autoMapper;

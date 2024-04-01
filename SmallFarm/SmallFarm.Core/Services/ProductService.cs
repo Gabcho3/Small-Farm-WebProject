@@ -92,6 +92,18 @@ namespace SmallFarm.Core.Services
                 .ToListAsync();
         }
 
+        public async Task<List<ProductViewModel>> GetManufacturerProductsAsync(string name)
+        {
+            return await context.Products
+                .AsNoTracking()
+                .Include(p => p.Manufacturer)
+                .Where(p => p.Manufacturer.Name == name)
+                .OrderByDescending(x => x.Id)
+                .Select(p => mapper.Map<ProductViewModel>(p))
+                .Take(10)
+                .ToListAsync();
+        }
+
         public async Task AddAsync(ProductFormModel productForm)
         {
             var productToAdd = mapper.Map<Product>(productForm);

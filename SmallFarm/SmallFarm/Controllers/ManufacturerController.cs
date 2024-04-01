@@ -5,6 +5,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using SmallFarm.Core.Contracts;
 using SmallFarm.Core.Models.Manufacturer;
+using SmallFarm.Data.Entities;
 using static SmallFarm.Common.DataConstants.RoleConstants;
 
 namespace SmallFarm.Controllers
@@ -15,10 +16,10 @@ namespace SmallFarm.Controllers
         private readonly IManufacturerService manufacturerService;
         private readonly IProductService productService;
 
-        private readonly UserManager<IdentityUser> userManager;
-
-        public ManufacturerController(IManufacturerService manufacturerService,
-            UserManager<IdentityUser> _userManager,
+        private readonly UserManager<ApplicationUser> userManager;
+        
+        public ManufacturerController(IManufacturerService manufacturerService, 
+            UserManager<ApplicationUser> _userManager,
             IProductService _productService)
         {
             this.manufacturerService = manufacturerService;

@@ -13,6 +13,8 @@ namespace SmallFarm.Core.Contracts
 
         Task<List<ProductViewModel>> GetRandomProductsAsync();
 
+        Task<List<ProductViewModel>> GetManufacturerProductsAsync(string name);
+
         Task AddAsync(ProductFormModel productForm);
     }
 }

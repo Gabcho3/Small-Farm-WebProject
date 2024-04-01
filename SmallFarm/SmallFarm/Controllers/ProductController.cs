@@ -4,7 +4,8 @@ using Microsoft.AspNetCore.Mvc;
 using SmallFarm.Common.DataConstants;
 using SmallFarm.Core.Contracts;
 using SmallFarm.Core.Models.Product;
-using static SmallFarm.Common.DataConstants.RoleConstants;
+using SmallFarm.Data.Entities;
+using SmallFarm.Extensions;
 
 namespace SmallFarm.Controllers
 {
@@ -12,9 +13,9 @@ namespace SmallFarm.Controllers
     public class ProductController : Controller
     {
         private readonly IProductService service;
-        private readonly UserManager<IdentityUser> userManager;
+        private readonly UserManager<ApplicationUser> userManager;
 
-        public ProductController(IProductService _service, UserManager<IdentityUser> _userManager)
+        public ProductController(IProductService _service, UserManager<ApplicationUser> _userManager)
         {
             this.service = _service;
             this.userManager = _userManager;
@@ -31,7 +32,7 @@ namespace SmallFarm.Controllers
         }
 
         [HttpGet]
-        [Authorize(Roles = Manufacturer.RoleName)]
+        [Authorize(Roles = RoleConstants.Manufacturer.RoleName)]
         public async Task<IActionResult> Add()
         {
             var model = new ProductFormModel()
@@ -43,7 +44,7 @@ namespace SmallFarm.Controllers
         }
 
         [HttpPost]
-        [Authorize(Roles = Manufacturer.RoleName)]
+        [Authorize(Roles = RoleConstants.Manufacturer.RoleName)]
         public async Task<IActionResult> Add(ProductFormModel formModel)
         {
             formModel.ManufacturerId = Guid.Parse(userManager.GetUserId(User));

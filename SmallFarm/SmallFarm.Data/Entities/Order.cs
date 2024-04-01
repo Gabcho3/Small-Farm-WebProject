@@ -26,6 +26,6 @@ namespace SmallFarm.Data.Entities
         public string ClientId { get; set; } = null!;
 
         [ForeignKey(nameof(ClientId))]
-        public IdentityUser Client { get; set; } = null!;
+        public ApplicationUser Client { get; set; } = null!;
     }
 }

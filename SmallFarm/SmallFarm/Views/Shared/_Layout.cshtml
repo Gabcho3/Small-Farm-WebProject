@@ -1,8 +1,11 @@
 ﻿@using SmallFarm.Extensions
 @using SmallFarm.Core.Models.Product
 @using Microsoft.AspNetCore.Identity
+@using SmallFarm.Core.Contracts
+@using SmallFarm.Data.Entities
 
-@inject SignInManager<IdentityUser> SignInManager;
+@inject SignInManager<ApplicationUser> SignInManager;
+@inject IApplicationUserService ApplicationUserService;
 
 @{
     var queryModel = new AllProductsQueryModel();
@@ -35,10 +38,16 @@
 
                         <partial name="_CategoriesPartial" />
 
-                        @if (SignInManager.IsSignedIn(User))
+                        @if (SignInManager.IsSignedIn(User) && !User.IsManufacturer())
                         {
                             <li class="nav-item fs-4 text-success fw-bold">
-                                Welcome back @User.Identity.Name!
+                                Welcome back @ApplicationUserService.GetFullName(User.Identity!.Name!)!
+                            </li>
+                        }
+                        @if (User.IsManufacturer())
+                        {
+                            <li class="nav-item fs-4 text-success fw-bold">
+                                Welcome back @ApplicationUserService.GetManufacturerName(User.Identity!.Name!)!
                             </li>
                         }
 
