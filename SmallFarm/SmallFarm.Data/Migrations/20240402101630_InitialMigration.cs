@@ -203,29 +203,6 @@ namespace SmallFarm.Data.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "Requests",
-                columns: table => new
-                {
-                    Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
-                    ManufacturerName = table.Column<string>(type: "nvarchar(70)", maxLength: 70, nullable: false),
-                    ManufacturerDescription = table.Column<string>(type: "nvarchar(500)", maxLength: 500, nullable: false),
-                    ManufacturerPhoneNumber = table.Column<string>(type: "nvarchar(13)", maxLength: 13, nullable: false),
-                    ManufacturerAddress = table.Column<string>(type: "nvarchar(100)", maxLength: 100, nullable: false),
-                    IsActive = table.Column<bool>(type: "bit", nullable: false),
-                    UserId = table.Column<string>(type: "nvarchar(450)", nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_Requests", x => x.Id);
-                    table.ForeignKey(
-                        name: "FK_Requests_AspNetUsers_UserId",
-                        column: x => x.UserId,
-                        principalTable: "AspNetUsers",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
-                });
-
-            migrationBuilder.CreateTable(
                 name: "Manufacturers",
                 columns: table => new
                 {
@@ -242,6 +219,36 @@ namespace SmallFarm.Data.Migrations
                     table.PrimaryKey("PK_Manufacturers", x => x.Id);
                     table.ForeignKey(
                         name: "FK_Manufacturers_Cities_CityId",
+                        column: x => x.CityId,
+                        principalTable: "Cities",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Requests",
+                columns: table => new
+                {
+                    Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    ManufacturerName = table.Column<string>(type: "nvarchar(70)", maxLength: 70, nullable: false),
+                    ManufacturerDescription = table.Column<string>(type: "nvarchar(500)", maxLength: 500, nullable: false),
+                    ManufacturerPhoneNumber = table.Column<string>(type: "nvarchar(13)", maxLength: 13, nullable: false),
+                    ManufacturerAddress = table.Column<string>(type: "nvarchar(100)", maxLength: 100, nullable: false),
+                    CityId = table.Column<int>(type: "int", nullable: false),
+                    IsActive = table.Column<bool>(type: "bit", nullable: false),
+                    UserId = table.Column<string>(type: "nvarchar(450)", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Requests", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_Requests_AspNetUsers_UserId",
+                        column: x => x.UserId,
+                        principalTable: "AspNetUsers",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_Requests_Cities_CityId",
                         column: x => x.CityId,
                         principalTable: "Cities",
                         principalColumn: "Id",
@@ -333,8 +340,8 @@ namespace SmallFarm.Data.Migrations
                 columns: new[] { "Id", "AccessFailedCount", "ConcurrencyStamp", "Email", "EmailConfirmed", "FirstName", "LastName", "LockoutEnabled", "LockoutEnd", "NormalizedEmail", "NormalizedUserName", "PasswordHash", "PhoneNumber", "PhoneNumberConfirmed", "SecurityStamp", "TwoFactorEnabled", "UserName" },
                 values: new object[,]
                 {
-                    { "0c0f6178-0503-4eeb-9e4b-0374ad277df3", 0, "b1017a05-4a41-4282-a5e7-98676a9f934c", "admin@gmail.com", false, "Gabriel", "Dimitrov", false, null, "ADMIN@GMAIL.COM", "ADMIN@GMAIL.COM", "AQAAAAEAACcQAAAAEOAe9LzrbAOWHHUXmWx5t3aajb93+LRazSeLIS7zpaQEmye3Tq/9qPp7TMFYc1sdtA==", null, false, "408f28b2-8673-4c68-b3ca-c6e7bb2458ce", false, "admin@gmail.com" },
-                    { "f61b7997-5b5b-4b60-89f2-eba32d1a3d29", 0, "a2da2d8c-ae40-429f-9304-92aa2c78c1d5", "manu@gmail.com", false, "Ivan", "Dragiev", false, null, "MANU@GMAIL.COM", "MANU@GMAIL.COM", "AQAAAAEAACcQAAAAEM4okSB/uenoG+t7kMiSbEOCKTD+xKG8gaMSUSZkuQsvHWpfQjGBGryHvkIfSyipcQ==", null, false, "f2c0e0a8-33d4-4314-8efa-c512c7cd2378", false, "manu@gmail.com" }
+                    { "c78cc7f9-70ae-4168-bc81-33cdfe63a155", 0, "da63e269-3ea8-4280-a1b5-6b52d588e7d6", "admin@gmail.com", false, "Gabriel", "Dimitrov", false, null, "ADMIN@GMAIL.COM", "ADMIN@GMAIL.COM", "AQAAAAEAACcQAAAAEGnj4CYmFJ1JvIzd7xW5/N1qnTo4+UwNhN0IqsZkJaeO9uAseXVNVz40dPPr0caLMQ==", null, false, "d0ea4f56-63ef-495d-aa82-eb9f463ebe7d", false, "admin@gmail.com" },
+                    { "f61b7997-5b5b-4b60-89f2-eba32d1a3d29", 0, "708bb94c-1bde-477d-9184-257230526b80", "manu@gmail.com", false, "Ivan", "Dragiev", false, null, "MANU@GMAIL.COM", "MANU@GMAIL.COM", "AQAAAAEAACcQAAAAEJKUqvoqq5bjvYj9zpckhKS6xGgzKqsocO1kFv3uotDVUGUjJX95YHt4GjeEFJZb+g==", null, false, "cdd3cb79-99ed-4eb1-8d43-52dc90b7520d", false, "manu@gmail.com" }
                 });
 
             migrationBuilder.InsertData(
@@ -591,6 +598,11 @@ namespace SmallFarm.Data.Migrations
                 name: "IX_Products_ManufacturerId",
                 table: "Products",
                 column: "ManufacturerId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Requests_CityId",
+                table: "Requests",
+                column: "CityId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_Requests_UserId",

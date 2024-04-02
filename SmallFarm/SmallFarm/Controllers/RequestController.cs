@@ -18,9 +18,15 @@ namespace SmallFarm.Controllers
             this.manufacturerService = _manufacturerService;
         }
 
+        [HttpGet]
         public async Task<IActionResult> Index()
         {
-            return View();
+            var allCities = await manufacturerService.GetAllCitiesAsync();
+
+            var requests = await requestService.GetAllAsync();
+            requests.ForEach(r => r.Cities = allCities);
+
+            return View(requests);
         }
 
         [HttpGet]
@@ -51,9 +57,12 @@ namespace SmallFarm.Controllers
             return RedirectToAction("Index", "Home");
         }
 
-        public async Task<IActionResult> Approve()
+        [HttpGet]
+        public async Task<IActionResult> Approve(Guid id)
         {
-            return RedirectToAction("Add", "Manufacturer");
+            await requestService.ApproveAsync(id);
+
+            return RedirectToAction("Index");
         }
     }
 }

@@ -12,7 +12,7 @@ using SmallFarm.Data;
 namespace SmallFarm.Data.Migrations
 {
     [DbContext(typeof(SmallFarmDbContext))]
-    [Migration("20240401173012_InitialMigration")]
+    [Migration("20240402101630_InitialMigration")]
     partial class InitialMigration
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -238,9 +238,9 @@ namespace SmallFarm.Data.Migrations
                     b.HasData(
                         new
                         {
-                            Id = "0c0f6178-0503-4eeb-9e4b-0374ad277df3",
+                            Id = "c78cc7f9-70ae-4168-bc81-33cdfe63a155",
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "b1017a05-4a41-4282-a5e7-98676a9f934c",
+                            ConcurrencyStamp = "da63e269-3ea8-4280-a1b5-6b52d588e7d6",
                             Email = "admin@gmail.com",
                             EmailConfirmed = false,
                             FirstName = "Gabriel",
@@ -248,9 +248,9 @@ namespace SmallFarm.Data.Migrations
                             LockoutEnabled = false,
                             NormalizedEmail = "ADMIN@GMAIL.COM",
                             NormalizedUserName = "ADMIN@GMAIL.COM",
-                            PasswordHash = "AQAAAAEAACcQAAAAEOAe9LzrbAOWHHUXmWx5t3aajb93+LRazSeLIS7zpaQEmye3Tq/9qPp7TMFYc1sdtA==",
+                            PasswordHash = "AQAAAAEAACcQAAAAEGnj4CYmFJ1JvIzd7xW5/N1qnTo4+UwNhN0IqsZkJaeO9uAseXVNVz40dPPr0caLMQ==",
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "408f28b2-8673-4c68-b3ca-c6e7bb2458ce",
+                            SecurityStamp = "d0ea4f56-63ef-495d-aa82-eb9f463ebe7d",
                             TwoFactorEnabled = false,
                             UserName = "admin@gmail.com"
                         },
@@ -258,7 +258,7 @@ namespace SmallFarm.Data.Migrations
                         {
                             Id = "f61b7997-5b5b-4b60-89f2-eba32d1a3d29",
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "a2da2d8c-ae40-429f-9304-92aa2c78c1d5",
+                            ConcurrencyStamp = "708bb94c-1bde-477d-9184-257230526b80",
                             Email = "manu@gmail.com",
                             EmailConfirmed = false,
                             FirstName = "Ivan",
@@ -266,9 +266,9 @@ namespace SmallFarm.Data.Migrations
                             LockoutEnabled = false,
                             NormalizedEmail = "MANU@GMAIL.COM",
                             NormalizedUserName = "MANU@GMAIL.COM",
-                            PasswordHash = "AQAAAAEAACcQAAAAEM4okSB/uenoG+t7kMiSbEOCKTD+xKG8gaMSUSZkuQsvHWpfQjGBGryHvkIfSyipcQ==",
+                            PasswordHash = "AQAAAAEAACcQAAAAEJKUqvoqq5bjvYj9zpckhKS6xGgzKqsocO1kFv3uotDVUGUjJX95YHt4GjeEFJZb+g==",
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "f2c0e0a8-33d4-4314-8efa-c512c7cd2378",
+                            SecurityStamp = "cdd3cb79-99ed-4eb1-8d43-52dc90b7520d",
                             TwoFactorEnabled = false,
                             UserName = "manu@gmail.com"
                         });
@@ -1202,6 +1202,9 @@ namespace SmallFarm.Data.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uniqueidentifier");
 
+                    b.Property<int>("CityId")
+                        .HasColumnType("int");
+
                     b.Property<bool>("IsActive")
                         .HasColumnType("bit");
 
@@ -1230,6 +1233,8 @@ namespace SmallFarm.Data.Migrations
                         .HasColumnType("nvarchar(450)");
 
                     b.HasKey("Id");
+
+                    b.HasIndex("CityId");
 
                     b.HasIndex("UserId");
 
@@ -1368,11 +1373,19 @@ namespace SmallFarm.Data.Migrations
 
             modelBuilder.Entity("SmallFarm.Data.Entities.Request", b =>
                 {
+                    b.HasOne("SmallFarm.Data.Entities.City", "City")
+                        .WithMany()
+                        .HasForeignKey("CityId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
                     b.HasOne("SmallFarm.Data.Entities.ApplicationUser", "User")
                         .WithMany()
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
+
+                    b.Navigation("City");
 
                     b.Navigation("User");
                 });

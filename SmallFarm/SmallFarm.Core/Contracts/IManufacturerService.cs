@@ -1,5 +1,6 @@
 ﻿using SmallFarm.Core.Models.City;
 using SmallFarm.Core.Models.Manufacturer;
+using SmallFarm.Core.Models.Request;
 
 namespace SmallFarm.Core.Contracts
 {
@@ -11,7 +12,7 @@ namespace SmallFarm.Core.Contracts
 
         Task<IEnumerable<CityViewModel>> GetAllCitiesAsync();
 
-        Task AddManufacturerAsync(ManufacturerFormModel model);
+        Task AddManufacturerAsync(RequestFormModel model);
 
         Task EditManufacturerAsync(Guid id, ManufacturerFormModel model);
 

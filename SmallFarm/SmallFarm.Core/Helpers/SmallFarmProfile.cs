@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using SmallFarm.Core.Contracts;
 using SmallFarm.Core.Models.City;
 using SmallFarm.Core.Models.Manufacturer;
 using SmallFarm.Core.Models.Product;
@@ -11,6 +12,7 @@ namespace SmallFarm.Core.Helpers
     {
         public SmallFarmProfile()
         {
+
             //Manufacturer
             CreateMap<Manufacturer, ManufacturerFormModel>();
             CreateMap<ManufacturerFormModel, Manufacturer>();
@@ -43,6 +45,10 @@ namespace SmallFarm.Core.Helpers
 
             //Requests
             CreateMap<RequestFormModel, Request>();
+
+            CreateMap<Request, RequestFormModel>()
+                .ForMember(dest => dest.UserEmail,
+                    opt => opt.MapFrom(src => src.User.Email));
         }
     }
 }

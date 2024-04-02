@@ -47,11 +47,10 @@
                 </div>
             }
         </div>
-
     </div>
 </div>
 
-@if (!User.IsManufacturer())
+@if (!User.IsManufacturer() && !User.IsAdmin())
 {
     <div id="info" class="border-top fw-bold fst-italic ps d-flex justify-content-around p-1" style="font-size:18px;color:#FD5252">
 

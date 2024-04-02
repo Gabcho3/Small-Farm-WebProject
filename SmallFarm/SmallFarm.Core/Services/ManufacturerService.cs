@@ -4,6 +4,7 @@ using Microsoft.EntityFrameworkCore;
 using SmallFarm.Core.Contracts;
 using SmallFarm.Core.Models.City;
 using SmallFarm.Core.Models.Manufacturer;
+using SmallFarm.Core.Models.Request;
 using SmallFarm.Data;
 using SmallFarm.Data.Entities;
 
@@ -48,12 +49,21 @@ namespace SmallFarm.Core.Services
         public async Task<IEnumerable<CityViewModel>> GetAllCitiesAsync()
             => await context.Cities.AsNoTracking().Select(c => autoMapper.Map<CityViewModel>(c)).ToArrayAsync();
 
-        public async Task AddManufacturerAsync(ManufacturerFormModel model)
+        public async Task AddManufacturerAsync(RequestFormModel model)
         {
-            var userManufacturer = await userManager.FindByEmailAsync(model.Email);
+            var userManufacturer = await userManager.FindByEmailAsync(model.UserEmail);
             await userManager.AddToRoleAsync(userManufacturer, "Manufacturer");
 
-            Manufacturer manufacturer = autoMapper.Map<Manufacturer>(model);
+            Manufacturer manufacturer = new Manufacturer()
+            {
+                Id = Guid.Parse(userManufacturer.Id),
+                Name = model.ManufacturerName,
+                Description = model.ManufacturerDescription,
+                Address = model.ManufacturerAddress,
+                CityId = model.CityId,
+                Email = model.UserEmail!,
+                PhoneNumber = model.ManufacturerPhoneNumber
+            };
 
             await context.AddAsync(manufacturer);
             await context.SaveChangesAsync();
@@ -76,6 +86,9 @@ namespace SmallFarm.Core.Services
         public async Task DeleteManufacturerAsync(Guid id)
         {
             var manufacturerToDelete = await context.Manufacturers.FindAsync(id);
+            var user = await context.Users.FirstAsync(u => u.Id == id.ToString());
+
+            await userManager.RemoveFromRoleAsync(user, "Manufacturer");
 
             context.Manufacturers.Remove(manufacturerToDelete!);
             await context.SaveChangesAsync();

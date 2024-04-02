@@ -7,6 +7,7 @@ namespace SmallFarm.Core.Models.Request
 {
     public class RequestFormModel
     {
+        public Guid Id { get; set; }
 
         [Required]
         [StringLength(NameMaxLength, MinimumLength = NameMinLength, ErrorMessage = StringLengthValidationError)]

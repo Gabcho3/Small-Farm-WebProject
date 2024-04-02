@@ -236,9 +236,9 @@ namespace SmallFarm.Data.Migrations
                     b.HasData(
                         new
                         {
-                            Id = "1e937f5f-46eb-484c-bb65-cbb6aee9ea5b",
+                            Id = "c78cc7f9-70ae-4168-bc81-33cdfe63a155",
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "cb1246b5-7a68-43a4-b578-e7f4ed8335b0",
+                            ConcurrencyStamp = "da63e269-3ea8-4280-a1b5-6b52d588e7d6",
                             Email = "admin@gmail.com",
                             EmailConfirmed = false,
                             FirstName = "Gabriel",
@@ -246,9 +246,9 @@ namespace SmallFarm.Data.Migrations
                             LockoutEnabled = false,
                             NormalizedEmail = "ADMIN@GMAIL.COM",
                             NormalizedUserName = "ADMIN@GMAIL.COM",
-                            PasswordHash = "AQAAAAEAACcQAAAAEBqM31lCZNHCHUat/hO6jpRPU4NPtVLk9086DAEUt3huFGf2gzUnxZKyE9yHorhaQA==",
+                            PasswordHash = "AQAAAAEAACcQAAAAEGnj4CYmFJ1JvIzd7xW5/N1qnTo4+UwNhN0IqsZkJaeO9uAseXVNVz40dPPr0caLMQ==",
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "62ced376-c7bf-443b-ab92-a4f75da08001",
+                            SecurityStamp = "d0ea4f56-63ef-495d-aa82-eb9f463ebe7d",
                             TwoFactorEnabled = false,
                             UserName = "admin@gmail.com"
                         },
@@ -256,7 +256,7 @@ namespace SmallFarm.Data.Migrations
                         {
                             Id = "f61b7997-5b5b-4b60-89f2-eba32d1a3d29",
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "f8ea71e7-094e-4bb0-a098-881f209a698e",
+                            ConcurrencyStamp = "708bb94c-1bde-477d-9184-257230526b80",
                             Email = "manu@gmail.com",
                             EmailConfirmed = false,
                             FirstName = "Ivan",
@@ -264,9 +264,9 @@ namespace SmallFarm.Data.Migrations
                             LockoutEnabled = false,
                             NormalizedEmail = "MANU@GMAIL.COM",
                             NormalizedUserName = "MANU@GMAIL.COM",
-                            PasswordHash = "AQAAAAEAACcQAAAAEIa7wsxejurRf672npPahqr9KQ+Vtcj0fqzSjnOLfoLGv+i2R/Q/XERkdfE7bae+6w==",
+                            PasswordHash = "AQAAAAEAACcQAAAAEJKUqvoqq5bjvYj9zpckhKS6xGgzKqsocO1kFv3uotDVUGUjJX95YHt4GjeEFJZb+g==",
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "cdf45d5a-4af0-4e03-8459-12636a7c9165",
+                            SecurityStamp = "cdd3cb79-99ed-4eb1-8d43-52dc90b7520d",
                             TwoFactorEnabled = false,
                             UserName = "manu@gmail.com"
                         });

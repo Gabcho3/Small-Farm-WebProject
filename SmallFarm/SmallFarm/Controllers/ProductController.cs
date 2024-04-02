@@ -57,7 +57,7 @@ namespace SmallFarm.Controllers
 
             await service.AddAsync(formModel);
 
-            return RedirectToAction("Index");
+            return RedirectToAction("MyProducts");
         }
 
         [HttpGet]
