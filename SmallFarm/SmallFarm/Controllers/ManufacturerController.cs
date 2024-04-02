@@ -35,28 +35,6 @@ namespace SmallFarm.Controllers
             return View(allManufacturers);
         }
 
-        [HttpGet]
-        public async Task<IActionResult> Edit(Guid id)
-        {
-            var model = await manufacturerService.GetManufacturerByIdAsync(id);
-            model.Cities = await manufacturerService.GetAllCitiesAsync();
-
-            return View(model);
-        }
-
-        [HttpPost]
-        public async Task<IActionResult> Edit(Guid id, ManufacturerFormModel model)
-        {
-            if (!ModelState.IsValid)
-            {
-                return View(model);
-            }
-
-            await manufacturerService.EditManufacturerAsync(id, model);
-
-            return RedirectToAction("Index");
-        }
-
         [HttpPost]
         public async Task<IActionResult> Remove(Guid id)
         {

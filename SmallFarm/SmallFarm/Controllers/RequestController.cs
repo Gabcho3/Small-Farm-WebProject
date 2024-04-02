@@ -2,7 +2,6 @@
 using Microsoft.AspNetCore.Mvc;
 using SmallFarm.Core.Contracts;
 using SmallFarm.Core.Models.Request;
-using SmallFarm.Core.Services;
 
 namespace SmallFarm.Controllers
 {
