@@ -26,7 +26,7 @@ namespace SmallFarm.Data
 
         public DbSet<Request> Requests { get; set; } = null!;
 
-        public DbSet<ApplicationUser> Users { get; set; } = null!;
+        public override DbSet<ApplicationUser> Users { get; set; } = null!;
 
         protected override void OnModelCreating(ModelBuilder builder)
         {
@@ -41,6 +41,7 @@ namespace SmallFarm.Data
             builder.ApplyConfiguration(new ProductCategoryConfiguration());
             builder.ApplyConfiguration(new CityConfiguration());
             builder.ApplyConfiguration(new ManufacturersConfiguration());
+            builder.ApplyConfiguration(new ProductConfiguration());
 
             base.OnModelCreating(builder);
         }

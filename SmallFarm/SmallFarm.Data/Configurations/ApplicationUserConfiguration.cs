@@ -41,7 +41,31 @@ namespace SmallFarm.Data.Configurations
             };
             manufacturer.PasswordHash = hasher.HashPassword(manufacturer, "manufacturer123");
 
-            return new List<ApplicationUser>() { admin, manufacturer };
+            var manu = new ApplicationUser()
+            {
+                Id = Guid.NewGuid().ToString(),
+                FirstName = "Ivan",
+                LastName = "Ivanov",
+                Email = "example@gmail.com",
+                UserName = "example@gmail.com",
+                NormalizedEmail = "example@gmail.com".ToUpper(),
+                NormalizedUserName = "example@gmail.com".ToUpper()
+            };
+            manu.PasswordHash = hasher.HashPassword(manu, "example123");
+
+            var guest = new ApplicationUser()
+            {
+                Id = Guid.NewGuid().ToString(),
+                FirstName = "Todor",
+                LastName = "Ivanov",
+                Email = "guest@gmail.com",
+                UserName = "guest@gmail.com",
+                NormalizedEmail = "guest@gmail.com".ToUpper(),
+                NormalizedUserName = "guest@gmail.com".ToUpper()
+            };
+            guest.PasswordHash = hasher.HashPassword(guest, "guest123");
+
+            return new List<ApplicationUser>() { admin, manufacturer, guest, manu };
         }
     }
 }

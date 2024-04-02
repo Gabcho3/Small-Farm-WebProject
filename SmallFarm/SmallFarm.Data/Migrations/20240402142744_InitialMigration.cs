@@ -340,8 +340,10 @@ namespace SmallFarm.Data.Migrations
                 columns: new[] { "Id", "AccessFailedCount", "ConcurrencyStamp", "Email", "EmailConfirmed", "FirstName", "LastName", "LockoutEnabled", "LockoutEnd", "NormalizedEmail", "NormalizedUserName", "PasswordHash", "PhoneNumber", "PhoneNumberConfirmed", "SecurityStamp", "TwoFactorEnabled", "UserName" },
                 values: new object[,]
                 {
-                    { "c78cc7f9-70ae-4168-bc81-33cdfe63a155", 0, "da63e269-3ea8-4280-a1b5-6b52d588e7d6", "admin@gmail.com", false, "Gabriel", "Dimitrov", false, null, "ADMIN@GMAIL.COM", "ADMIN@GMAIL.COM", "AQAAAAEAACcQAAAAEGnj4CYmFJ1JvIzd7xW5/N1qnTo4+UwNhN0IqsZkJaeO9uAseXVNVz40dPPr0caLMQ==", null, false, "d0ea4f56-63ef-495d-aa82-eb9f463ebe7d", false, "admin@gmail.com" },
-                    { "f61b7997-5b5b-4b60-89f2-eba32d1a3d29", 0, "708bb94c-1bde-477d-9184-257230526b80", "manu@gmail.com", false, "Ivan", "Dragiev", false, null, "MANU@GMAIL.COM", "MANU@GMAIL.COM", "AQAAAAEAACcQAAAAEJKUqvoqq5bjvYj9zpckhKS6xGgzKqsocO1kFv3uotDVUGUjJX95YHt4GjeEFJZb+g==", null, false, "cdd3cb79-99ed-4eb1-8d43-52dc90b7520d", false, "manu@gmail.com" }
+                    { "0fcd59b4-388b-4c41-a7db-26f19ee80973", 0, "9e2bd28a-b7c9-4d73-9a32-73ed598518c2", "example@gmail.com", false, "Ivan", "Ivanov", false, null, "EXAMPLE@GMAIL.COM", "EXAMPLE@GMAIL.COM", "AQAAAAEAACcQAAAAEGawZh9CuHGZ5w7e04ASbNjV+L9Ou2lq/Y3QnTXdUlw5TA/fL0fU4GjO+I4aRkxtFQ==", null, false, "5adfa169-2b65-4d8d-a97f-0f542d6cc286", false, "example@gmail.com" },
+                    { "780f7df4-735b-4c45-8b30-b4b938edf305", 0, "e91ea476-2204-473e-b34e-464ca79494d3", "guest@gmail.com", false, "Todor", "Ivanov", false, null, "GUEST@GMAIL.COM", "GUEST@GMAIL.COM", "AQAAAAEAACcQAAAAEGSZjj5bYQ5+cmEJ+UaDXGdn/icNlRzGv7D7U5D8s6ZZjFQQ5S88ExCfjSt2J0BMvQ==", null, false, "f281f35d-205d-48e0-886e-0770d5fbebd3", false, "guest@gmail.com" },
+                    { "85337705-8412-42e7-8ac3-1149916c8e2e", 0, "11724532-9aa5-4776-9b4c-841c7d2a8132", "admin@gmail.com", false, "Gabriel", "Dimitrov", false, null, "ADMIN@GMAIL.COM", "ADMIN@GMAIL.COM", "AQAAAAEAACcQAAAAEHR96RbibjfHnRRQbIJL97PAXnW815fEWhtSP79zGYFVUt5W9iWpm7R6CLUINnPlLg==", null, false, "b54bda0b-b626-45ac-8138-da2f4456486d", false, "admin@gmail.com" },
+                    { "f61b7997-5b5b-4b60-89f2-eba32d1a3d29", 0, "32110135-14f2-4ec6-987e-2bf1840c10b2", "manu@gmail.com", false, "Ivan", "Dragiev", false, null, "MANU@GMAIL.COM", "MANU@GMAIL.COM", "AQAAAAEAACcQAAAAEJcSJBgqcfjaLOJS09cHO3n58paRqP9JkNHLY5F26wYLp31Sx1Y7VPj5prX/Auxu/g==", null, false, "3eca7300-217b-4e32-81f8-18b18841766b", false, "manu@gmail.com" }
                 });
 
             migrationBuilder.InsertData(
@@ -386,9 +388,7 @@ namespace SmallFarm.Data.Migrations
                     { 35, "Elin Pelin" },
                     { 36, "Etropole" },
                     { 37, "Gabrovo" },
-                    { 38, "General Toshevo" },
-                    { 39, "Glavinitsa" },
-                    { 40, "Gorna Oryahovitsa" }
+                    { 38, "General Toshevo" }
                 });
 
             migrationBuilder.InsertData(
@@ -396,6 +396,8 @@ namespace SmallFarm.Data.Migrations
                 columns: new[] { "Id", "Name" },
                 values: new object[,]
                 {
+                    { 39, "Glavinitsa" },
+                    { 40, "Gorna Oryahovitsa" },
                     { 41, "Gotse Delchev" },
                     { 42, "Gramada" },
                     { 43, "Gulubovo" },
@@ -435,9 +437,7 @@ namespace SmallFarm.Data.Migrations
                     { 77, "Nikopol" },
                     { 78, "Nova Zagora" },
                     { 79, "Omurtag" },
-                    { 80, "Opaka" },
-                    { 81, "Panagyurishte" },
-                    { 82, "Parvomay" }
+                    { 80, "Opaka" }
                 });
 
             migrationBuilder.InsertData(
@@ -445,6 +445,8 @@ namespace SmallFarm.Data.Migrations
                 columns: new[] { "Id", "Name" },
                 values: new object[,]
                 {
+                    { 81, "Panagyurishte" },
+                    { 82, "Parvomay" },
                     { 83, "Pavel Banya" },
                     { 84, "Pazardzhik" },
                     { 85, "Pernik" },
@@ -484,9 +486,7 @@ namespace SmallFarm.Data.Migrations
                     { 119, "Sungurlare" },
                     { 120, "Suvorovo" },
                     { 121, "Sveti Vlas" },
-                    { 122, "Svilengrad" },
-                    { 123, "Svishtov" },
-                    { 124, "Targovishte" }
+                    { 122, "Svilengrad" }
                 });
 
             migrationBuilder.InsertData(
@@ -494,6 +494,8 @@ namespace SmallFarm.Data.Migrations
                 columns: new[] { "Id", "Name" },
                 values: new object[,]
                 {
+                    { 123, "Svishtov" },
+                    { 124, "Targovishte" },
                     { 125, "Tervel" },
                     { 126, "Teteven" },
                     { 127, "Topolovgrad" },
@@ -529,6 +531,19 @@ namespace SmallFarm.Data.Migrations
                 table: "Manufacturers",
                 columns: new[] { "Id", "Address", "CityId", "Description", "Email", "Name", "PhoneNumber" },
                 values: new object[] { new Guid("f61b7997-5b5b-4b60-89f2-eba32d1a3d29"), "bul. Todor Kableshkov", 1, "We are one of the best on the market!", "manu@gmail.com", "BestProducts OOD", "+359885118198" });
+
+            migrationBuilder.InsertData(
+                table: "Products",
+                columns: new[] { "Id", "CategoryId", "Description", "ImageUrl", "ManufacturerId", "Name", "PricePerKg", "Quantity" },
+                values: new object[,]
+                {
+                    { new Guid("06d11095-3f72-4ef2-8cbb-0f6587372168"), 2, "Very delicious western bulgarian bananas!", "https://images.unsplash.com/photo-1603833665858-e61d17a86224?q=80&w=1854&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D", new Guid("f61b7997-5b5b-4b60-89f2-eba32d1a3d29"), "Bananas", 3.10m, 20.0 },
+                    { new Guid("4eb74990-f2de-471d-824e-46c5b06eb2a7"), 1, "Very delicious western bulgarian tomatoes!", "https://images.unsplash.com/photo-1582284540020-8acbe03f4924?q=80&w=1935&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D", new Guid("f61b7997-5b5b-4b60-89f2-eba32d1a3d29"), "Big red tomatoes", 3.30m, 9.0 },
+                    { new Guid("692e0b7f-49a5-499c-83d8-8c435a64695a"), 1, "Very delicious western bulgarian potatoes!", "https://images.unsplash.com/photo-1590165482129-1b8b27698780?q=80&w=1854&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D", new Guid("f61b7997-5b5b-4b60-89f2-eba32d1a3d29"), "Small Potatoes", 5.20m, 12.0 },
+                    { new Guid("7ec153f9-fa31-4fb7-8f2a-b277733106a7"), 2, "Very delicious western bulgarian apples!", "https://images.unsplash.com/photo-1576179635662-9d1983e97e1e?q=80&w=1887&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D", new Guid("f61b7997-5b5b-4b60-89f2-eba32d1a3d29"), "Red Apples", 3.90m, 10.0 },
+                    { new Guid("c771da7a-824e-4619-b0f8-5c6f919571c1"), 1, "Very delicious western bulgarian cucumbers!", "https://images.unsplash.com/photo-1449300079323-02e209d9d3a6?q=80&w=1974&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D", new Guid("f61b7997-5b5b-4b60-89f2-eba32d1a3d29"), "Cucumbers", 1.90m, 7.0 },
+                    { new Guid("de1eecf0-36a1-4e08-bea7-ae8edf225671"), 3, "Milk form domestic cow!", "https://images.unsplash.com/photo-1601436423474-51738541c1b1?q=80&w=1854&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D", new Guid("f61b7997-5b5b-4b60-89f2-eba32d1a3d29"), "Cow milk", 1.60m, 25.0 }
+                });
 
             migrationBuilder.CreateIndex(
                 name: "IX_AspNetRoleClaims_RoleId",
