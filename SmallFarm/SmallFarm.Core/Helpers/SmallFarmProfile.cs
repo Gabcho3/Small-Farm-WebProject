@@ -2,6 +2,7 @@
 using SmallFarm.Core.Models.City;
 using SmallFarm.Core.Models.Manufacturer;
 using SmallFarm.Core.Models.Product;
+using SmallFarm.Core.Models.Request;
 using SmallFarm.Data.Entities;
 
 namespace SmallFarm.Core.Helpers
@@ -39,6 +40,9 @@ namespace SmallFarm.Core.Helpers
                     opt => opt.MapFrom(src => src.Category.Name))
                 .ForMember(dest => dest.AvailableQuantity,
                     opt => opt.MapFrom(src => src.Quantity));
+
+            //Requests
+            CreateMap<RequestFormModel, Request>();
         }
     }
 }

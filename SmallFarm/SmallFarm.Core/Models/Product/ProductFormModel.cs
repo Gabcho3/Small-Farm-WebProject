@@ -8,6 +8,7 @@ namespace SmallFarm.Core.Models.Product
 {
     public class ProductFormModel
     {
+        public Guid Id { get; set; }
 
         [Required]
         [StringLength(NameMaxLength, MinimumLength = NameMinLength, ErrorMessage = StringLengthValidationError)]

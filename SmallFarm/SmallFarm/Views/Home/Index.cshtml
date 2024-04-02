@@ -1,11 +1,13 @@
 ﻿@using SmallFarm.Extensions
 @using SmallFarm.Core.Contracts
 @inject IProductService ProductService
+@inject IRequestService RequestService
 
 @{
     ViewData["Title"] = "Home Page";
 
     var randomProducts = await ProductService.GetRandomProductsAsync();
+    var alreadySend = await RequestService.AlreadySendAsync(User.Identity!.Name!);
 }
 
 <div id="main">
@@ -52,9 +54,28 @@
 @if (!User.IsManufacturer())
 {
     <div id="info" class="border-top fw-bold fst-italic ps d-flex justify-content-around p-1" style="font-size:18px;color:#FD5252">
-        <span>
-            If you want to register your Small Farm: <a style="color:#FD5252" href="#">Sent Request</a>!
-        </span>
+
+        @if (User.Identity!.IsAuthenticated)
+        {
+            if (!alreadySend)
+            {
+                <span>
+                    If you want to register your Small Farm: <a style="color:#FD5252" asp-controller="Request" asp-action="Submit">Sent Request</a>!
+                </span>
+            }
+            else
+            {
+                <span>
+                    If you want to register your Small Farm: <a id="requestButton" style="color:#FD5252" href="#">Sent Request</a>!
+                </span>
+            }
+        }
+        else
+        {
+            <span>
+                If you want to register your Small Farm: <a style="color:#FD5252" href="/Identity/Account/Register">Sent Request</a>!
+            </span>
+        }
         <span>
             If you want to purchase a product you should <a style="color:#FD5252" href="/Identity/Account/Register">Register</a> first!
         </span>
@@ -68,4 +89,12 @@
 
     containerDiv.classList.remove("mt-3");
     containerDiv.classList.remove("container");
+
+    var requestButton = document.getElementById("requestButton");
+
+    requestButton.addEventListener("click", function (event) {
+        event.preventDefault();
+        alert("Your request is still under consideration!\n\nThank you for your patience!")
+    })
+
 </script>

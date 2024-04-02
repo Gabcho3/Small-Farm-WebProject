@@ -29,7 +29,7 @@ namespace SmallFarm.Data.Entities
 
         public City City { get; set; } = null!;
 
-        public bool IsActive { get; set; }
+        public bool IsActive { get; set; } = true;
 
         [Required]
         public string UserId { get; set; } = null!;
