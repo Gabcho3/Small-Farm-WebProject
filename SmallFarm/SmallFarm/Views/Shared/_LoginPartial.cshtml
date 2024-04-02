@@ -7,7 +7,7 @@
 <ul class="navbar-nav">
     @if (SignInManager.IsSignedIn(User))
     {
-        @if (!User.IsAdmin())
+        @if (!User.IsAdmin() && !User.IsManufacturer())
         {
             <li class="nav-item">
                 <a asp-controller="Cart" asp-action="Index" class="text-success">

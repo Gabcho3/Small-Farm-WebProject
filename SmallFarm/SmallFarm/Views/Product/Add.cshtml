@@ -92,13 +92,13 @@
         var index = quantityInput.value.indexOf(".");
         var afterSeperator = quantityInput.value.substring(index + 1).length;
         if (afterSeperator > 1) {
-            quantityInput.value = quantityInput.value.substring(0, afterSeperator + 2);
+            quantityInput.value = quantityInput.value.substring(0, afterSeperator + 1);
         }
 
         index = priceInput.value.indexOf(".");
         afterSeperator = priceInput.value.substring(index + 1).length;
         if (afterSeperator > 2) {
-            priceInput.value = priceInput.value.substring(0, afterSeperator + 2);
+            priceInput.value = priceInput.value.substring(0, afterSeperator + 1);
         }
     }
 
@@ -126,8 +126,6 @@
     replaceSeperator();
     checkNumberInputs();
     changeIfDrink();
-    
-
 </script>
 
 
