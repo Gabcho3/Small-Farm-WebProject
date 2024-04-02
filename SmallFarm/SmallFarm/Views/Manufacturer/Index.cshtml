@@ -33,9 +33,6 @@
                     <li class="list-group-item bg-info" style="height:4em;"><strong>Email:</strong> @manufacturer.Email</li>
                     <li class="list-group-item bg-info" style="height:5em;"><strong>Address:</strong> @manufacturer.Address, @manufacturer.City</li>
                 </ul>
-                <form asp-controller="Manufacturer" asp-action="Edit" class="card-body w-100 pb-0 ms-auto me-auto" asp-route-id="@manufacturer.Id" method="get">
-                    <button class="btn btn-warning  w-100">Edit</button>
-                </form>
                 <div class="card-body w-100 ms-auto me-auto">
                     <button class="btn btn-danger w-100" data-bs-toggle="modal" data-bs-target="#deleteModal">Delete</button>
                 </div>

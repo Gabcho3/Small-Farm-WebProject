@@ -4,6 +4,8 @@
 
 @{
     ViewData["Title"] = "All Requests";
+
+    var requestCount = 0;
 }
 
 @if (!Model.Any())
@@ -31,40 +33,21 @@ else
         <div class="carousel-inner">
             @foreach (var request in Model)
             {
-                var city = request.Cities.Select(c => c.Name).ToList()[request.CityId];
+                requestCount++;
 
-                <div class="carousel-item active">
-                    <div class="row g-3" style="margin-inline:10em;margin-block:2.7em">
-                        <div class="text-center">
-                            <a class="btn btn-outline-warning fs-5" asp-controller="Request" asp-action="Approve" asp-route-id="@request.Id">APROVE</a>
-                        </div>
 
-                        <div class="col-12 mt-0">
-                            <label for="inputName" class="form-label">Name</label>
-                            <input class="form-control" disabled id="inputName" value="@request.ManufacturerName">
-                        </div>
-                        <div class="col-12">
-                            <label for="inputDescription" class="form-label">Description</label>
-                            <textarea class="form-control" disabled id="inputDescription" rows="5">@request.ManufacturerDescription</textarea>
-                        </div>
-                        <div class="col-6">
-                            <label for="inputEmail" class="form-label">Email</label>
-                            <input class="form-control" disabled id="inputEmail" value="@request.UserEmail">
-                        </div>
-                        <div class="col-6">
-                            <label for="inputNumber" class="form-label">Phone Number</label>
-                            <input class="form-control" disabled id="inputNumber" value="@request.ManufacturerPhoneNumber">
-                        </div>
-                        <div class="col-6">
-                            <label for="inputAddress" class="form-label">Address</label>
-                            <input class="form-control" id="inputAddress" value="@request.ManufacturerAddress">
-                        </div>
-                        <div class="col-6">
-                            <label for="inputCity" class="form-label">City</label>
-                            <input type="text" class="form-control" disabled id="inputCity" value="@city">
-                        </div>
+                if (requestCount == 1)
+                {
+                    <div id="item" class="carousel-item active">
+                        <partial name="_RequestIndexFormPartial" model="request" />
                     </div>
-                </div>
+                }
+                else
+                {
+                    <div id="item" class="carousel-item">
+                        <partial name="_RequestIndexFormPartial" model="request" />
+                    </div>
+                }
             }
             <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="prev">
                 <span class="carousel-control-prev-icon bg-black" aria-hidden="true"></span>

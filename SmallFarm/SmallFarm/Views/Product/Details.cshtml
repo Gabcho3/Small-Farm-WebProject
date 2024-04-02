@@ -14,6 +14,7 @@
 
     var pricePerKg = Model.PricePerKg;
     var otherProducts = await productService.GetManufacturerProductsAsync(@Model.Manufacturer);
+    otherProducts = otherProducts.OrderBy(p => p.Name).ToList();
 }
 
 <div id="dropdown" class="dropdown">
@@ -27,7 +28,7 @@
 </div>
 
 <div class="card ms-auto me-auto mt-5" style="max-width:18em;">
-    <img src="@Model.ImageUrl" class="card-img-top" alt="Image of @Model.Name">
+    <img src="@Model.ImageUrl" class="card-img-top" style="height:150px" alt="Image of @Model.Name">
     <div class="card-body text-center">
         <h5 class="card-title">@Model.Name</h5>
         <p class="card-text">@Model.Description</p>
