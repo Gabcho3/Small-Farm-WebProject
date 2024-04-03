@@ -5,8 +5,6 @@ using SmallFarm.Core.Models.Request;
 
 namespace SmallFarm.Areas.Administrator.Controllers
 {
-    [Area("Administrator")]
-    [Authorize(Roles = "Administrator")]
     public class RequestController : Controller
     {
         private readonly IRequestService requestService;
@@ -18,6 +16,8 @@ namespace SmallFarm.Areas.Administrator.Controllers
             manufacturerService = _manufacturerService;
         }
 
+        [Area("Administrator")]
+        [Authorize(Roles = "Administrator")]
         [HttpGet]
         public async Task<IActionResult> Index()
         {
@@ -58,6 +58,7 @@ namespace SmallFarm.Areas.Administrator.Controllers
             return RedirectToAction("Index", "Home");
         }
 
+        [Area("Administrator")]
         [HttpGet]
         public async Task<IActionResult> Approve(Guid id)
         {
@@ -66,6 +67,7 @@ namespace SmallFarm.Areas.Administrator.Controllers
             return RedirectToAction("Index");
         }
 
+        [Area("Administrator")]
         [HttpGet]
         public async Task<IActionResult> Disapprove(Guid id)
         {
