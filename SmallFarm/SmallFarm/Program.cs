@@ -34,9 +34,17 @@ app.UseRouting();
 app.UseAuthentication();
 app.UseAuthorization();
 
+app.UseEndpoints(endpoints =>
+{
+    endpoints.MapControllerRoute(
+        name: "Areas",
+        pattern: "{area:exists}/{controller=Home}/{action=Index}/{id?}");
+});
+
 app.MapControllerRoute(
     "default",
     "{controller=Home}/{action=Index}/{id?}");
+
 app.MapRazorPages();
 
 await app.SeedRoles();

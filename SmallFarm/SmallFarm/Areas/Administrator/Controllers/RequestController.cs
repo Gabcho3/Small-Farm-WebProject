@@ -3,9 +3,10 @@ using Microsoft.AspNetCore.Mvc;
 using SmallFarm.Core.Contracts;
 using SmallFarm.Core.Models.Request;
 
-namespace SmallFarm.Controllers
+namespace SmallFarm.Areas.Administrator.Controllers
 {
-    [Authorize]
+    [Area("Administrator")]
+    [Authorize(Roles = "Administrator")]
     public class RequestController : Controller
     {
         private readonly IRequestService requestService;
@@ -13,8 +14,8 @@ namespace SmallFarm.Controllers
 
         public RequestController(IRequestService _requestService, IManufacturerService _manufacturerService)
         {
-            this.requestService = _requestService;
-            this.manufacturerService = _manufacturerService;
+            requestService = _requestService;
+            manufacturerService = _manufacturerService;
         }
 
         [HttpGet]
@@ -28,6 +29,7 @@ namespace SmallFarm.Controllers
             return View(requests);
         }
 
+        [Authorize]
         [HttpGet]
         public async Task<IActionResult> Submit()
         {

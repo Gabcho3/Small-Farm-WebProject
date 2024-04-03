@@ -1,30 +1,19 @@
-﻿using System.Linq.Expressions;
-using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Identity;
+﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
 using SmallFarm.Core.Contracts;
-using SmallFarm.Core.Models.Manufacturer;
-using SmallFarm.Data.Entities;
 using static SmallFarm.Common.DataConstants.RoleConstants;
 
-namespace SmallFarm.Controllers
+namespace SmallFarm.Areas.Administrator.Controllers
 {
+    [Area("Administrator")]
     [Authorize(Roles = Admin.RoleName)]
     public class ManufacturerController : Controller
     {
         private readonly IManufacturerService manufacturerService;
-        private readonly IProductService productService;
 
-        private readonly UserManager<ApplicationUser> userManager;
-        
-        public ManufacturerController(IManufacturerService manufacturerService, 
-            UserManager<ApplicationUser> _userManager,
-            IProductService _productService)
+        public ManufacturerController(IManufacturerService manufacturerService)
         {
             this.manufacturerService = manufacturerService;
-            this.productService = _productService;
-            this.userManager = _userManager;
         }
 
         [HttpGet]

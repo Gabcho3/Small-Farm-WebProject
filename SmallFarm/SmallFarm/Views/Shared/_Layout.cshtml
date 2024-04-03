@@ -51,7 +51,7 @@
                             </li>
                         }
 
-                        <form asp-controller="Product" asp-action="Index" class="nav-item d-flex me-5" method="get">
+                        <form asp-area="" asp-controller="Product" asp-action="Index" class="nav-item d-flex me-5" method="get">
                             <input asp-for="@queryModel.SearchTerm" id="searchInput" class="form-control me-2" placeholder="Search">
                             <button class="btn btn-outline-success" type="submit">Search</button>
                         </form>

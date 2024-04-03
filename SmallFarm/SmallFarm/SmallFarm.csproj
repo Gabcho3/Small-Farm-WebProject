@@ -8,6 +8,13 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="Areas\NewFolder1\**" />
+    <Content Remove="Areas\NewFolder1\**" />
+    <EmbeddedResource Remove="Areas\NewFolder1\**" />
+    <None Remove="Areas\NewFolder1\**" />
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore" Version="6.0.27" />
     <PackageReference Include="Microsoft.AspNetCore.Identity.EntityFrameworkCore" Version="6.0.27" />
     <PackageReference Include="Microsoft.AspNetCore.Identity.UI" Version="6.0.27" />
@@ -22,6 +29,10 @@
 
   <ItemGroup>
     <ProjectReference Include="..\SmallFarm.Core\SmallFarm.Core.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Areas\Administrator\Models\" />
   </ItemGroup>
 
 </Project>
