@@ -19,6 +19,7 @@ namespace SmallFarm.Controllers
             this.service = _service;
         }
 
+        [Authorize]
         public async Task<IActionResult> Index()
         {
             if (!User.Identity!.IsAuthenticated)
@@ -53,8 +54,9 @@ namespace SmallFarm.Controllers
 
             return RedirectToAction("Index");
         }
-
+        
         [HttpGet]
+        [Authorize]
         public async Task<IActionResult> Remove(Guid id)
         {
             await service.RemoveAsync(id, userManager.GetUserId(User));

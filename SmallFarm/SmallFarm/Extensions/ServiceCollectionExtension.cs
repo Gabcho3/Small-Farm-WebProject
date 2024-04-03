@@ -18,6 +18,7 @@ namespace SmallFarm.Extensions
             services.AddScoped<ICartService, CartService>();
             services.AddScoped<IApplicationUserService, ApplicationUserService>();
             services.AddScoped<IRequestService,  RequestService>();
+            services.AddScoped<IOrderService, OrderService>();
 
             //Preventing from Cross-Site Request Forgery [CSRF]
             services.AddMvc(opt =>
