@@ -35,6 +35,7 @@ namespace SmallFarm.Core.Services
                         })
                         .ToList()
                 })
+                .OrderBy(o => o.OrderedDate)
                 .ToListAsync();
         }
 
