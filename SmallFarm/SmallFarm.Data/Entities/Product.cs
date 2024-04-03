@@ -31,6 +31,8 @@ namespace SmallFarm.Data.Entities
 
         public string ImageUrl { get; set; }
 
+        public bool IsActive { get; set; } = true;
+
         [Required]
         public int CategoryId { get; set; }
 

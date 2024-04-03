@@ -236,9 +236,9 @@ namespace SmallFarm.Data.Migrations
                     b.HasData(
                         new
                         {
-                            Id = "86d3350b-0333-42a5-a280-9853d8cf6f03",
+                            Id = "7d8a662d-1c64-4c58-b3c5-af0cbb51bcab",
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "9c60669d-0dc8-4dcf-8a3a-df3411cb1ed6",
+                            ConcurrencyStamp = "98902ffd-9a55-4c95-b6bd-ee1855c8c59c",
                             Email = "admin@gmail.com",
                             EmailConfirmed = false,
                             FirstName = "Gabriel",
@@ -246,9 +246,9 @@ namespace SmallFarm.Data.Migrations
                             LockoutEnabled = false,
                             NormalizedEmail = "ADMIN@GMAIL.COM",
                             NormalizedUserName = "ADMIN@GMAIL.COM",
-                            PasswordHash = "AQAAAAEAACcQAAAAEEtnbRlRH23+0vn+f/wswDj7trxIg3xd9Ouweak2AF42SX+EBmyJxBNVpUvXWAwUoA==",
+                            PasswordHash = "AQAAAAEAACcQAAAAECOTEkAn18UZpzluvX+JTF0yBYP6MKe71J9pwFwlQkWWNOaXz+5JmaYnlSViwsnBEA==",
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "c0b0bad7-bc21-480b-901e-4f4d6b4d1d6e",
+                            SecurityStamp = "9ecc3561-7063-41c7-921f-54836c8625be",
                             TwoFactorEnabled = false,
                             UserName = "admin@gmail.com"
                         },
@@ -256,7 +256,7 @@ namespace SmallFarm.Data.Migrations
                         {
                             Id = "f61b7997-5b5b-4b60-89f2-eba32d1a3d29",
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "dd9be0d1-c73a-4133-9d72-81817560d005",
+                            ConcurrencyStamp = "686dff55-29a4-4708-9105-43b01933aacb",
                             Email = "manu@gmail.com",
                             EmailConfirmed = false,
                             FirstName = "Ivan",
@@ -264,17 +264,17 @@ namespace SmallFarm.Data.Migrations
                             LockoutEnabled = false,
                             NormalizedEmail = "MANU@GMAIL.COM",
                             NormalizedUserName = "MANU@GMAIL.COM",
-                            PasswordHash = "AQAAAAEAACcQAAAAEBn+M1j3/m80mzhr3FHTAg6pCT2IEgFFhd+QAxIML85st4b+HkNW0nRHRq+BkEzBbA==",
+                            PasswordHash = "AQAAAAEAACcQAAAAEMprFU891vxNnRbJAaUE56+ew9wzOSJKwbOD044WLulHpgH0Tk9OdyIjw76wJnAyMA==",
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "ea424b54-d4ea-4d96-8b34-42806d553c29",
+                            SecurityStamp = "a240550a-7db2-4d08-bfd3-ba236b1660d3",
                             TwoFactorEnabled = false,
                             UserName = "manu@gmail.com"
                         },
                         new
                         {
-                            Id = "f9adbb22-16e9-48d0-adb6-796a0f9241c7",
+                            Id = "55e59ae2-4ff1-40a5-944c-c50f8f282a4e",
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "0be12d0a-af5f-4fc0-b932-88a0f39124ab",
+                            ConcurrencyStamp = "c6c14835-b0ce-4f2a-b382-a88e1b132808",
                             Email = "guest@gmail.com",
                             EmailConfirmed = false,
                             FirstName = "Todor",
@@ -282,17 +282,17 @@ namespace SmallFarm.Data.Migrations
                             LockoutEnabled = false,
                             NormalizedEmail = "GUEST@GMAIL.COM",
                             NormalizedUserName = "GUEST@GMAIL.COM",
-                            PasswordHash = "AQAAAAEAACcQAAAAENw/iwRsGGbg7Tai/v0DT0OodNzcT1bvixEanY5kFYtYWVg6M0IDAPhGTC5Dplrntw==",
+                            PasswordHash = "AQAAAAEAACcQAAAAEK0P5rlIuEvIcYixqS9MHXBmm8dgMgmoYLiep+rhEMnwPBEMiESPkE+uF5pPFyLqjA==",
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "d04f7b2a-474b-4d74-be32-b94060d7f11a",
+                            SecurityStamp = "9cf03625-afd5-4134-8406-044cadb9c2c8",
                             TwoFactorEnabled = false,
                             UserName = "guest@gmail.com"
                         },
                         new
                         {
-                            Id = "6a34eb17-3b0f-4515-bcf5-ba3d73df8d83",
+                            Id = "3610808e-0d91-48a2-9a94-7d5772ff2160",
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "8ddd29d9-f1e1-48fa-b6f4-e80b1d1af924",
+                            ConcurrencyStamp = "607caf0d-6201-4746-a49a-0ebff1f188dc",
                             Email = "example@gmail.com",
                             EmailConfirmed = false,
                             FirstName = "Ivan",
@@ -300,9 +300,9 @@ namespace SmallFarm.Data.Migrations
                             LockoutEnabled = false,
                             NormalizedEmail = "EXAMPLE@GMAIL.COM",
                             NormalizedUserName = "EXAMPLE@GMAIL.COM",
-                            PasswordHash = "AQAAAAEAACcQAAAAEJo9Fd6S1tHvBeD9G6YHDa3IsIRmMXaPvLkajPkx6BElXzIWhgnIdf13BRqzv9HXZQ==",
+                            PasswordHash = "AQAAAAEAACcQAAAAEBevgPkPyF+//mMAkATK0asxWg/Yene4aaW3HvzDSPBRru6vPfQkvY39pq5xK403sw==",
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "d5f82a8a-c177-4525-bb75-e63823381f0b",
+                            SecurityStamp = "eeeb91a2-3a6f-49f2-99e1-3eeb34d6e3cc",
                             TwoFactorEnabled = false,
                             UserName = "example@gmail.com"
                         });
@@ -1140,21 +1140,6 @@ namespace SmallFarm.Data.Migrations
                     b.ToTable("Orders");
                 });
 
-            modelBuilder.Entity("SmallFarm.Data.Entities.OrderProduct", b =>
-                {
-                    b.Property<Guid>("OrderId")
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<Guid>("ProductId")
-                        .HasColumnType("uniqueidentifier");
-
-                    b.HasKey("OrderId", "ProductId");
-
-                    b.HasIndex("ProductId");
-
-                    b.ToTable("OrderProducts");
-                });
-
             modelBuilder.Entity("SmallFarm.Data.Entities.Product", b =>
                 {
                     b.Property<Guid>("Id")
@@ -1172,6 +1157,9 @@ namespace SmallFarm.Data.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<bool>("IsActive")
+                        .HasColumnType("bit");
+
                     b.Property<Guid>("ManufacturerId")
                         .HasColumnType("uniqueidentifier");
 
@@ -1179,6 +1167,9 @@ namespace SmallFarm.Data.Migrations
                         .IsRequired()
                         .HasMaxLength(70)
                         .HasColumnType("nvarchar(70)");
+
+                    b.Property<Guid?>("OrderId")
+                        .HasColumnType("uniqueidentifier");
 
                     b.Property<decimal>("PricePerKg")
                         .HasPrecision(18, 2)
@@ -1193,15 +1184,18 @@ namespace SmallFarm.Data.Migrations
 
                     b.HasIndex("ManufacturerId");
 
+                    b.HasIndex("OrderId");
+
                     b.ToTable("Products");
 
                     b.HasData(
                         new
                         {
-                            Id = new Guid("d313c1b3-97a4-4dc1-b9f7-8f52ba1d3f83"),
+                            Id = new Guid("04a2c38a-e0e3-4113-8ae6-348aafe3abe5"),
                             CategoryId = 2,
                             Description = "Very delicious western bulgarian apples!",
                             ImageUrl = "https://images.unsplash.com/photo-1576179635662-9d1983e97e1e?q=80&w=1887&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+                            IsActive = true,
                             ManufacturerId = new Guid("f61b7997-5b5b-4b60-89f2-eba32d1a3d29"),
                             Name = "Red Apples",
                             PricePerKg = 3.90m,
@@ -1209,10 +1203,11 @@ namespace SmallFarm.Data.Migrations
                         },
                         new
                         {
-                            Id = new Guid("b4529882-ba14-4bd1-b106-d80575a4dca5"),
+                            Id = new Guid("f72628e2-1c71-44a5-ad94-6b864bfef2c3"),
                             CategoryId = 2,
                             Description = "Very delicious western bulgarian bananas!",
                             ImageUrl = "https://images.unsplash.com/photo-1603833665858-e61d17a86224?q=80&w=1854&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+                            IsActive = true,
                             ManufacturerId = new Guid("f61b7997-5b5b-4b60-89f2-eba32d1a3d29"),
                             Name = "Bananas",
                             PricePerKg = 3.10m,
@@ -1220,10 +1215,11 @@ namespace SmallFarm.Data.Migrations
                         },
                         new
                         {
-                            Id = new Guid("e1f96b8b-eca7-4162-b17b-2942002518fc"),
+                            Id = new Guid("94cb6162-7008-461b-b4e6-592d0aed549f"),
                             CategoryId = 3,
                             Description = "Milk form domestic cow!",
                             ImageUrl = "https://images.unsplash.com/photo-1601436423474-51738541c1b1?q=80&w=1854&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+                            IsActive = true,
                             ManufacturerId = new Guid("f61b7997-5b5b-4b60-89f2-eba32d1a3d29"),
                             Name = "Cow milk",
                             PricePerKg = 1.60m,
@@ -1231,10 +1227,11 @@ namespace SmallFarm.Data.Migrations
                         },
                         new
                         {
-                            Id = new Guid("0eab0205-e6d2-42e0-9e9d-2ce401eb8a00"),
+                            Id = new Guid("b32c25ae-d227-4e60-8e2c-2517f7494ab6"),
                             CategoryId = 1,
                             Description = "Very delicious western bulgarian tomatoes!",
                             ImageUrl = "https://images.unsplash.com/photo-1582284540020-8acbe03f4924?q=80&w=1935&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+                            IsActive = true,
                             ManufacturerId = new Guid("f61b7997-5b5b-4b60-89f2-eba32d1a3d29"),
                             Name = "Big red tomatoes",
                             PricePerKg = 3.30m,
@@ -1242,10 +1239,11 @@ namespace SmallFarm.Data.Migrations
                         },
                         new
                         {
-                            Id = new Guid("dc141718-2313-4c45-ac21-be663307d009"),
+                            Id = new Guid("59c235f3-fb26-42f3-b35b-d63090738654"),
                             CategoryId = 1,
                             Description = "Very delicious western bulgarian cucumbers!",
                             ImageUrl = "https://images.unsplash.com/photo-1449300079323-02e209d9d3a6?q=80&w=1974&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+                            IsActive = true,
                             ManufacturerId = new Guid("f61b7997-5b5b-4b60-89f2-eba32d1a3d29"),
                             Name = "Cucumbers",
                             PricePerKg = 1.90m,
@@ -1253,10 +1251,11 @@ namespace SmallFarm.Data.Migrations
                         },
                         new
                         {
-                            Id = new Guid("670e617a-8815-4b60-8e14-5bd27e53a111"),
+                            Id = new Guid("14218294-efdc-4900-a6cf-8cc12b33de9b"),
                             CategoryId = 1,
                             Description = "Very delicious western bulgarian potatoes!",
                             ImageUrl = "https://images.unsplash.com/photo-1590165482129-1b8b27698780?q=80&w=1854&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+                            IsActive = true,
                             ManufacturerId = new Guid("f61b7997-5b5b-4b60-89f2-eba32d1a3d29"),
                             Name = "Small Potatoes",
                             PricePerKg = 5.20m,
@@ -1435,25 +1434,6 @@ namespace SmallFarm.Data.Migrations
                     b.Navigation("Client");
                 });
 
-            modelBuilder.Entity("SmallFarm.Data.Entities.OrderProduct", b =>
-                {
-                    b.HasOne("SmallFarm.Data.Entities.Order", "Order")
-                        .WithMany()
-                        .HasForeignKey("OrderId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("SmallFarm.Data.Entities.Product", "Product")
-                        .WithMany()
-                        .HasForeignKey("ProductId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Order");
-
-                    b.Navigation("Product");
-                });
-
             modelBuilder.Entity("SmallFarm.Data.Entities.Product", b =>
                 {
                     b.HasOne("SmallFarm.Data.Entities.ProductCategory", "Category")
@@ -1467,6 +1447,10 @@ namespace SmallFarm.Data.Migrations
                         .HasForeignKey("ManufacturerId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
+
+                    b.HasOne("SmallFarm.Data.Entities.Order", null)
+                        .WithMany("Products")
+                        .HasForeignKey("OrderId");
 
                     b.Navigation("Category");
 
@@ -1493,6 +1477,11 @@ namespace SmallFarm.Data.Migrations
                 });
 
             modelBuilder.Entity("SmallFarm.Data.Entities.Manufacturer", b =>
+                {
+                    b.Navigation("Products");
+                });
+
+            modelBuilder.Entity("SmallFarm.Data.Entities.Order", b =>
                 {
                     b.Navigation("Products");
                 });
