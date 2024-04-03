@@ -35,9 +35,22 @@ else
                         </a>
                     }
                     <span class="list-group-item bg-info" style="height:2.5em;"><strong>Total price:</strong> @order.TotalPrice €</span>
-                    <span class="list-group-item bg-info text-secondary" style="height:2.5em;font-size:14px">Ordered on @order.OrderedDate.ToString("d")</span>
+                    <span class="list-group-item bg-info text-secondary" style="height:3.5em;font-size:14px">Ordered on @order.OrderedDate.ToString("G")</span>
                 </ul>
             </div>
         }
+    </div>
+}
+
+@if (TempData["hasOrdered"] != null)
+{
+    <div class="toast show end-0 position-absolute" style="bottom:4.3em;z-index:11" role="alert" aria-live="assertive" aria-atomic="true">
+        <div class="toast-header bg-warning">
+            <strong class="me-auto">Order Info</strong>
+            <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
+        </div>
+        <div class="toast-body bg-info">
+            Order is successful! Thank you for using Small Farm!
+        </div>
     </div>
 }

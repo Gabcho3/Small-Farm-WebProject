@@ -30,6 +30,8 @@ namespace SmallFarm.Controllers
         [HttpGet]
         public async Task<IActionResult> Order()
         {
+            TempData["hasOrdered"] = true;
+
             if (cartService.GetProductsInCartCount(UserId) == 0)
             {
                 return RedirectToAction("Index", "Cart");
