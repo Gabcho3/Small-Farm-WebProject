@@ -18,6 +18,15 @@ namespace SmallFarm.Core.Services
             this.mapper = _mapper;
         }
 
+        public int GetProductsInCartCount(string clientId)
+        {
+            return context.Carts
+                .AsNoTracking()
+                .Where(c => c.ClientId == clientId)
+                .Select(p => p.ProductId)
+                .Count();
+        }
+
         public async Task<List<ProductToBuyModel>> GetAllProductsInCartAsync(string clientId)
         {
             return await context.Carts
@@ -42,7 +51,7 @@ namespace SmallFarm.Core.Services
         public async Task AddAsync(ProductToBuyModel model)
         {
             var cart = await context.Carts.FirstOrDefaultAsync(c => c.ClientId == model.UserId && c.ProductId == model.Id);
-            
+
             if (cart == null)
             {
                 Cart cartToAdd = new Cart()
@@ -50,12 +59,12 @@ namespace SmallFarm.Core.Services
                     ClientId = model.UserId,
                     ProductId = model.Id,
                     Quantity = model.Quantity,
-                    Price = model.Total 
+                    Price = model.Total
                 };
 
                 await context.AddAsync(cartToAdd);
             }
-            
+
             else
             {
                 cart.Quantity = model.Quantity;
@@ -64,9 +73,9 @@ namespace SmallFarm.Core.Services
             await context.SaveChangesAsync();
         }
 
-        public async Task RemoveAsync(Guid productId, string userId)
+        public async Task RemoveAsync(Guid productId, string clientId)
         {
-            Cart cartToRemove = await context.Carts.FirstAsync(c => c.ProductId == productId && c.ClientId == userId);
+            Cart cartToRemove = await context.Carts.FirstAsync(c => c.ProductId == productId && c.ClientId == clientId);
 
             context.Remove(cartToRemove);
             await context.SaveChangesAsync();
