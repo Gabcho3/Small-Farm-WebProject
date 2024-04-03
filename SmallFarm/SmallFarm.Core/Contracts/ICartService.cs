@@ -4,7 +4,7 @@ namespace SmallFarm.Core.Contracts
 {
     public interface ICartService
     {
-        Task<IEnumerable<ProductToBuyModel>> GetAllProductsInCartAsync(string userId);
+        Task<List<ProductToBuyModel>> GetAllProductsInCartAsync(string userId);
 
         Task AddAsync(ProductToBuyModel model);
 

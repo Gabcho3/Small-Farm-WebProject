@@ -1,4 +1,5 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using AutoMapper;
+using Microsoft.EntityFrameworkCore;
 using SmallFarm.Core.Contracts;
 using SmallFarm.Core.Models.Product;
 using SmallFarm.Data;
@@ -9,17 +10,19 @@ namespace SmallFarm.Core.Services
     public class CartService : ICartService
     {
         public readonly SmallFarmDbContext context;
+        public readonly IMapper mapper;
 
-        public CartService(SmallFarmDbContext _context)
+        public CartService(SmallFarmDbContext _context, IMapper _mapper)
         {
             this.context = _context;
+            this.mapper = _mapper;
         }
 
-        public async Task<IEnumerable<ProductToBuyModel>> GetAllProductsInCartAsync(string clientId)
+        public async Task<List<ProductToBuyModel>> GetAllProductsInCartAsync(string clientId)
         {
             return await context.Carts
                 .AsNoTracking()
-                .Where(c => c.ClientId == clientId)
+                .Where(c => c.ClientId == clientId && c.Product.IsActive)
                 .Select(c => new ProductToBuyModel()
                 {
                     Id = c.Product.Id,
@@ -33,7 +36,7 @@ namespace SmallFarm.Core.Services
                     Quantity = c.Quantity,
                     UserId = clientId,
                 })
-                .ToArrayAsync();
+                .ToListAsync();
         }
 
         public async Task AddAsync(ProductToBuyModel model)

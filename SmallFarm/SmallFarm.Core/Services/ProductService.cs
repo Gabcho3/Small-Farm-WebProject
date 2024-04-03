@@ -33,6 +33,7 @@ namespace SmallFarm.Core.Services
             var products = context.Products
                 .Include(p => p.Manufacturer)
                 .Include(p => p.Category)
+                .Where(p => p.IsActive)
                 .AsQueryable();
 
             if (!string.IsNullOrEmpty(queryModel.Category))
@@ -86,6 +87,7 @@ namespace SmallFarm.Core.Services
             return await context.Products
                 .AsNoTracking()
                 .Include(p => p.Manufacturer)
+                .Where(p => p.IsActive)
                 .OrderByDescending(x => x.Id)
                 .Select(p => mapper.Map<ProductViewModel>(p))
                 .Take(5)
@@ -99,7 +101,8 @@ namespace SmallFarm.Core.Services
                 .Include(p => p.Manufacturer)
                 .Include(p => p.Category)
                 .Where(p => p.Manufacturer.Email == nameOrEmail || p.Manufacturer.Name == nameOrEmail)
-                .OrderByDescending(x => x.Id)
+                .OrderByDescending(x => !x.IsActive)
+                .ThenBy(x => x.Name)
                 .Select(p => mapper.Map<ProductViewModel>(p))
                 .ToListAsync();
         }
@@ -122,6 +125,8 @@ namespace SmallFarm.Core.Services
             productToEdit.ImageUrl = productForm.ImageUrl;
             productToEdit.Quantity = (double)productForm.Quantity;
             productToEdit.CategoryId = productForm.CategoryId;
+
+            productToEdit.IsActive = true;
 
             await context.SaveChangesAsync();
         }

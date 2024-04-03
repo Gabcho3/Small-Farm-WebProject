@@ -13,7 +13,7 @@
 {
     <div class="text-center" style="margin-top:12em">
         <h1>THE CART IS EMPTY</h1>
-        <span class="text-danger" style="font-size:12px">[Your product may have been removed!]</span>
+        <span class="text-danger" style="font-size:12px">[Your product may has been removed or has been sold!]</span>
     </div>
 }
 
@@ -71,7 +71,7 @@
                 <div class="card-body" style="display:flex;flex-direction:column;gap:2em">
                     <h5 class="card-title">Order info</h5>
                     <p class="card-text">Total Sum: @Model.Sum(p => p.Total) €</p>
-                    <a asp-controller="Order" asp-action="Index" class="btn btn-dark">Place an Order</a>
+                    <a asp-controller="Order" asp-action="Order" class="btn btn-dark">Place an Order</a>
                 </div>
             </div>
         }

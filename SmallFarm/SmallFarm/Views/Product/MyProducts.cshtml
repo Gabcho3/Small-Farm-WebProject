@@ -38,11 +38,25 @@
                     
                     @if (product.Category != "Drink")
                     {
-                        <li class="list-group-item bg-info" style="height:2em;"><strong>Available quantity:</strong> @product.Quantity kilograms</li>
+                        if (!product.IsActive)
+                        {
+                            <li class="list-group-item bg-danger" style="height:2em;"><strong>Available quantity:</strong> @product.Quantity kilograms</li>
+                        }
+                        else
+                        {
+                            <li class="list-group-item bg-info" style="height:2em;"><strong>Available quantity:</strong> @product.Quantity kilograms</li>
+                        }
                     }
                     else
                     {
-                        <li class="list-group-item bg-info" style="height:2em;"><strong>Available quantity:</strong> @product.Quantity liters</li>
+                        if (!product.IsActive)
+                        {
+                            <li class="list-group-item bg-danger" style="height:2em;"><strong>Available quantity:</strong> @product.Quantity liters</li>
+                        }
+                        else
+                        {
+                            <li class="list-group-item bg-info" style="height:2em;"><strong>Available quantity:</strong> @product.Quantity liters</li>
+                        }
                     }
 
                     <li class="list-group-item bg-info" style="height:2em;"><strong>Price:</strong> @product.Price €</li>
