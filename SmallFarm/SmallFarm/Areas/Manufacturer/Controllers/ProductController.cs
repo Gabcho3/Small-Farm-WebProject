@@ -3,12 +3,10 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using SmallFarm.Common.DataConstants;
 using SmallFarm.Core.Contracts;
-using SmallFarm.Core.Models.Manufacturer;
 using SmallFarm.Core.Models.Product;
-using SmallFarm.Core.Services;
 using SmallFarm.Data.Entities;
 
-namespace SmallFarm.Controllers
+namespace SmallFarm.Areas.Manufacturer.Controllers
 {
     [AllowAnonymous]
     public class ProductController : Controller
@@ -18,8 +16,8 @@ namespace SmallFarm.Controllers
 
         public ProductController(IProductService _service, UserManager<ApplicationUser> _userManager)
         {
-            this.service = _service;
-            this.userManager = _userManager;
+            service = _service;
+            userManager = _userManager;
         }
 
         public async Task<IActionResult> Index([FromQuery] AllProductsQueryModel queryModel)
@@ -32,6 +30,7 @@ namespace SmallFarm.Controllers
             return View(queryModel);
         }
 
+        [Area("Manufacturer")]
         [HttpGet]
         [Authorize(Roles = RoleConstants.Manufacturer.RoleName)]
         public async Task<IActionResult> Add()
@@ -44,6 +43,7 @@ namespace SmallFarm.Controllers
             return View(model);
         }
 
+        [Area("Manufacturer")]
         [HttpPost]
         [Authorize(Roles = RoleConstants.Manufacturer.RoleName)]
         public async Task<IActionResult> Add(ProductFormModel formModel)
@@ -60,6 +60,7 @@ namespace SmallFarm.Controllers
             return RedirectToAction("MyProducts");
         }
 
+        [Area("Manufacturer")]
         [HttpGet]
         public async Task<IActionResult> Edit(Guid id)
         {
@@ -69,6 +70,7 @@ namespace SmallFarm.Controllers
             return View(model);
         }
 
+        [Area("Manufacturer")]
         [HttpPost]
         public async Task<IActionResult> Edit(Guid id, ProductFormModel model)
         {
@@ -83,6 +85,7 @@ namespace SmallFarm.Controllers
             return RedirectToAction("MyProducts");
         }
 
+        [Area("Manufacturer")]
         [HttpPost]
         public async Task<IActionResult> Remove(Guid id)
         {
@@ -99,6 +102,7 @@ namespace SmallFarm.Controllers
             return View(product);
         }
 
+        [Area("Manufacturer")]
         [HttpGet]
         [Authorize(Roles = RoleConstants.Manufacturer.RoleName)]
         public async Task<IActionResult> MyProducts()

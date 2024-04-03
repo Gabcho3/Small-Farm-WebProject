@@ -1,0 +1,62 @@
+﻿@using SmallFarm.Core.Models.Request;
+
+@model RequestFormModel
+
+@{
+    ViewData["Title"] = "Submit Request";
+}
+
+<form asp-controller="Request" asp-action="Submit" class="row g-3" method="post">
+    <div class="col-12">
+        <label for="inputName" class="form-label">Name</label>
+        <input asp-for="ManufacturerName" class="form-control" id="inputName" placeholder="The Best Manufacturer">
+        <span asp-validation-for="ManufacturerName" class="small text-danger"></span>
+    </div>
+    <div class="col-12">
+        <label for="inputDescription" class="form-label">Description</label>
+        <textarea asp-for="ManufacturerDescription" class="form-control" id="inputDescription" rows="5" placeholder="Cool description to catch clients ;)"></textarea>
+        <span asp-validation-for="ManufacturerDescription" class="small text-danger"></span>
+    </div>
+    <div class="col-6">
+        <label class="form-label">Email</label>
+        <input type="email" class="form-control" id="inputEmail" disabled  asp-for="UserEmail" value="@Model.UserEmail">
+    </div>
+    <div class="col-6">
+        <label for="inputNumber" class="form-label">Phone Number</label>
+        <input asp-for="ManufacturerPhoneNumber" class="form-control" id="inputNumber" placeholder="+359881234567">
+        <span asp-validation-for="ManufacturerPhoneNumber" class="small text-danger"></span>
+    </div>
+    <div class="col-6">
+        <label for="inputAddress" class="form-label">Address</label>
+        <input asp-for="ManufacturerAddress" type="text" class="form-control" id="inputAddress" placeholder="bul. Todor Kableshkov 123">
+        <span asp-validation-for="ManufacturerAddress" class="small text-danger"></span>
+    </div>
+    <div class="col-6">
+        <label asp-for="CityId" class="form-label">City</label>
+        <select asp-for="@Model.CityId" class="form-control" aria-required="true">
+            @foreach (var city in Model.Cities)
+            {
+                <option value="@city.Id">@city.Name</option>
+            }
+        </select>
+    </div>
+
+    <div id="modelErrors">
+        @foreach (var modelStateEntry in ViewData.ModelState.Values)
+        {
+            foreach (var error in modelStateEntry.Errors)
+            {
+                <span class="small text-danger">@error.ErrorMessage</span>
+            }
+        }
+    </div>
+
+    <div class="">
+        <button type="submit" class="btn btn-outline-info fw-bold">Sent Request</button>
+        <p class="text-danger small mt-2">[Please, check your information again before submitting the request!]</>
+    </div>
+</form>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}

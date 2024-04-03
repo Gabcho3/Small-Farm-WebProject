@@ -31,8 +31,4 @@
     <ProjectReference Include="..\SmallFarm.Core\SmallFarm.Core.csproj" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="Areas\Administrator\Models\" />
-  </ItemGroup>
-
 </Project>
