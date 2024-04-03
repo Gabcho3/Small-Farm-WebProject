@@ -11,5 +11,7 @@ namespace SmallFarm.Core.Contracts
         Task<bool> AlreadySendAsync(string email);
 
         Task ApproveAsync(Guid id);
+
+        Task DisapproveAsync(Guid id);
     }
 }

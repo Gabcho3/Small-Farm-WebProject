@@ -63,5 +63,13 @@ namespace SmallFarm.Controllers
 
             return RedirectToAction("Index");
         }
+
+        [HttpGet]
+        public async Task<IActionResult> Disapprove(Guid id)
+        {
+            await requestService.DisapproveAsync(id);
+
+            return RedirectToAction("Index");
+        }
     }
 }

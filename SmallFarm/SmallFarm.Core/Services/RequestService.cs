@@ -61,5 +61,14 @@ namespace SmallFarm.Core.Services
 
             await context.SaveChangesAsync();
         }
+
+        public async Task DisapproveAsync(Guid id)
+        {
+            var request = await context.Requests.FindAsync(id);
+
+            request!.IsActive = false;
+
+            await context.SaveChangesAsync();
+        }
     }
 }
