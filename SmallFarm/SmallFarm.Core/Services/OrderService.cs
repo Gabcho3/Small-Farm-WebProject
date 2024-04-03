@@ -1,5 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using SmallFarm.Core.Contracts;
+using SmallFarm.Core.Models.Order;
+using SmallFarm.Core.Models.Product;
 using SmallFarm.Data;
 using SmallFarm.Data.Entities;
 
@@ -14,6 +16,26 @@ namespace SmallFarm.Core.Services
         {
             this.context = _context;
             this.cartService = cartService;
+        }
+
+        public async Task<List<OrderViewModel>> GetOrdersAsync(string clientId)
+        {
+            return await context.Orders
+                .AsNoTracking()
+                .Where(o => o.ClientId == clientId)
+                .Select(o => new OrderViewModel()
+                {
+                    OrderedDate = o.OrderedDate,
+                    TotalPrice = o.TotalPrice,
+                    Products = o.Products
+                        .Select(p => new ProductInOrderViewModel()
+                        {
+                            Id = p.Id,
+                            Name = p.Name,
+                        })
+                        .ToList()
+                })
+                .ToListAsync();
         }
 
         public async Task OrderAsync(string clientId)

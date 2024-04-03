@@ -9,26 +9,37 @@ namespace SmallFarm.Controllers
     [Authorize]
     public class OrderController : Controller
     {
-        private readonly IOrderService service;
+        private readonly IOrderService orderService;
+        private readonly ICartService cartService;
         private readonly UserManager<ApplicationUser> userManager;
 
-        public OrderController(IOrderService _service, UserManager<ApplicationUser> _userManager)
+        public OrderController(IOrderService orderService, ICartService _cartService, UserManager<ApplicationUser> _userManager)
         {
-            this.service = _service;
+            this.orderService = orderService;
+            this.cartService = _cartService;
             this.userManager = _userManager;
         }
 
         public async Task<IActionResult> Index()
         {
-            return View();
+            var orders = await orderService.GetOrdersAsync(UserId);
+
+            return View(orders);
         }
 
         [HttpGet]
         public async Task<IActionResult> Order()
         {
-            await service.OrderAsync(userManager.GetUserId(User));
+            if (cartService.GetProductsInCartCount(UserId) == 0)
+            {
+                return RedirectToAction("Index", "Cart");
+            }
+
+            await orderService.OrderAsync(UserId);
 
             return RedirectToAction("Index");
         }
+
+        private string UserId => userManager.GetUserId(User);
     }
 }

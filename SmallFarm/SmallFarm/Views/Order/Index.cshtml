@@ -1,1 +1,43 @@
-﻿
+﻿@using SmallFarm.Core.Models.Order
+
+@model List<OrderViewModel>
+
+@{
+    ViewData["Title"] = "My Orders";
+    int orderCount = 0;
+}
+
+@if (!Model.Any())
+{
+    <h3 class="text-center mt-5">You have not any orders yet!</h3>
+}
+
+else
+{
+    <h3 href="#" class=" text-center text-primary fs-1" aria-current="true">
+        Orders
+    </h3>
+
+    <div class="row d-flex gap-3">
+        @foreach (var order in Model)
+        {
+            orderCount++;
+
+            <div class="card bg-info mb-3 col-2">
+                <div class="card-header text-center fw-bold">Order № @orderCount</div>
+
+                <ul class="list-group list-group-flush">
+                    @foreach (var product in order.Products)
+                    {
+                        <a asp-controller="Product" asp-action="Details" asp-route-id="@product.Id"
+                           class="list-group-item bg-info text-success">
+                            <strong>@product.Name</strong>
+                        </a>
+                    }
+                    <span class="list-group-item bg-info" style="height:2.5em;"><strong>Total price:</strong> @order.TotalPrice €</span>
+                    <span class="list-group-item bg-info text-secondary" style="height:2.5em;font-size:14px">Ordered on @order.OrderedDate.ToString("d")</span>
+                </ul>
+            </div>
+        }
+    </div>
+}
