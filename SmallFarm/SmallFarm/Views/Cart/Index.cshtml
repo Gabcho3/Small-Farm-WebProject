@@ -17,63 +17,79 @@
     </div>
 }
 
-@foreach (var product in Model)
+else
 {
-    productCount++;
+    <div class="d-flex align-items-start" style="gap:10em">
+        <div>
+            @foreach (var product in Model)
+            {
+                productCount++;
+                <div class="card" style="width:540px;">
+                    <div class="row g-0">
+                        <div class="col-md-4">
+                            <img src="@product.ImageUrl" class="img-fluid rounded-start" style="margin-top:30%;height:130px;width:100%" alt="Image of @product.Name">
+                        </div>
+                        <div class="col-md-8">
+                            <div class="card-body" style="display:flex;flex-direction:column;gap:5px">
 
-    <div style="display:flex; gap:10em">
-        <div class="card mb-3" style="width:540px;">
-            <div class="row g-0">
-                <div class="col-md-4">
-                    <img src="@product.ImageUrl" class="img-fluid rounded-start" style="margin-top:30%;height:130px;width:100%" alt="Image of @product.Name">
-                </div>
-                <div class="col-md-8">
-                    <div class="card-body" style="display:flex;flex-direction:column;gap:5px">
+                                <div style="display:flex;justify-content:space-between">
+                                    <p class="card-text text-secondary" style="font-size:0.8em">@product.Manufacturer</p>
 
-                        <div style="display:flex;justify-content:space-between">
-                            <p class="card-text text-secondary" style="font-size:0.8em">@product.Manufacturer</p>
+                                    <div>
+                                        <a asp-controller="Cart" asp-action="Remove" asp-route-id="@product.Id"><i class="fas fa-trash-alt"></i></a>
+                                    </div>
+                                </div>
+                                <h5 class="card-title">@product.Name</h5>
+                                <span class="card-text">@product.Description</span>
 
-                            <div>
-                                <a asp-controller="Cart" asp-action="Remove" asp-route-id="@product.Id"><i class="fas fa-trash-alt"></i></a>
+                                @if (product.Category == "Drink")
+                                {
+                                    <span class="card-text">Liters: @product.Quantity</span>
+                                    <span class="card-text text-danger text-uppercase">@product.AvailableQuantity liters have left</span>
+
+                                    <div style="display:flex;flex-direction:column;align-items:end;">
+                                        <span class="card-text text-secondary"><small class="text-body-secondary">@product.PricePerKg € per liter</small></span>
+                                        <span id="totalPrice" class="card-text fw-bold">@product.Total €</span>
+                                    </div>
+                                }
+                                else
+                                {
+                                    <span class="card-text">Kilograms: @product.Quantity</span>
+                                    <span class="card-text text-danger text-uppercase">@product.AvailableQuantity kg have left</span>
+
+                                    <div style="display:flex;flex-direction:column;align-items:end;">
+                                        <span class="card-text text-secondary"><small class="text-body-secondary">@product.PricePerKg € per kilogram</small></span>
+                                        <span id="totalPrice" class="card-text fw-bold">@product.Total €</span>
+                                    </div>
+                                }
                             </div>
                         </div>
-                        <h5 class="card-title">@product.Name</h5>
-                        <span class="card-text">@product.Description</span>
-
-                        @if (product.Category == "Drink")
-                        {
-                            <span  class="card-text">Liters: @product.Quantity</span>
-                            <span class="card-text text-danger text-uppercase">@product.AvailableQuantity liters have left</span>
-
-                            <div style="display:flex;flex-direction:column;align-items:end;">
-                                <span class="card-text text-secondary"><small class="text-body-secondary">@product.PricePerKg € per liter</small></span>
-                                <span id="totalPrice" class="card-text fw-bold">@product.Total €</span>
-                            </div>
-                        }
-                        else
-                        {
-                            <span class="card-text">Kilograms: @product.Quantity</span>
-                            <span class="card-text text-danger text-uppercase">@product.AvailableQuantity kg have left</span>
-
-                            <div style="display:flex;flex-direction:column;align-items:end;">
-                                <span class="card-text text-secondary"><small class="text-body-secondary">@product.PricePerKg € per kilogram</small></span>
-                                <span id="totalPrice" class="card-text fw-bold">@product.Total €</span>
-                            </div>
-                        }
                     </div>
                 </div>
-            </div>
+            }
         </div>
 
-        @if (productCount == 1)
-        {
-            <div class="card text-center mb-3" style="width: 25rem;">
-                <div class="card-body" style="display:flex;flex-direction:column;gap:2em">
-                    <h5 class="card-title">Order info</h5>
-                    <p class="card-text">Total Sum: @Model.Sum(p => p.Total) €</p>
-                    <a asp-controller="Order" asp-action="Order" class="btn btn-dark">Place an Order</a>
-                </div>
+        <div class="card mb-3" style="width: 25rem;">
+            <div class="card-body" style="display:flex;flex-direction:column;gap:2em">
+                <h5 class="card-title text-center">Order info</h5>
+
+                @foreach (var productItem in Model)
+                {
+                    <div class="d-flex justify-content-between">
+                        <strong>@productItem.Name</strong>
+                        <span>@productItem.Quantity * @productItem.PricePerKg €</span>
+                    </div>
+                }
+
+                <hr class="m-0" />
+
+                <span class="d-flex justify-content-between">
+                    <strong>Total price:</strong>
+                    <span>@Model.Sum(p => p.PricePerKg) €</span>
+                </span>
+
+                <a asp-controller="Order" asp-action="Order" class="btn btn-dark">Place an Order</a>
             </div>
-        }
+        </div>
     </div>
 }
