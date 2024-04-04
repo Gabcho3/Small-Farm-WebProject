@@ -85,7 +85,7 @@ else
 
                 <span class="d-flex justify-content-between">
                     <strong>Total price:</strong>
-                    <span>@Model.Sum(p => p.PricePerKg) €</span>
+                    <span>@Model.Sum(p => p.Total) €</span>
                 </span>
 
                 <a asp-controller="Order" asp-action="Order" class="btn btn-dark">Place an Order</a>

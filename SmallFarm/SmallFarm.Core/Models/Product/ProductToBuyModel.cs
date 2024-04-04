@@ -26,6 +26,8 @@ namespace SmallFarm.Core.Models.Product
 
         public double Quantity { get; set; }
 
+        public bool IsActive { get; set; }
+
         public decimal Total  => Math.Round((decimal)Quantity * PricePerKg, 2);
     }
 }

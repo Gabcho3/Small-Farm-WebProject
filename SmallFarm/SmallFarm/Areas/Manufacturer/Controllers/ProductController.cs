@@ -86,7 +86,7 @@ namespace SmallFarm.Areas.Manufacturer.Controllers
         }
 
         [Area("Manufacturer")]
-        [HttpPost]
+        [HttpGet]
         public async Task<IActionResult> Remove(Guid id)
         {
             await service.RemoveAsync(id);
