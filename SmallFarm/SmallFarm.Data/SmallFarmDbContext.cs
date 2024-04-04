@@ -20,6 +20,8 @@ namespace SmallFarm.Data
 
         public DbSet<Order> Orders { get; set; } = null!;
 
+        public DbSet<ProductOrder> ProductsOrders { get; set; } = null!;
+
         public DbSet<ProductCategory> ProductCategories { get; set; } = null!;
 
         public DbSet<Request> Requests { get; set; } = null!;
@@ -30,6 +32,9 @@ namespace SmallFarm.Data
         {
             builder.Entity<Cart>()
                 .HasKey(x => new { x.ClientId, x.ProductId });
+
+            builder.Entity<ProductOrder>()
+                .HasKey(x => new { x.OrderId, x.ProductId });
 
 
             builder.ApplyConfiguration(new ApplicationUserConfiguration());

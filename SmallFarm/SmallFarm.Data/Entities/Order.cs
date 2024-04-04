@@ -28,6 +28,6 @@ namespace SmallFarm.Data.Entities
         [ForeignKey(nameof(ClientId))]
         public ApplicationUser Client { get; set; } = null!;
 
-        public List<Product> Products { get; set; }
+        public List<ProductOrder> ProductsOrders { get; set; }
     }
 }

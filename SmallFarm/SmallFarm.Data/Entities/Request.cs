@@ -24,11 +24,6 @@ namespace SmallFarm.Data.Entities
         [MaxLength(AddressMaxLength)]
         public string ManufacturerAddress { get; set; } = null!;
 
-        [Required]
-        public int CityId { get; set; }
-
-        public City City { get; set; } = null!;
-
         public bool IsActive { get; set; } = true;
 
         [Required]
