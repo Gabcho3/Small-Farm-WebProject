@@ -18,4 +18,10 @@ public class HomeController : Controller
     {
         return View();
     }
+
+    [Route("/Error/NotFound")]
+    public IActionResult Error404()
+    {
+        return View();
+    }
 }
