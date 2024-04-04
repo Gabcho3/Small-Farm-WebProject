@@ -27,11 +27,13 @@ namespace SmallFarm.Core.Services
                 {
                     OrderedDate = o.OrderedDate,
                     TotalPrice = o.TotalPrice,
-                    Products = o.Products
-                        .Select(p => new ProductInOrderViewModel()
+                    Products = o.ProductsOrders
+                        .Select(x => new ProductInOrderViewModel()
                         {
-                            Id = p.Id,
-                            Name = p.Name,
+                            Id = x.ProductId,
+                            Name = x.Product.Name,
+                            Quantity = x.Quantity,
+                            Price = x.Product.PricePerKg
                         })
                         .ToList()
                 })
@@ -49,6 +51,15 @@ namespace SmallFarm.Core.Services
                 .Include(cart => cart.Product)
                 .ToListAsync();
 
+            var order = new Order()
+            {
+                ClientId = clientId,
+                OrderedDate = DateTime.Now,
+                TotalPrice = cartProducts.Sum(p => p.Price),
+            };
+
+            await context.Orders.AddAsync(order);
+
             foreach (var cartProduct in cartProducts)
             {
                 for (int j = 0; j < userProducts.Count(); j++)
@@ -61,19 +72,20 @@ namespace SmallFarm.Core.Services
                         {
                             cartProduct.Product.IsActive = false;
                         }
+
+                        var productOrder = new ProductOrder()
+                        {
+                            Order = order,
+                            Product = cartProduct.Product,
+                            Quantity = userProducts[j].Quantity
+                        };
+
+                        await context.ProductsOrders.AddAsync(productOrder);
                     }
                 }
             };
 
             context.Carts.RemoveRange(cartProducts);
-
-            context.Orders.Add(new Order()
-            {
-                ClientId = clientId,
-                OrderedDate = DateTime.Now,
-                TotalPrice = cartProducts.Sum(p => p.Price),
-                Products = cartProducts.Select(p => p.Product).ToList()
-            });
 
             await context.SaveChangesAsync();
         }
