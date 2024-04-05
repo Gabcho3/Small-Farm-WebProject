@@ -1,8 +1,6 @@
 ﻿using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using SmallFarm.Core.Contracts;
-using SmallFarm.Data.Entities;
 using SmallFarm.Extensions;
 
 namespace SmallFarm.Controllers
@@ -12,19 +10,17 @@ namespace SmallFarm.Controllers
     {
         private readonly IOrderService orderService;
         private readonly ICartService cartService;
-        private readonly UserManager<ApplicationUser> userManager;
 
-        public OrderController(IOrderService orderService, ICartService _cartService, UserManager<ApplicationUser> _userManager)
+        public OrderController(IOrderService orderService, ICartService _cartService)
         {
             this.orderService = orderService;
             this.cartService = _cartService;
-            this.userManager = _userManager;
         }
 
         [Route("Order/MyOrders/{id}")]
         public async Task<IActionResult> Index(string id)
         {
-            if (!User.Identity.IsAuthenticated)
+            if (!User.Identity!.IsAuthenticated)
             {
                 return RedirectToPage("/Identity/Account/Register");
             }

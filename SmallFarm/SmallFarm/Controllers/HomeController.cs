@@ -1,6 +1,5 @@
 ﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-using SmallFarm.Extensions;
 
 namespace SmallFarm.Controllers;
 
