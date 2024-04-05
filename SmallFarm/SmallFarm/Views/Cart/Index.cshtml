@@ -1,4 +1,8 @@
 ﻿@using SmallFarm.Core.Models.Product
+@using Microsoft.AspNetCore.Identity
+@using SmallFarm.Data.Entities
+
+@inject UserManager<ApplicationUser> UserManager;
 
 @model IEnumerable<ProductToBuyModel>
 
@@ -88,7 +92,7 @@ else
                     <span>@Model.Sum(p => p.Total) €</span>
                 </span>
 
-                <a asp-controller="Order" asp-action="Order" class="btn btn-dark">Place an Order</a>
+                <a asp-controller="Order" asp-action="Order" asp-route-id="@UserManager.GetUserId(User)" class="btn btn-dark">Place an Order</a>
             </div>
         </div>
     </div>

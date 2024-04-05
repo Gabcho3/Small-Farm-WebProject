@@ -20,7 +20,8 @@ namespace SmallFarm.Controllers
         }
 
         [Authorize]
-        public async Task<IActionResult> Index()
+        [Route("Cart/MyCart/{id}")]
+        public async Task<IActionResult> Index(Guid id)
         {
             if (!User.Identity!.IsAuthenticated)
             {

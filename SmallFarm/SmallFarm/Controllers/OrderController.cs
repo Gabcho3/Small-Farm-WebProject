@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using SmallFarm.Core.Contracts;
 using SmallFarm.Data.Entities;
+using SmallFarm.Extensions;
 
 namespace SmallFarm.Controllers
 {
@@ -20,28 +21,43 @@ namespace SmallFarm.Controllers
             this.userManager = _userManager;
         }
 
-        public async Task<IActionResult> Index()
+        [Route("Order/MyOrders/{id}")]
+        public async Task<IActionResult> Index(string id)
         {
-            var orders = await orderService.GetOrdersAsync(UserId);
+            if (!User.Identity.IsAuthenticated)
+            {
+                return RedirectToPage("/Identity/Account/Register");
+            }
+
+            if (User.IsManufacturer())
+            {
+                return RedirectToAction("Index", "Home");
+            }
+
+            var orders = await orderService.GetOrdersAsync(id);
 
             return View(orders);
         }
 
         [HttpGet]
-        public async Task<IActionResult> Order()
+        [Route("Order/PlaceOrder/{id}")]
+        public async Task<IActionResult> Order(string id)
         {
+            if (User.IsManufacturer())
+            {
+                return RedirectToAction("Index", "Home");
+            }
+
             TempData["hasOrdered"] = true;
 
-            if (cartService.GetProductsInCartCount(UserId) == 0)
+            if (cartService.GetProductsInCartCount(id) == 0)
             {
                 return RedirectToAction("Index", "Cart");
             }
 
-            await orderService.OrderAsync(UserId);
+            await orderService.OrderAsync(id);
 
-            return RedirectToAction("Index");
+            return RedirectToAction("Index", new{id});
         }
-
-        private string UserId => userManager.GetUserId(User);
     }
 }

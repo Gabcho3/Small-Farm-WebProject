@@ -17,6 +17,7 @@ namespace SmallFarm.Areas.Administrator.Controllers
         }
 
         [HttpGet]
+        [Route("/AllManufacturers")]
         public async Task<IActionResult> Index()
         {
             var allManufacturers = await manufacturerService.GetAllManufacturersAsync();

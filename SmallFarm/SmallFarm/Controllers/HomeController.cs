@@ -21,7 +21,7 @@ public class HomeController : Controller
 
     public IActionResult Error404()
     {
-        return View("Error404");
+        return View();
     }
 
     public IActionResult Error500()

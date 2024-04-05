@@ -20,6 +20,8 @@ namespace SmallFarm.Areas.Manufacturer.Controllers
             userManager = _userManager;
         }
 
+        [HttpGet]
+        [Route("/Products")]
         public async Task<IActionResult> Index([FromQuery] AllProductsQueryModel queryModel)
         {
             var result = await service.GetAllAsync(queryModel);
@@ -64,8 +66,7 @@ namespace SmallFarm.Areas.Manufacturer.Controllers
         [HttpGet]
         public async Task<IActionResult> Edit(Guid id)
         {
-            var model = await service.GetByIdAsync<ProductFormModel>(id);
-
+            var model = await service.GetManufacturerProductById(id, userManager.GetUserId(User));
             model.ProductCategories = await service.GetAllCategoriesAsync();
 
             return View(model);
@@ -98,7 +99,7 @@ namespace SmallFarm.Areas.Manufacturer.Controllers
         [HttpGet]
         public async Task<IActionResult> Details(Guid id)
         {
-            var product = await service.GetByIdAsync<ProductToBuyModel>(id);
+            var product = await service.GetByIdAsync(id);
 
             return View(product);
         }
