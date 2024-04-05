@@ -65,6 +65,7 @@ namespace SmallFarm.Areas.Manufacturer.Controllers
         public async Task<IActionResult> Edit(Guid id)
         {
             var model = await service.GetByIdAsync<ProductFormModel>(id);
+
             model.ProductCategories = await service.GetAllCategoriesAsync();
 
             return View(model);
