@@ -20,11 +20,17 @@ namespace SmallFarm.Core.Services
             this.mapper = _mapper;
         }
 
-        public async Task<T> GetByIdAsync<T>(Guid productId)
-            => mapper.Map<T>(await context.Products
+        public async Task<ProductToBuyModel> GetByIdAsync(Guid productId)
+            => mapper.Map<ProductToBuyModel>(await context.Products
                 .Include(p => p.Manufacturer)
                 .Include(p => p.Category)
                 .FirstAsync(p => p.Id == productId));
+
+        public async Task<ProductFormModel> GetManufacturerProductById(Guid productId, string userId)
+            => mapper.Map<ProductFormModel>(await context.Products
+                .Include(p => p.Manufacturer)
+                .Include(p => p.Category)
+                .FirstAsync(p => p.Id == productId && p.ManufacturerId == Guid.Parse(userId)));
 
         public async Task<ProductQueryModel> GetAllAsync(AllProductsQueryModel queryModel)
         {
