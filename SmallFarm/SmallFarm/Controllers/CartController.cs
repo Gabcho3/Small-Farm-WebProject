@@ -53,7 +53,7 @@ namespace SmallFarm.Controllers
 
             await service.AddAsync(model);
 
-            return RedirectToAction("Index");
+            return RedirectToAction("Index", new{model.Id});
         }
         
         [HttpGet]
