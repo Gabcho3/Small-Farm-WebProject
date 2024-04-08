@@ -137,9 +137,11 @@ namespace SmallFarm.Core.Services
             await context.SaveChangesAsync();
         }
 
-        public async Task RemoveAsync(Guid id)
+        public async Task RemoveAsync(Guid id, Guid userId)
         {
-            var productToRemove = await context.Products.FindAsync(id);
+            var productToRemove = await context.Products
+                .Where(p => p.ManufacturerId == userId && p.Id == id)
+                .FirstAsync();
 
             context.Products.Remove(productToRemove);
             await context.SaveChangesAsync();

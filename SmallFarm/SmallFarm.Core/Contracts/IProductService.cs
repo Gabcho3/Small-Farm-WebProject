@@ -22,6 +22,6 @@ namespace SmallFarm.Core.Contracts
 
         Task EditAsync(Guid id, ProductFormModel productForm);
 
-        Task RemoveAsync(Guid id);
+        Task RemoveAsync(Guid id, Guid userId);
     }
 }
