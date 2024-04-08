@@ -20,8 +20,7 @@ namespace SmallFarm.Controllers
         }
 
         [Authorize]
-        [Route("Cart/MyCart/{id}")]
-        public async Task<IActionResult> Index(Guid id)
+        public async Task<IActionResult> Index()
         {
             if (!User.Identity!.IsAuthenticated)
             {
@@ -33,7 +32,7 @@ namespace SmallFarm.Controllers
                 return RedirectToAction("Index", "Product");
             }
 
-            var models = await service.GetAllProductsInCartAsync(userManager.GetUserId(User));
+            var models = await service.GetAllProductsInCartAsync(UserId);
 
             return View(models);
         }
@@ -53,16 +52,18 @@ namespace SmallFarm.Controllers
 
             await service.AddAsync(model);
 
-            return RedirectToAction("Index", new{model.Id});
+            return RedirectToAction("Index");
         }
         
         [HttpGet]
         [Authorize]
         public async Task<IActionResult> Remove(Guid id)
         {
-            await service.RemoveAsync(id, userManager.GetUserId(User));
+            await service.RemoveAsync(id, UserId);
 
             return RedirectToAction("Index");
         }
+
+        private string UserId => userManager.GetUserId(User);
     }
 }

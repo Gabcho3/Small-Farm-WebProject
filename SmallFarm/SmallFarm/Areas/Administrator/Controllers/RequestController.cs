@@ -59,6 +59,7 @@ namespace SmallFarm.Areas.Administrator.Controllers
         }
 
         [Area("Administrator")]
+        [Authorize(Roles = "Administrator")]
         [HttpGet]
         public async Task<IActionResult> Approve(Guid id)
         {
@@ -68,6 +69,7 @@ namespace SmallFarm.Areas.Administrator.Controllers
         }
 
         [Area("Administrator")]
+        [Authorize(Roles = "Administrator")]
         [HttpGet]
         public async Task<IActionResult> Disapprove(Guid id)
         {

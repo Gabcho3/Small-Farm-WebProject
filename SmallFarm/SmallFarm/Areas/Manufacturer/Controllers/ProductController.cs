@@ -63,6 +63,7 @@ namespace SmallFarm.Areas.Manufacturer.Controllers
         }
 
         [Area("Manufacturer")]
+        [Authorize(Roles = RoleConstants.Manufacturer.RoleName)]
         [HttpGet]
         public async Task<IActionResult> Edit(Guid id)
         {
@@ -73,6 +74,7 @@ namespace SmallFarm.Areas.Manufacturer.Controllers
         }
 
         [Area("Manufacturer")]
+        [Authorize(Roles = RoleConstants.Manufacturer.RoleName)]
         [HttpPost]
         public async Task<IActionResult> Edit(Guid id, ProductFormModel model)
         {
@@ -88,10 +90,11 @@ namespace SmallFarm.Areas.Manufacturer.Controllers
         }
 
         [Area("Manufacturer")]
+        [Authorize(Roles = RoleConstants.Manufacturer.RoleName)]
         [HttpGet]
         public async Task<IActionResult> Remove(Guid id)
         {
-            await service.RemoveAsync(id);
+            await service.RemoveAsync(id, Guid.Parse(userManager.GetUserId(User)));
 
             return RedirectToAction("MyProducts");
         }
