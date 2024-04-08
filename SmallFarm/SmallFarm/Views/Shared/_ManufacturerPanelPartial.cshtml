@@ -1,9 +1,14 @@
-﻿<li class="btn-group me-2">
+﻿@using Microsoft.AspNetCore.Identity
+@using SmallFarm.Data.Entities
+@inject UserManager<ApplicationUser> UserManager;
+
+<li class="btn-group me-2">
     <button type="button" class="btn btn-success dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
         Manufacturer Panel
     </button>
     <ul class="dropdown-menu bg-success">
         <li><a asp-area="Manufacturer" asp-controller="Product" asp-action="Add" class="dropdown-item text-warning">Add product</a></li>
         <li><a asp-area="Manufacturer" asp-controller="Product" asp-action="MyProducts" class="dropdown-item text-warning">My products</a></li>
+        <li><a asp-area="" asp-controller="Order" asp-action="Index" asp-route-id="@UserManager.GetUserId(User)" class="dropdown-item text-warning">My orders</a></li>
     </ul>
 </li>
