@@ -28,7 +28,8 @@ namespace SmallFarm.Core.Models.Product
         [Range(0.01, 1000.00)]
         public decimal PricePerKg { get; set; }
 
-        public string? ImageUrl { get; set; }
+        [Required]
+        public string ImageUrl { get; set; }
 
         public List<ProductCategoryViewModel> ProductCategories { get; set; } = new List<ProductCategoryViewModel>();
 
