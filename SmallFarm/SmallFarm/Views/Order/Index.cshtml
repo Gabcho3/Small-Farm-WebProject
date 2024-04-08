@@ -1,4 +1,5 @@
 ﻿@using SmallFarm.Core.Models.Order
+@using SmallFarm.Extensions
 
 @model List<OrderViewModel>
 
@@ -41,13 +42,26 @@ else
                         <span>@order.TotalPrice €</span>
                     </span>
                     <span class="list-group-item bg-info text-secondary" style="height:3.5em;font-size:14px">Ordered on @order.OrderedDate.ToString("G")</span>
+                    
+                    @if (User.IsManufacturer())
+                    {
+                        <a asp-controller="Order" asp-action="Confirm" asp-route-id="@order.Id" class="btn btn-success m-0 h-25 mb-3" style="font-size:14px">Confirm and ship</a>
+                    }
+                    else
+                    {
+                        if (!order.IsActive)
+                        {
+                            <span class="list-group-item bg-info text-danger text-center" style="height:3.5em;font-size:16px">Confirmed and shipped</span>
+                        }
+                    }
+
                 </ul>
             </div>
         }
     </div>
 }
 
-@if (TempData["hasOrdered"] != null)
+@if (TempData["hasOrdered"] != null && !User.IsManufacturer())
 {
     <div class="toast show end-0 position-absolute" style="bottom:4.3em;z-index:11" role="alert" aria-live="assertive" aria-atomic="true">
         <div class="toast-header bg-warning">

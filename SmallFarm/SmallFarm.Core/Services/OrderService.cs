@@ -18,15 +18,42 @@ namespace SmallFarm.Core.Services
             this.cartService = cartService;
         }
 
-        public async Task<List<OrderViewModel>> GetOrdersAsync(string clientId)
+        public async Task<List<OrderViewModel>> GetOrdersAsync(string id)
         {
             return await context.Orders
                 .AsNoTracking()
-                .Where(o => o.ClientId == clientId)
+                .Where(o => o.ClientId == id)
                 .Select(o => new OrderViewModel()
                 {
+                    Id = o.Id,
                     OrderedDate = o.OrderedDate,
                     TotalPrice = o.TotalPrice,
+                    IsActive = o.IsActive,
+                    Products = o.ProductsOrders
+                        .Select(x => new ProductInOrderViewModel()
+                        {
+                            Id = x.ProductId,
+                            Name = x.Product.Name,
+                            Quantity = x.Quantity,
+                            Price = x.Product.PricePerKg
+                        })
+                        .ToList()
+                })
+                .OrderBy(o => o.OrderedDate)
+                .ToListAsync();
+        }
+
+        public async Task<List<OrderViewModel>> GetManufacturerOrdersAsync(string id)
+        {
+            return await context.Orders
+                .AsNoTracking()
+                .Where(o => o.ManufacturerId == Guid.Parse(id))
+                .Select(o => new OrderViewModel()
+                {
+                    Id = o.Id,
+                    OrderedDate = o.OrderedDate,
+                    TotalPrice = o.TotalPrice,
+                    IsActive = o.IsActive,
                     Products = o.ProductsOrders
                         .Select(x => new ProductInOrderViewModel()
                         {
@@ -54,6 +81,7 @@ namespace SmallFarm.Core.Services
             var order = new Order()
             {
                 ClientId = clientId,
+                ManufacturerId = cartProducts.First().Product.ManufacturerId,
                 OrderedDate = DateTime.Now,
                 TotalPrice = cartProducts.Sum(p => p.Price),
             };
@@ -86,6 +114,15 @@ namespace SmallFarm.Core.Services
             };
 
             context.Carts.RemoveRange(cartProducts);
+
+            await context.SaveChangesAsync();
+        }
+
+        public async Task ConfirmAsync(Guid id)
+        {
+            var orderToConfirm = await context.Orders.FindAsync(id);
+
+            orderToConfirm!.IsActive = false;
 
             await context.SaveChangesAsync();
         }
