@@ -183,26 +183,6 @@ namespace SmallFarm.Data.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "Orders",
-                columns: table => new
-                {
-                    Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
-                    OrderedDate = table.Column<DateTime>(type: "datetime2", nullable: false),
-                    TotalPrice = table.Column<decimal>(type: "decimal(18,2)", precision: 18, scale: 2, nullable: false),
-                    ClientId = table.Column<string>(type: "nvarchar(450)", nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_Orders", x => x.Id);
-                    table.ForeignKey(
-                        name: "FK_Orders_AspNetUsers_ClientId",
-                        column: x => x.ClientId,
-                        principalTable: "AspNetUsers",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
-                });
-
-            migrationBuilder.CreateTable(
                 name: "Manufacturers",
                 columns: table => new
                 {
@@ -251,6 +231,34 @@ namespace SmallFarm.Data.Migrations
                         name: "FK_Requests_Cities_CityId",
                         column: x => x.CityId,
                         principalTable: "Cities",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Orders",
+                columns: table => new
+                {
+                    Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    OrderedDate = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    TotalPrice = table.Column<decimal>(type: "decimal(18,2)", precision: 18, scale: 2, nullable: false),
+                    ClientId = table.Column<string>(type: "nvarchar(450)", nullable: false),
+                    ManufacturerId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    IsActive = table.Column<bool>(type: "bit", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Orders", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_Orders_AspNetUsers_ClientId",
+                        column: x => x.ClientId,
+                        principalTable: "AspNetUsers",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_Orders_Manufacturers_ManufacturerId",
+                        column: x => x.ManufacturerId,
+                        principalTable: "Manufacturers",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                 });
@@ -334,7 +342,7 @@ namespace SmallFarm.Data.Migrations
                         column: x => x.ProductId,
                         principalTable: "Products",
                         principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
+                        onDelete: ReferentialAction.Restrict);
                 });
 
             migrationBuilder.InsertData(
@@ -342,10 +350,10 @@ namespace SmallFarm.Data.Migrations
                 columns: new[] { "Id", "AccessFailedCount", "ConcurrencyStamp", "Email", "EmailConfirmed", "FirstName", "LastName", "LockoutEnabled", "LockoutEnd", "NormalizedEmail", "NormalizedUserName", "PasswordHash", "PhoneNumber", "PhoneNumberConfirmed", "SecurityStamp", "TwoFactorEnabled", "UserName" },
                 values: new object[,]
                 {
-                    { "48ed0d70-f2d3-4261-98d4-7a4e7d0fa917", 0, "08a1db5c-1380-4bcd-ba42-6a67f38db648", "example@gmail.com", false, "Ivan", "Ivanov", false, null, "EXAMPLE@GMAIL.COM", "EXAMPLE@GMAIL.COM", "AQAAAAEAACcQAAAAEAA9j0XmLdi4Xz7IAzI9pbkR3xkqzId5+zPiqB+5Pj/xEkiK0ABUnnKLCMPKxd0/HQ==", null, false, "1ef9725b-e276-4db4-b35f-91f2742030a5", false, "example@gmail.com" },
-                    { "6593342c-52a9-46a7-879d-54e992c2913d", 0, "9d3a90ec-91c1-497a-94c3-c62f471fafe8", "guest@gmail.com", false, "Todor", "Ivanov", false, null, "GUEST@GMAIL.COM", "GUEST@GMAIL.COM", "AQAAAAEAACcQAAAAELzfwXOYHff3XXBSS7qP3Zro80/TZd/ZcvRJuC+KeEBRbswQTlAMjQEoGaDx0dyIcQ==", null, false, "24be890f-2b8a-480e-931c-f6cac3f51991", false, "guest@gmail.com" },
-                    { "cdbec9af-bc74-46c3-9547-a83e4bc8691e", 0, "28abfbfd-75c2-4a90-8251-cdafa8a41f18", "admin@gmail.com", false, "Gabriel", "Dimitrov", false, null, "ADMIN@GMAIL.COM", "ADMIN@GMAIL.COM", "AQAAAAEAACcQAAAAEKJTdrfoqMuwQe7F2akagXsufIbGPQvBL6Dc2QiwDEN0oLgiJ5bbflIKfY5XCzK1/w==", null, false, "54629c1f-10f8-4fd7-b685-cef002d32c7a", false, "admin@gmail.com" },
-                    { "f61b7997-5b5b-4b60-89f2-eba32d1a3d29", 0, "dd711f71-9e22-470f-9e4c-f45e0837ac66", "manu@gmail.com", false, "Ivan", "Dragiev", false, null, "MANU@GMAIL.COM", "MANU@GMAIL.COM", "AQAAAAEAACcQAAAAEDRUiUnzJIjXto+VZDYNqsueRZxqOKMkKgdUhiafFUC+S4F0CPCkAZfNB3obs2d1Lw==", null, false, "d701790c-e545-41f5-95e3-ba7b7e30ee6e", false, "manu@gmail.com" }
+                    { "7278e901-ce06-496d-a4bb-22954eb5439a", 0, "5b6dfa22-f312-4297-a894-832feabe0d94", "example@gmail.com", false, "Ivan", "Ivanov", false, null, "EXAMPLE@GMAIL.COM", "EXAMPLE@GMAIL.COM", "AQAAAAEAACcQAAAAEGmqtmXaRnpkY5vb78RXhs+ECreBqKgI9gd51K1xwR5Y0WZbCK1soai5eznMW+a2AQ==", null, false, "07b3c9de-f308-4258-9547-65ddff96ba5d", false, "example@gmail.com" },
+                    { "b71e493c-d0f2-4aba-a2a9-bbff4f8585a2", 0, "84846459-f1fb-4dbe-baf9-cb0e424104d8", "guest@gmail.com", false, "Todor", "Ivanov", false, null, "GUEST@GMAIL.COM", "GUEST@GMAIL.COM", "AQAAAAEAACcQAAAAEDubomRhxzlstabJzuqV+u+loK0hQnXe8noomR8SR469RyAK6gDbL5hVTv8FdmdnlA==", null, false, "1e8acf06-afa7-4085-baed-ccb410aae976", false, "guest@gmail.com" },
+                    { "ebe0b693-884b-4cef-af41-b25e09fedc3d", 0, "efe26d8f-62b7-41a9-b3cf-7e3cb4f87b4a", "admin@gmail.com", false, "Gabriel", "Dimitrov", false, null, "ADMIN@GMAIL.COM", "ADMIN@GMAIL.COM", "AQAAAAEAACcQAAAAENc1PiAvN91JWxK4p9ifDqXDscXTQhPBuOT/PyJxbnsEQFrF7APXIZKRzlrZsadquA==", null, false, "b6e01dbc-50ea-40b3-94d1-a4a81c279c11", false, "admin@gmail.com" },
+                    { "f61b7997-5b5b-4b60-89f2-eba32d1a3d29", 0, "cad9d146-b8cf-4eda-ac99-4e8c1f0e79c0", "manu@gmail.com", false, "Ivan", "Dragiev", false, null, "MANU@GMAIL.COM", "MANU@GMAIL.COM", "AQAAAAEAACcQAAAAEMDWT1i4qVUoKH0xlxbGLfbdKom3AAnHJhdvFF1G3+l9iWsJDDB5K1nUNJymI2EQ6A==", null, false, "be4ef9a9-b996-4085-9432-8232357cdfe9", false, "manu@gmail.com" }
                 });
 
             migrationBuilder.InsertData(
@@ -539,12 +547,12 @@ namespace SmallFarm.Data.Migrations
                 columns: new[] { "Id", "CategoryId", "Description", "ImageUrl", "IsActive", "ManufacturerId", "Name", "PricePerKg", "Quantity" },
                 values: new object[,]
                 {
-                    { new Guid("58495409-61b9-4e64-b42d-4050880fe54f"), 2, "Very delicious western bulgarian bananas!", "https://images.unsplash.com/photo-1603833665858-e61d17a86224?q=80&w=1854&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D", true, new Guid("f61b7997-5b5b-4b60-89f2-eba32d1a3d29"), "Bananas", 3.10m, 20.0 },
-                    { new Guid("685f6f08-eff3-477d-924e-6534f89da30e"), 1, "Very delicious western bulgarian tomatoes!", "https://images.unsplash.com/photo-1582284540020-8acbe03f4924?q=80&w=1935&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D", true, new Guid("f61b7997-5b5b-4b60-89f2-eba32d1a3d29"), "Big red tomatoes", 3.30m, 9.0 },
-                    { new Guid("6ac83a45-52d9-43d5-82b3-ca89cb209545"), 2, "Very delicious western bulgarian apples!", "https://images.unsplash.com/photo-1576179635662-9d1983e97e1e?q=80&w=1887&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D", true, new Guid("f61b7997-5b5b-4b60-89f2-eba32d1a3d29"), "Red Apples", 3.90m, 10.0 },
-                    { new Guid("8740e8b4-82e9-4e42-b024-4252a391ed31"), 1, "Very delicious western bulgarian potatoes!", "https://images.unsplash.com/photo-1590165482129-1b8b27698780?q=80&w=1854&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D", true, new Guid("f61b7997-5b5b-4b60-89f2-eba32d1a3d29"), "Small Potatoes", 5.20m, 12.0 },
-                    { new Guid("dc93fef4-d080-4772-a73c-314d56382716"), 1, "Very delicious western bulgarian cucumbers!", "https://images.unsplash.com/photo-1449300079323-02e209d9d3a6?q=80&w=1974&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D", true, new Guid("f61b7997-5b5b-4b60-89f2-eba32d1a3d29"), "Cucumbers", 1.90m, 7.0 },
-                    { new Guid("f104d36e-d953-43f9-8623-b40103e8cc2f"), 3, "Milk form domestic cow!", "https://images.unsplash.com/photo-1601436423474-51738541c1b1?q=80&w=1854&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D", true, new Guid("f61b7997-5b5b-4b60-89f2-eba32d1a3d29"), "Cow milk", 1.60m, 25.0 }
+                    { new Guid("12bc6396-3173-4475-a45b-6ff7ed9c0070"), 2, "Very delicious western bulgarian bananas!", "https://images.unsplash.com/photo-1603833665858-e61d17a86224?q=80&w=1854&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D", true, new Guid("f61b7997-5b5b-4b60-89f2-eba32d1a3d29"), "Bananas", 3.10m, 20.0 },
+                    { new Guid("45d98415-6bf2-40d4-9de9-e0757ea3b624"), 2, "Very delicious western bulgarian apples!", "https://images.unsplash.com/photo-1576179635662-9d1983e97e1e?q=80&w=1887&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D", true, new Guid("f61b7997-5b5b-4b60-89f2-eba32d1a3d29"), "Red Apples", 3.90m, 10.0 },
+                    { new Guid("5c8c008a-fa06-446d-b313-7d6948bd6382"), 1, "Very delicious western bulgarian cucumbers!", "https://images.unsplash.com/photo-1449300079323-02e209d9d3a6?q=80&w=1974&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D", true, new Guid("f61b7997-5b5b-4b60-89f2-eba32d1a3d29"), "Cucumbers", 1.90m, 7.0 },
+                    { new Guid("7cb5eac0-73fe-45e3-a1e6-689fc21faf42"), 1, "Very delicious western bulgarian tomatoes!", "https://images.unsplash.com/photo-1582284540020-8acbe03f4924?q=80&w=1935&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D", true, new Guid("f61b7997-5b5b-4b60-89f2-eba32d1a3d29"), "Big red tomatoes", 3.30m, 9.0 },
+                    { new Guid("c17bb00f-d978-42bd-9fd6-2c5f88966949"), 3, "Milk form domestic cow!", "https://images.unsplash.com/photo-1601436423474-51738541c1b1?q=80&w=1854&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D", true, new Guid("f61b7997-5b5b-4b60-89f2-eba32d1a3d29"), "Cow milk", 1.60m, 25.0 },
+                    { new Guid("fa37fd5d-5644-470d-a0c0-0d247ae0f18d"), 1, "Very delicious western bulgarian potatoes!", "https://images.unsplash.com/photo-1590165482129-1b8b27698780?q=80&w=1854&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D", true, new Guid("f61b7997-5b5b-4b60-89f2-eba32d1a3d29"), "Small Potatoes", 5.20m, 12.0 }
                 });
 
             migrationBuilder.CreateIndex(
@@ -602,6 +610,11 @@ namespace SmallFarm.Data.Migrations
                 column: "ClientId");
 
             migrationBuilder.CreateIndex(
+                name: "IX_Orders_ManufacturerId",
+                table: "Orders",
+                column: "ManufacturerId");
+
+            migrationBuilder.CreateIndex(
                 name: "IX_Products_CategoryId",
                 table: "Products",
                 column: "CategoryId");
@@ -614,7 +627,8 @@ namespace SmallFarm.Data.Migrations
             migrationBuilder.CreateIndex(
                 name: "IX_ProductsOrders_ProductId",
                 table: "ProductsOrders",
-                column: "ProductId");
+                column: "ProductId",
+                unique: true);
 
             migrationBuilder.CreateIndex(
                 name: "IX_Requests_CityId",

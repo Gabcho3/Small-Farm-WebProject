@@ -36,6 +36,11 @@ namespace SmallFarm.Data
             builder.Entity<ProductOrder>()
                 .HasKey(x => new { x.OrderId, x.ProductId });
 
+            builder.Entity<ProductOrder>()
+                .HasOne(p => p.Product)
+                .WithOne()
+                .OnDelete(DeleteBehavior.Restrict);
+
 
             builder.ApplyConfiguration(new ApplicationUserConfiguration());
             builder.ApplyConfiguration(new ProductCategoryConfiguration());
