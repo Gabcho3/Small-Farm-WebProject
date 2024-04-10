@@ -11,6 +11,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SmallFarm.Data", "SmallFarm
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SmallFarm.Core", "SmallFarm.Core\SmallFarm.Core.csproj", "{2A3E7CBD-9545-4C8A-81AB-0AE86A61D0FF}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SmallFarm.Tests", "SmallFarm.Tests\SmallFarm.Tests.csproj", "{43AE1909-BA24-4F15-8720-DA256C452B57}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -33,6 +35,10 @@ Global
 		{2A3E7CBD-9545-4C8A-81AB-0AE86A61D0FF}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{2A3E7CBD-9545-4C8A-81AB-0AE86A61D0FF}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{2A3E7CBD-9545-4C8A-81AB-0AE86A61D0FF}.Release|Any CPU.Build.0 = Release|Any CPU
+		{43AE1909-BA24-4F15-8720-DA256C452B57}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{43AE1909-BA24-4F15-8720-DA256C452B57}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{43AE1909-BA24-4F15-8720-DA256C452B57}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{43AE1909-BA24-4F15-8720-DA256C452B57}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
