@@ -350,10 +350,10 @@ namespace SmallFarm.Data.Migrations
                 columns: new[] { "Id", "AccessFailedCount", "ConcurrencyStamp", "Email", "EmailConfirmed", "FirstName", "LastName", "LockoutEnabled", "LockoutEnd", "NormalizedEmail", "NormalizedUserName", "PasswordHash", "PhoneNumber", "PhoneNumberConfirmed", "SecurityStamp", "TwoFactorEnabled", "UserName" },
                 values: new object[,]
                 {
-                    { "7278e901-ce06-496d-a4bb-22954eb5439a", 0, "5b6dfa22-f312-4297-a894-832feabe0d94", "example@gmail.com", false, "Ivan", "Ivanov", false, null, "EXAMPLE@GMAIL.COM", "EXAMPLE@GMAIL.COM", "AQAAAAEAACcQAAAAEGmqtmXaRnpkY5vb78RXhs+ECreBqKgI9gd51K1xwR5Y0WZbCK1soai5eznMW+a2AQ==", null, false, "07b3c9de-f308-4258-9547-65ddff96ba5d", false, "example@gmail.com" },
-                    { "b71e493c-d0f2-4aba-a2a9-bbff4f8585a2", 0, "84846459-f1fb-4dbe-baf9-cb0e424104d8", "guest@gmail.com", false, "Todor", "Ivanov", false, null, "GUEST@GMAIL.COM", "GUEST@GMAIL.COM", "AQAAAAEAACcQAAAAEDubomRhxzlstabJzuqV+u+loK0hQnXe8noomR8SR469RyAK6gDbL5hVTv8FdmdnlA==", null, false, "1e8acf06-afa7-4085-baed-ccb410aae976", false, "guest@gmail.com" },
-                    { "ebe0b693-884b-4cef-af41-b25e09fedc3d", 0, "efe26d8f-62b7-41a9-b3cf-7e3cb4f87b4a", "admin@gmail.com", false, "Gabriel", "Dimitrov", false, null, "ADMIN@GMAIL.COM", "ADMIN@GMAIL.COM", "AQAAAAEAACcQAAAAENc1PiAvN91JWxK4p9ifDqXDscXTQhPBuOT/PyJxbnsEQFrF7APXIZKRzlrZsadquA==", null, false, "b6e01dbc-50ea-40b3-94d1-a4a81c279c11", false, "admin@gmail.com" },
-                    { "f61b7997-5b5b-4b60-89f2-eba32d1a3d29", 0, "cad9d146-b8cf-4eda-ac99-4e8c1f0e79c0", "manu@gmail.com", false, "Ivan", "Dragiev", false, null, "MANU@GMAIL.COM", "MANU@GMAIL.COM", "AQAAAAEAACcQAAAAEMDWT1i4qVUoKH0xlxbGLfbdKom3AAnHJhdvFF1G3+l9iWsJDDB5K1nUNJymI2EQ6A==", null, false, "be4ef9a9-b996-4085-9432-8232357cdfe9", false, "manu@gmail.com" }
+                    { "0ecba21f-cdfe-4679-9a82-e429f9b09e87", 0, "3f4e2ecc-7973-418b-95d1-4206abcf0592", "example@gmail.com", false, "Ivan", "Ivanov", false, null, "EXAMPLE@GMAIL.COM", "EXAMPLE@GMAIL.COM", "AQAAAAEAACcQAAAAEA3Pp/Jdd8i4eWXP207Av5VhZxCJmK2stSH43HVhWuq6n5YQipCSHv0LenvIXU1KAg==", null, false, "a335ac92-31b2-432e-af20-4d3db1662fd8", false, "example@gmail.com" },
+                    { "74e4fbd8-b8d1-4b31-9f81-8c604396218b", 0, "bfb7f19c-bc98-4e33-93ac-e77edc90ff6b", "admin@gmail.com", false, "Gabriel", "Dimitrov", false, null, "ADMIN@GMAIL.COM", "ADMIN@GMAIL.COM", "AQAAAAEAACcQAAAAELbt5N6TjJmGfY3t7oa2mH7+HmCWH6pKkyT8kPv9DUj0fsgO3BMW9gjEJPzH9cV0pA==", null, false, "87d80e45-d453-4ccb-993a-10b2dffae7a8", false, "admin@gmail.com" },
+                    { "e8852114-4614-4530-9bcf-d9bfd4c92535", 0, "c8ce8abe-52fc-41db-a51e-cad2e9fc5e3c", "guest@gmail.com", false, "Todor", "Ivanov", false, null, "GUEST@GMAIL.COM", "GUEST@GMAIL.COM", "AQAAAAEAACcQAAAAECdpuBOtsY/Jtykb3zSxUgtBZaD2gN1mTSaRHenq7ZItm7xiW3rAXlGAn8k2+izAWA==", null, false, "2499382c-52c0-4564-b7fb-04db224e183b", false, "guest@gmail.com" },
+                    { "f61b7997-5b5b-4b60-89f2-eba32d1a3d29", 0, "ba4dab72-50dc-4ff5-8a4d-4828376006cc", "manu@gmail.com", false, "Ivan", "Dragiev", false, null, "MANU@GMAIL.COM", "MANU@GMAIL.COM", "AQAAAAEAACcQAAAAEOHjIQDn1/9HiviLO+isA7OdLT8+DxUiqUvu7Oszj+StexrC71o4AE5F2ZJWmPhdTw==", null, false, "86577e0d-53eb-47a9-9943-3c3f41739fca", false, "manu@gmail.com" }
                 });
 
             migrationBuilder.InsertData(
@@ -547,12 +547,12 @@ namespace SmallFarm.Data.Migrations
                 columns: new[] { "Id", "CategoryId", "Description", "ImageUrl", "IsActive", "ManufacturerId", "Name", "PricePerKg", "Quantity" },
                 values: new object[,]
                 {
-                    { new Guid("12bc6396-3173-4475-a45b-6ff7ed9c0070"), 2, "Very delicious western bulgarian bananas!", "https://images.unsplash.com/photo-1603833665858-e61d17a86224?q=80&w=1854&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D", true, new Guid("f61b7997-5b5b-4b60-89f2-eba32d1a3d29"), "Bananas", 3.10m, 20.0 },
-                    { new Guid("45d98415-6bf2-40d4-9de9-e0757ea3b624"), 2, "Very delicious western bulgarian apples!", "https://images.unsplash.com/photo-1576179635662-9d1983e97e1e?q=80&w=1887&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D", true, new Guid("f61b7997-5b5b-4b60-89f2-eba32d1a3d29"), "Red Apples", 3.90m, 10.0 },
-                    { new Guid("5c8c008a-fa06-446d-b313-7d6948bd6382"), 1, "Very delicious western bulgarian cucumbers!", "https://images.unsplash.com/photo-1449300079323-02e209d9d3a6?q=80&w=1974&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D", true, new Guid("f61b7997-5b5b-4b60-89f2-eba32d1a3d29"), "Cucumbers", 1.90m, 7.0 },
-                    { new Guid("7cb5eac0-73fe-45e3-a1e6-689fc21faf42"), 1, "Very delicious western bulgarian tomatoes!", "https://images.unsplash.com/photo-1582284540020-8acbe03f4924?q=80&w=1935&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D", true, new Guid("f61b7997-5b5b-4b60-89f2-eba32d1a3d29"), "Big red tomatoes", 3.30m, 9.0 },
-                    { new Guid("c17bb00f-d978-42bd-9fd6-2c5f88966949"), 3, "Milk form domestic cow!", "https://images.unsplash.com/photo-1601436423474-51738541c1b1?q=80&w=1854&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D", true, new Guid("f61b7997-5b5b-4b60-89f2-eba32d1a3d29"), "Cow milk", 1.60m, 25.0 },
-                    { new Guid("fa37fd5d-5644-470d-a0c0-0d247ae0f18d"), 1, "Very delicious western bulgarian potatoes!", "https://images.unsplash.com/photo-1590165482129-1b8b27698780?q=80&w=1854&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D", true, new Guid("f61b7997-5b5b-4b60-89f2-eba32d1a3d29"), "Small Potatoes", 5.20m, 12.0 }
+                    { new Guid("085c3f64-847f-4299-8e15-2d3c3e981d9d"), 2, "Very delicious western bulgarian bananas!", "https://images.unsplash.com/photo-1603833665858-e61d17a86224?q=80&w=1854&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D", true, new Guid("f61b7997-5b5b-4b60-89f2-eba32d1a3d29"), "Bananas", 3.10m, 20.0 },
+                    { new Guid("13167a53-cda3-46f3-87fe-ba8eb9fe8eb9"), 1, "Very delicious western bulgarian tomatoes!", "https://images.unsplash.com/photo-1582284540020-8acbe03f4924?q=80&w=1935&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D", true, new Guid("f61b7997-5b5b-4b60-89f2-eba32d1a3d29"), "Big red tomatoes", 3.30m, 9.0 },
+                    { new Guid("20e3c4bf-9db4-466f-a70c-5f1dc236a601"), 1, "Very delicious western bulgarian cucumbers!", "https://images.unsplash.com/photo-1449300079323-02e209d9d3a6?q=80&w=1974&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D", true, new Guid("f61b7997-5b5b-4b60-89f2-eba32d1a3d29"), "Cucumbers", 1.90m, 7.0 },
+                    { new Guid("32cbd0dc-ed56-4270-a965-ee99cc341037"), 3, "Milk form domestic cow!", "https://images.unsplash.com/photo-1601436423474-51738541c1b1?q=80&w=1854&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D", true, new Guid("f61b7997-5b5b-4b60-89f2-eba32d1a3d29"), "Cow milk", 1.60m, 25.0 },
+                    { new Guid("3e3cb56a-5237-4b5d-a2b3-45464604dd5d"), 1, "Very delicious western bulgarian potatoes!", "https://images.unsplash.com/photo-1590165482129-1b8b27698780?q=80&w=1854&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D", true, new Guid("f61b7997-5b5b-4b60-89f2-eba32d1a3d29"), "Small Potatoes", 5.20m, 12.0 },
+                    { new Guid("7b43a47c-7d73-4d82-bf37-1cebaa6751e1"), 2, "Very delicious western bulgarian apples!", "https://images.unsplash.com/photo-1576179635662-9d1983e97e1e?q=80&w=1887&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D", true, new Guid("f61b7997-5b5b-4b60-89f2-eba32d1a3d29"), "Red Apples", 3.90m, 10.0 }
                 });
 
             migrationBuilder.CreateIndex(
@@ -627,8 +627,7 @@ namespace SmallFarm.Data.Migrations
             migrationBuilder.CreateIndex(
                 name: "IX_ProductsOrders_ProductId",
                 table: "ProductsOrders",
-                column: "ProductId",
-                unique: true);
+                column: "ProductId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_Requests_CityId",

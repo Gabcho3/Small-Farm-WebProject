@@ -38,7 +38,7 @@ namespace SmallFarm.Data
 
             builder.Entity<ProductOrder>()
                 .HasOne(p => p.Product)
-                .WithOne()
+                .WithMany()
                 .OnDelete(DeleteBehavior.Restrict);
 
 
