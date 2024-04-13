@@ -47,7 +47,7 @@ namespace SmallFarm.Core.Services
         {
             return await context.Orders
                 .AsNoTracking()
-                .Where(o => o.ManufacturerId == Guid.Parse(id))
+                .Where(o => o.ManufacturerId == Guid.Parse(id) && o.IsActive)
                 .Select(o => new OrderViewModel()
                 {
                     Id = o.Id,
@@ -84,6 +84,7 @@ namespace SmallFarm.Core.Services
                 ManufacturerId = cartProducts.First().Product.ManufacturerId,
                 OrderedDate = DateTime.Now,
                 TotalPrice = cartProducts.Sum(p => p.Price),
+                IsActive = true
             };
 
             await context.Orders.AddAsync(order);

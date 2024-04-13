@@ -10,7 +10,7 @@ namespace SmallFarm.Core.Models.Order
 
         public decimal TotalPrice { get; set; }
 
-        public bool IsActive { get; set; }
+        public bool IsActive { get; set; } = true;
 
         public List<ProductInOrderViewModel> Products { get; set; } = new List<ProductInOrderViewModel>();
     }

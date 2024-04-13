@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Moq;
 using SmallFarm.Core.Contracts;
@@ -27,21 +28,17 @@ namespace SmallFarm.Tests.Services
             this.context = DatabaseMock.Instance;
             this.mapper = new Mapper(new MapperConfiguration(cfg => cfg.AddProfile<SmallFarmProfile>()));
 
-            var user = await context.Users.FirstAsync(u => u.Email == "example@gmail.com");
+            var user = await context.Users.FirstOrDefaultAsync(u => u.Email == "example@gmail.com");
+            
             var userManager = UserManagerMock.Instance;
             userManager
-                .Setup(x => x.FindByEmailAsync(user.Email))
-                .ReturnsAsync(new ApplicationUser()
-                {
-                    Email = user.Email,
-                });
+                .Setup(x => x.FindByEmailAsync("example@gmail.com"))
+                .ReturnsAsync(new ApplicationUser());
 
-            userManager.Setup(x => x.AddToRoleAsync(user, "Manufacturer"));
-
-            userManager.Setup(x => x.RemoveFromRoleAsync(user, "Manufacturer"));
+            userManager.Setup(x => x.AddToRoleAsync(user, "Manufacturer")).ReturnsAsync(IdentityResult.Success);
+            userManager.Setup(x => x.RemoveFromRoleAsync(user, "Manufacturer")).ReturnsAsync(IdentityResult.Success);
 
             this.manufacturerService = new ManufacturerService(context, mapper, userManager.Object);
-
             this.manufacturer = await context.Manufacturers.FirstOrDefaultAsync(m => m.Email == "manu@gmail.com");
 
             await context.Database.EnsureDeletedAsync();

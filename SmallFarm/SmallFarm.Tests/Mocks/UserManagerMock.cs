@@ -14,7 +14,7 @@ namespace SmallFarm.Tests.Mocks
 
                 return new Mock<UserManager<ApplicationUser>>(
                     userStoreMock.Object,
-                    null, // You can add other parameters here if needed
+                    null,
                     null,
                     null,
                     null,

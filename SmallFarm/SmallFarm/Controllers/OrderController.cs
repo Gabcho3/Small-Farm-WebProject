@@ -73,16 +73,17 @@ namespace SmallFarm.Controllers
 
         [HttpGet]
         [Authorize(Roles = "Manufacturer")]
-        public async Task<IActionResult> Confirm(Guid id)
+        public async Task<IActionResult> Confirm(string id)
         {
             if (!User.IsManufacturer())
             {
                 return RedirectToAction("Error404", "Home");
             }
 
-            await orderService.ConfirmAsync(id);
+            await orderService.ConfirmAsync(Guid.Parse(id));
 
-            return RedirectToAction("Index", new { id });
+            id = userManager.GetUserId(User);
+            return RedirectToAction("Index", new{id});
         }
     }
 }

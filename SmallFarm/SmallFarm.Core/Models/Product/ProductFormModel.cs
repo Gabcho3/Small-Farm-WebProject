@@ -12,7 +12,7 @@ namespace SmallFarm.Core.Models.Product
 
         [Required]
         [StringLength(NameMaxLength, MinimumLength = NameMinLength, ErrorMessage = StringLengthValidationError)]
-        public string? Name { get; set; }
+        public string Name { get; set; }
 
         [StringLength(DescriptionMaxLength, ErrorMessage = StringMaxLengthValidationError)]
         public string? Description { get; set; }
