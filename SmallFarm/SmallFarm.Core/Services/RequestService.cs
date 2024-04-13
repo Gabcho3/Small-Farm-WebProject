@@ -35,7 +35,7 @@ namespace SmallFarm.Core.Services
         public async Task AddAsync(RequestFormModel form)
         {
             var request = mapper.Map<Request>(form);
-            request.UserId = userManager.Users.First(u => u.Email == form.UserEmail).Id;
+            request.UserId = userManager.FindByEmailAsync(form.UserEmail).Result.Id;
 
             await context.Requests.AddAsync(request);
             await context.SaveChangesAsync();
@@ -55,7 +55,7 @@ namespace SmallFarm.Core.Services
                 .FirstAsync();
             request!.IsActive = false;
 
-             var toAdd = mapper.Map<RequestFormModel>(request);
+            var toAdd = mapper.Map<RequestFormModel>(request);
 
             await manufacturerService.AddManufacturerAsync(toAdd);
 

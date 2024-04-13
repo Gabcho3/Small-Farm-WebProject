@@ -30,7 +30,7 @@ namespace SmallFarm.Tests.Services
                 .ReturnsAsync(new ApplicationUser());
 
             var manufacturerService = new Mock<IManufacturerService>();
-            manufacturerService.Setup(m => m.AddManufacturerAsync(new RequestFormModel()));
+            manufacturerService.Setup(m => m.AddManufacturerAsync(new RequestFormModel())).Returns(Task.CompletedTask);
 
             this.requestService = new RequestService(context, mapper, userManager.Object, manufacturerService.Object);
 
@@ -61,7 +61,7 @@ namespace SmallFarm.Tests.Services
         }
 
         [Test]
-        public async Task ApproveAsync_ShouldAddManufacturerAndSetNotActiveToRequest()
+        public async Task DisapproveAsync_ShouldSetRequestToNotActive()
         {
             var guid = Guid.NewGuid();
 
@@ -77,11 +77,11 @@ namespace SmallFarm.Tests.Services
             };
 
             await requestService.AddAsync(form);
-            await requestService.ApproveAsync(guid);
+            await requestService.DisapproveAsync(guid);
 
-            var addedManufacturer = await context.Manufacturers.FirstAsync(m => m.Email == form.UserEmail);
+            var requestIsActive = context.Requests.FindAsync(guid).Result!.IsActive;
 
-            Assert.IsNotNull(addedManufacturer);
+            Assert.IsFalse(requestIsActive);
         }
     }
 }
