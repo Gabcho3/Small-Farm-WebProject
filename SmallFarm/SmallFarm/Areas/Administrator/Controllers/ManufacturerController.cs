@@ -25,7 +25,7 @@ namespace SmallFarm.Areas.Administrator.Controllers
             return View(allManufacturers);
         }
 
-        [HttpPost]
+        [HttpGet]
         public async Task<IActionResult> Remove(Guid id)
         {
             await manufacturerService.DeleteManufacturerAsync(id);

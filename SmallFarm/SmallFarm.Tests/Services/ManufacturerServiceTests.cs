@@ -1,6 +1,4 @@
 ﻿using AutoMapper;
-using Microsoft.AspNetCore.Identity;
-using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 using Moq;
 using SmallFarm.Core.Contracts;
@@ -21,7 +19,7 @@ namespace SmallFarm.Tests.Services
         private IMapper mapper;
         private IManufacturerService manufacturerService;
 
-        private Manufacturer manufacturer;
+        private Manufacturer? manufacturer;
 
         [SetUp]
         public async Task SetUp()

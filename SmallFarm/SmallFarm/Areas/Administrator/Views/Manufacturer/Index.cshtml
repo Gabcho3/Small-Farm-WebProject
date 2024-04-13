@@ -34,29 +34,9 @@
                     <li class="list-group-item bg-info" style="height:5em;"><strong>Address:</strong> @manufacturer.Address, @manufacturer.City</li>
                 </ul>
                 <div class="card-body w-100 ms-auto me-auto">
-                    <button class="btn btn-danger w-100" data-bs-toggle="modal" data-bs-target="#deleteModal">Delete</button>
+                    <a asp-controller="Manufacturer" asp-action="Remove" asp-route-id="@manufacturer.Id" class="btn btn-danger w-100">Delete</a>
                 </div>
-            </div>
 
-            <!-- Modal -->
-            <div class="modal fade" id="deleteModal" tabindex="-1" aria-labelledby="deleteModalLabel" aria-hidden="true">
-                <div class="modal-dialog">
-                    <div class="modal-content">
-                        <div class="modal-header">
-                            <h1 class="modal-title fs-5" id="deleteModalLabel">Remove Manufacturer</h1>
-                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                        </div>
-                        <div class="modal-body">
-                            Are you sure you want to remove @manufacturer.Name?
-                        </div>
-                        <div class="modal-footer">
-                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">No</button>
-                            <form asp-controller="Manufacturer" asp-action="Remove" asp-route-id="@manufacturer.Id" method="post">
-                                <button class="btn btn-danger">Yes</button>
-                            </form>
-                        </div>
-                    </div>
-                </div>
             </div>
         }
     </div>
