@@ -49,7 +49,7 @@ else
                                 @if (product.Category == "Drink")
                                 {
                                     <span class="card-text">Liters: @product.Quantity</span>
-                                    <span class="card-text text-danger text-uppercase">@product.AvailableQuantity liters have left</span>
+                                    <span class="card-text text-danger text-uppercase">@product.AvailableQuantity.ToString("f2") liters have left</span>
 
                                     <div style="display:flex;flex-direction:column;align-items:end;">
                                         <span class="card-text text-secondary"><small class="text-body-secondary">@product.PricePerKg € per liter</small></span>
@@ -59,7 +59,7 @@ else
                                 else
                                 {
                                     <span class="card-text">Kilograms: @product.Quantity</span>
-                                    <span class="card-text text-danger text-uppercase">@product.AvailableQuantity kg have left</span>
+                                    <span class="card-text text-danger text-uppercase">@product.AvailableQuantity.ToString("f2") kg have left</span>
 
                                     <div style="display:flex;flex-direction:column;align-items:end;">
                                         <span class="card-text text-secondary"><small class="text-body-secondary">@product.PricePerKg € per kilogram</small></span>

@@ -35,12 +35,12 @@
                             @if (product.Category == "Drink")
                             {
                                 <li class="list-group-item bg-info" style="height:3em;">@product.Price € per liter</li>
-                                <li class="list-group-item bg-info" style="height:3em;">@product.Quantity liters have left</li>
+                                <li class="list-group-item bg-info" style="height:3em;">@product.Quantity.ToString("f2") liters have left</li>
                             }
                             else
                             {
                                 <li class="list-group-item bg-info" style="height:3em;">@product.Price € per kilogram</li>
-                                <li class="list-group-item bg-info" style="height:3em;">@product.Quantity kilograms have left</li>
+                                <li class="list-group-item bg-info" style="height:3em;">@product.Quantity.ToString("f2") kilograms have left</li>
                             }
                         </ul>
                     </a>

@@ -43,11 +43,11 @@ else
                     </span>
                     <span class="list-group-item bg-info text-secondary" style="height:3.5em;font-size:14px">Ordered on @order.OrderedDate.ToString("G")</span>
                     
-                    @if (User.IsManufacturer())
+                    @if (User.IsManufacturer() && order.IsActive)
                     {
                         <a asp-controller="Order" asp-action="Confirm" asp-route-id="@order.Id" class="btn btn-success m-0 h-25 mb-3" style="font-size:14px">Confirm and ship</a>
                     }
-                    else
+                    else if(!User.IsManufacturer())
                     {
                         if (!order.IsActive)
                         {
