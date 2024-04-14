@@ -51,7 +51,7 @@
     <h2 class="text-center">No Products found by the given criteria!</h2>
 }
 
-<div class="row" style="display:flex;justify-content:center">
+<div id="catalog" class="row" style="display:flex;justify-content:center">
     @foreach (var product in Model.Products)
     {
         <div class="card text-bg-success mb-3 col-1 bg-info me-3" style="width:12.5rem;padding:0;">
@@ -101,9 +101,6 @@
 </div>
 
 <script>
-    const minPriceInput = document.getElementById('minPrice');
-    const maxPriceInput = document.getElementById('maxPrice');
-
     minPriceInput.addEventListener('input', () => {
         var minValue = parseFloat(minPriceInput.value);
         var maxValue = parseFloat(maxPriceInput.value);
