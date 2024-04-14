@@ -10,12 +10,10 @@ namespace SmallFarm.Core.Services
     public class OrderService : IOrderService
     {
         private readonly SmallFarmDbContext context;
-        private readonly ICartService cartService;
 
-        public OrderService(SmallFarmDbContext _context, ICartService cartService)
+        public OrderService(SmallFarmDbContext _context)
         {
             this.context = _context;
-            this.cartService = cartService;
         }
 
         public async Task<List<OrderViewModel>> GetOrdersAsync(string id)
@@ -70,9 +68,6 @@ namespace SmallFarm.Core.Services
 
         public async Task OrderAsync(string clientId)
         {
-            var userProducts = await cartService.GetAllProductsInCartAsync(clientId);
-            userProducts = userProducts.ToList();
-
             var cartProducts = await context.Carts
                 .Where(p => p.ClientId == clientId)
                 .Include(cart => cart.Product)
@@ -91,27 +86,21 @@ namespace SmallFarm.Core.Services
 
             foreach (var cartProduct in cartProducts)
             {
-                for (int j = 0; j < userProducts.Count(); j++)
+                cartProduct.Product.Quantity -= cartProduct.Quantity;
+
+                if (cartProduct.Product.Quantity == 0.0)
                 {
-                    if (cartProduct.Product.Name == userProducts[j].Name)
-                    {
-                        cartProduct.Product.Quantity -= userProducts[j].Quantity;
-
-                        if (cartProduct.Product.Quantity == 0.0)
-                        {
-                            cartProduct.Product.IsActive = false;
-                        }
-
-                        var productOrder = new ProductOrder()
-                        {
-                            Order = order,
-                            Product = cartProduct.Product,
-                            Quantity = userProducts[j].Quantity
-                        };
-
-                        await context.ProductsOrders.AddAsync(productOrder);
-                    }
+                    cartProduct.Product.IsActive = false;
                 }
+
+                var productOrder = new ProductOrder()
+                {
+                    Order = order,
+                    Product = cartProduct.Product,
+                    Quantity = cartProduct.Quantity
+                };
+
+                await context.ProductsOrders.AddAsync(productOrder);
             };
 
             context.Carts.RemoveRange(cartProducts);
