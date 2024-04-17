@@ -236,9 +236,9 @@ namespace SmallFarm.Data.Migrations
                     b.HasData(
                         new
                         {
-                            Id = "d924af54-ac3f-4ef6-87a6-6a7894e1c0a0",
+                            Id = "734bea50-2503-44e9-96c5-c44c1d6eb2ac",
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "0ad78ec0-5351-490c-b461-fd7f10e3a16e",
+                            ConcurrencyStamp = "00129eb2-9db5-41c4-bc8c-0a8457347a36",
                             Email = "admin@gmail.com",
                             EmailConfirmed = false,
                             FirstName = "Gabriel",
@@ -246,10 +246,10 @@ namespace SmallFarm.Data.Migrations
                             LockoutEnabled = false,
                             NormalizedEmail = "ADMIN@GMAIL.COM",
                             NormalizedUserName = "ADMIN@GMAIL.COM",
-                            PasswordHash = "AQAAAAEAACcQAAAAEJqN/kk31BfrIkGHHb0wZT1M+QDZz/iR1Bj2llBnaOC7cf2/z42SJ7CQpWhYt6RcTA==",
+                            PasswordHash = "AQAAAAEAACcQAAAAEAJHIQ7aDwzckQysU+3ne3/TVuxYCu7qR8ZaqkbdeQPmHZvnGCid+P0zeWte4dlc4A==",
                             PhoneNumber = "08888888888",
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "79236981-f668-4bf0-932c-cf2b4190dc55",
+                            SecurityStamp = "b33fc962-74eb-4bb8-8f02-2aac46dc4c54",
                             TwoFactorEnabled = false,
                             UserName = "admin@gmail.com"
                         },
@@ -257,7 +257,7 @@ namespace SmallFarm.Data.Migrations
                         {
                             Id = "f61b7997-5b5b-4b60-89f2-eba32d1a3d29",
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "81893276-d4ea-4651-97de-d0499953acdf",
+                            ConcurrencyStamp = "1fea8006-4ee2-4b76-ab34-91e5e5602304",
                             Email = "manu@gmail.com",
                             EmailConfirmed = false,
                             FirstName = "Ivan",
@@ -265,18 +265,18 @@ namespace SmallFarm.Data.Migrations
                             LockoutEnabled = false,
                             NormalizedEmail = "MANU@GMAIL.COM",
                             NormalizedUserName = "MANU@GMAIL.COM",
-                            PasswordHash = "AQAAAAEAACcQAAAAEPLfpFxAGSjy+/Zo77a6Fc0/CfKt2FYfz0QTKBxC5N2P7UerimCse8UD8G3mbjTUDg==",
+                            PasswordHash = "AQAAAAEAACcQAAAAELHS6bSAfq8w3rK6TLiT7cjFRgbp2XVl22LROQ3gosMrHh3uBOvKLFDZbr91jImJ2w==",
                             PhoneNumber = "08888888888",
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "50f2e037-84d7-4304-b158-391869b180cc",
+                            SecurityStamp = "b44fb996-9d68-4911-b982-3cd1dc61894f",
                             TwoFactorEnabled = false,
                             UserName = "manu@gmail.com"
                         },
                         new
                         {
-                            Id = "8fed1b6a-57b4-40f0-95cb-ae6b8501043d",
+                            Id = "b18f0052-fc43-4740-a95c-7676953a01ab",
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "1af142ad-c639-428f-b124-20e3567325d6",
+                            ConcurrencyStamp = "9788ba82-7a6d-4f87-8022-c61d32358d8d",
                             Email = "guest@gmail.com",
                             EmailConfirmed = false,
                             FirstName = "Todor",
@@ -284,18 +284,18 @@ namespace SmallFarm.Data.Migrations
                             LockoutEnabled = false,
                             NormalizedEmail = "GUEST@GMAIL.COM",
                             NormalizedUserName = "GUEST@GMAIL.COM",
-                            PasswordHash = "AQAAAAEAACcQAAAAEAb7aqbTul9Ah68CKtFoJQdKP5LnRXTAReigODws4pWhmBV0c++yIECbNIFKdllrjQ==",
+                            PasswordHash = "AQAAAAEAACcQAAAAEJwSDr6MmXgeCouRowgtIqnFSp40wf5lOqP1cLAlkY1YtdYYY7HhfWON7WAa9diY7A==",
                             PhoneNumber = "08888888888",
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "52c6ea85-9ed4-4058-a0d2-d61831b7eb1c",
+                            SecurityStamp = "b9378a88-8e48-4c57-91e1-0c93957c29d0",
                             TwoFactorEnabled = false,
                             UserName = "guest@gmail.com"
                         },
                         new
                         {
-                            Id = "43bd9ac8-bf3c-4270-8948-0a18d04e4d87",
+                            Id = "3eacac6e-d6a2-4b8b-8086-d4dcd2a0af52",
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "19efff25-e6f1-468f-b466-d0b7fb4fa451",
+                            ConcurrencyStamp = "4cf70db7-af6a-4708-b3d2-11d0be4a05aa",
                             Email = "example@gmail.com",
                             EmailConfirmed = false,
                             FirstName = "Ivan",
@@ -303,10 +303,10 @@ namespace SmallFarm.Data.Migrations
                             LockoutEnabled = false,
                             NormalizedEmail = "EXAMPLE@GMAIL.COM",
                             NormalizedUserName = "EXAMPLE@GMAIL.COM",
-                            PasswordHash = "AQAAAAEAACcQAAAAECqvPLaPWtBQdQr6+Fg68OCkI+jktqEL86bPzN3fXmiYx2zQ+k+HBobyuQWtXr044w==",
+                            PasswordHash = "AQAAAAEAACcQAAAAELD7/MTyXzxZ1wS7b5kOOH/S4cvGYSOd9jQfYExlZE/mk3WVsJaayn8n8DrVLzEBZQ==",
                             PhoneNumber = "08888888888",
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "11fccb05-e063-4806-847a-45945a9d4f31",
+                            SecurityStamp = "5f15f882-b744-4950-82b1-a77849ccdb56",
                             TwoFactorEnabled = false,
                             UserName = "example@gmail.com"
                         });
@@ -1198,7 +1198,7 @@ namespace SmallFarm.Data.Migrations
                     b.HasData(
                         new
                         {
-                            Id = new Guid("6ca65456-4e64-4fdd-8f75-fb210c1fe00f"),
+                            Id = new Guid("143bb4bc-ff74-42ba-b1ad-c0b6c6e5712d"),
                             CategoryId = 2,
                             Description = "Fresh, handpicked red apples delivered straight to your doorstep!",
                             ImageUrl = "https://cdn.pixabay.com/photo/2016/08/12/22/38/apple-1589874_1280.jpg",
@@ -1210,7 +1210,7 @@ namespace SmallFarm.Data.Migrations
                         },
                         new
                         {
-                            Id = new Guid("fd1143a0-23ac-4fa8-bc02-f66bd82362d1"),
+                            Id = new Guid("5fca2698-f882-413d-aed8-852001015155"),
                             CategoryId = 2,
                             Description = "Premium bananas, handpicked for freshness, delivered to your doorstep!",
                             ImageUrl = "https://cdn.pixabay.com/photo/2016/09/03/20/48/bananas-1642706_1280.jpg",
@@ -1222,7 +1222,7 @@ namespace SmallFarm.Data.Migrations
                         },
                         new
                         {
-                            Id = new Guid("3aa05743-af2d-4669-a121-d0d25908a500"),
+                            Id = new Guid("530ca194-a9fe-4661-91e1-0a350944fb47"),
                             CategoryId = 3,
                             Description = "Milk from domestic cow!",
                             ImageUrl = "https://cdn.pixabay.com/photo/2016/05/07/16/09/milk-1377564_1280.jpg",
@@ -1234,7 +1234,7 @@ namespace SmallFarm.Data.Migrations
                         },
                         new
                         {
-                            Id = new Guid("7f2e25cf-1604-4950-9664-2bd5924ba3de"),
+                            Id = new Guid("7a603917-33b3-4b32-9a3d-d88ece1754ef"),
                             CategoryId = 1,
                             Description = "Very delicious western bulgarian tomatoes!",
                             ImageUrl = "https://cdn.pixabay.com/photo/2022/09/05/09/50/tomatoes-7433786_1280.jpg",
@@ -1246,7 +1246,7 @@ namespace SmallFarm.Data.Migrations
                         },
                         new
                         {
-                            Id = new Guid("4235e003-a1be-4df6-b624-dd1a5a1817d2"),
+                            Id = new Guid("2de26980-cd22-47cf-881f-afec45971b93"),
                             CategoryId = 1,
                             Description = "Enjoy crisp cucumbers, harvested fresh and delivered conveniently to you!",
                             ImageUrl = "https://cdn.pixabay.com/photo/2015/07/17/13/44/cucumbers-849269_1280.jpg",
@@ -1258,7 +1258,7 @@ namespace SmallFarm.Data.Migrations
                         },
                         new
                         {
-                            Id = new Guid("512527e8-ad79-431b-99dd-b400d7284ab0"),
+                            Id = new Guid("f5054f1e-7bc2-407a-a0d0-1272bca34bf6"),
                             CategoryId = 1,
                             Description = "Very delicious western bulgarian potatoes!",
                             ImageUrl = "https://cdn.pixabay.com/photo/2014/08/06/20/32/potatoes-411975_1280.jpg",
