@@ -58,7 +58,8 @@ namespace SmallFarm.Controllers
 
             await service.AddAsync(model);
 
-            return RedirectToAction("Index");
+            string id = UserId;
+            return RedirectToAction("Index", "Cart", new { id });
         }
         
         [HttpGet]
@@ -67,7 +68,8 @@ namespace SmallFarm.Controllers
         {
             await service.RemoveAsync(id, UserId);
 
-            return RedirectToAction("Index");
+            id = Guid.Parse(UserId);
+            return RedirectToAction("Index", "Cart", new{id});
         }
 
         private string UserId => userManager.GetUserId(User);
