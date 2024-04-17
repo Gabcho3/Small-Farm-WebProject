@@ -24,6 +24,7 @@ namespace SmallFarm.Core.Services
                 .Select(o => new OrderViewModel()
                 {
                     Id = o.Id,
+                    Contacts = o.Manufacturer.PhoneNumber + ", " + o.Manufacturer.Name,
                     OrderedDate = o.OrderedDate,
                     TotalPrice = o.TotalPrice,
                     IsActive = o.IsActive,
@@ -49,6 +50,7 @@ namespace SmallFarm.Core.Services
                 .Select(o => new OrderViewModel()
                 {
                     Id = o.Id,
+                    Contacts = o.Client.PhoneNumber + ", " + o.Client.FirstName + " " + o.Client.LastName,
                     OrderedDate = o.OrderedDate,
                     TotalPrice = o.TotalPrice,
                     IsActive = o.IsActive,

@@ -12,6 +12,8 @@ namespace SmallFarm.Core.Models.Order
 
         public bool IsActive { get; set; } = true;
 
+        public string Contacts { get; set; }
+
         public List<ProductInOrderViewModel> Products { get; set; } = new List<ProductInOrderViewModel>();
     }
 }

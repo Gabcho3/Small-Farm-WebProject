@@ -45,15 +45,19 @@ else
                     
                     @if (User.IsManufacturer() && order.IsActive)
                     {
-                        <a asp-controller="Order" asp-action="Confirm" asp-route-id="@order.Id" class="btn btn-success m-0 h-25 mb-3" style="font-size:14px">Confirm and ship</a>
+                        <a asp-controller="Order" asp-action="Confirm" asp-route-id="@order.Id" class="btn btn-success m-0 h-25 mb-3" style="font-size:14px">Confirm order</a>
                     }
                     else if(!User.IsManufacturer())
                     {
                         if (!order.IsActive)
                         {
-                            <span class="list-group-item bg-info text-danger text-center" style="height:3.5em;font-size:16px">Confirmed and shipped</span>
+                            <span class="list-group-item bg-info text-danger text-center" style="height:2.5em;font-size:16px">Confirmed for delivery!</span>
                         }
                     }
+
+                    <span class="list-group-item bg-info text-secondary">
+                        Contact: @order.Contacts
+                    </span>
 
                 </ul>
             </div>
