@@ -20,11 +20,16 @@ namespace SmallFarm.Controllers
         }
 
         [Authorize]
-        public async Task<IActionResult> Index()
+        public async Task<IActionResult> Index(string id)
         {
             if (!User.Identity!.IsAuthenticated)
             {
                 return Redirect("/Identity/Account/Register");
+            }
+
+            if (userManager.GetUserId(User) != id)
+            {
+                return RedirectToAction("Error404", "Home");
             }
 
             if (User.IsManufacturer())
@@ -40,6 +45,7 @@ namespace SmallFarm.Controllers
         [HttpPost]
         public async Task<IActionResult> Add(ProductToBuyModel model)
         {
+
             if (!User.Identity!.IsAuthenticated)
             {
                 return Redirect("/Identity/Account/Register");
