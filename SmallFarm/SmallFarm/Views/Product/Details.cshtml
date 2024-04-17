@@ -35,8 +35,8 @@ else
         </ul>
     </div>
 
-    <div class="card ms-auto me-auto mt-5" style="max-width:18em;">
-        <img src="@Model.ImageUrl" class="card-img-top" style="height:150px" alt="Image of @Model.Name">
+    <div class="card ms-auto me-auto mt-5" style="max-width:18em;border-radius:30px">
+        <img src="@Model.ImageUrl" class="card-img-top" style="height:150px;border-top-left-radius:30px;border-top-right-radius:30px" alt="Image of @Model.Name">
         <div class="card-body text-center">
             <h5 class="card-title">@Model.Name</h5>
             <p class="card-text">@Model.Description</p>
@@ -101,18 +101,16 @@ else
             </div>
 
             @*Hidden inputs for model*@
-            <input hidden="true" asp-for="Category" value="@Model.Category" />
             <input hidden="true" asp-for="Id" value="@Model.Id" />
             <input hidden="true" asp-for="Name" value="@Model.Name" />
+            <input hidden="true" asp-for="Category" value="@Model.Category" />
             <input hidden="true" asp-for="Description" value="@Model.Description" />
-            <input hidden="true" asp-for="Id" value="@Model.Id" />
             <input hidden="true" asp-for="AvailableQuantity" value="@Model.AvailableQuantity" />
             <input hidden="true" asp-for="PricePerKg" value="@Model.PricePerKg" />
             <input hidden="true" asp-for="ImageUrl" value="@Model.ImageUrl" />
             <input hidden="true" asp-for="Manufacturer" value="@Model.Manufacturer" />
             <input hidden="true" id="totalPriceInput" asp-for="@Model.Total" />
             <input hidden="true" asp-for="@Model.UserId" value="@signInManager.UserManager.GetUserId(User)" />
-
         </form>
     </div>
 }
