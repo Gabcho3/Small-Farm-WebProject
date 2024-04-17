@@ -93,6 +93,7 @@ namespace SmallFarm.Core.Services
             return await context.Products
                 .AsNoTracking()
                 .Include(p => p.Manufacturer)
+                .Include(p => p.Category)
                 .Where(p => p.IsActive)
                 .OrderByDescending(x => x.Id)
                 .Select(p => mapper.Map<ProductViewModel>(p))
