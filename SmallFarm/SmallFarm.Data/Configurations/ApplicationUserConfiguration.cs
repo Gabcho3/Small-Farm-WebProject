@@ -25,7 +25,8 @@ namespace SmallFarm.Data.Configurations
                 UserName = Admin.Email,
                 NormalizedUserName = Admin.Email.ToUpper(),
                 Email = Admin.Email,
-                NormalizedEmail = Admin.Email.ToUpper()
+                NormalizedEmail = Admin.Email.ToUpper(),
+                PhoneNumber = "08888888888"
             };
             admin.PasswordHash = hasher.HashPassword(admin, "admin123");
 
@@ -37,7 +38,8 @@ namespace SmallFarm.Data.Configurations
                 UserName = RoleConstants.Manufacturer.Email,
                 NormalizedUserName = RoleConstants.Manufacturer.Email.ToUpper(),
                 Email = RoleConstants.Manufacturer.Email,
-                NormalizedEmail = RoleConstants.Manufacturer.Email.ToUpper()
+                NormalizedEmail = RoleConstants.Manufacturer.Email.ToUpper(),
+                PhoneNumber = "08888888888"
             };
             manufacturer.PasswordHash = hasher.HashPassword(manufacturer, "manufacturer123");
 
@@ -49,7 +51,8 @@ namespace SmallFarm.Data.Configurations
                 Email = "example@gmail.com",
                 UserName = "example@gmail.com",
                 NormalizedEmail = "example@gmail.com".ToUpper(),
-                NormalizedUserName = "example@gmail.com".ToUpper()
+                NormalizedUserName = "example@gmail.com".ToUpper(),
+                PhoneNumber = "08888888888"
             };
             manu.PasswordHash = hasher.HashPassword(manu, "example123");
 
@@ -61,7 +64,8 @@ namespace SmallFarm.Data.Configurations
                 Email = "guest@gmail.com",
                 UserName = "guest@gmail.com",
                 NormalizedEmail = "guest@gmail.com".ToUpper(),
-                NormalizedUserName = "guest@gmail.com".ToUpper()
+                NormalizedUserName = "guest@gmail.com".ToUpper(),
+                PhoneNumber = "08888888888"
             };
             guest.PasswordHash = hasher.HashPassword(guest, "guest123");
 

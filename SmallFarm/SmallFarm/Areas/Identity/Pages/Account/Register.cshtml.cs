@@ -68,6 +68,10 @@ namespace SmallFarm.Areas.Identity.Pages.Account
             [StringLength(LastNameMaxLength, MinimumLength = LastNameMinLength, ErrorMessage = StringLengthValidationError)]
             public string LastName { get; set; }
 
+            [DataType(DataType.PhoneNumber)]
+            [Display(Name = "Phone Number")]
+            public string PhoneNumber { get; set; }
+
             /// <summary>
             ///     This API supports the ASP.NET Core Identity default UI infrastructure and is not intended to be used
             ///     directly from your code. This API may change or be removed in future releases.
@@ -114,6 +118,7 @@ namespace SmallFarm.Areas.Identity.Pages.Account
 
                 user.FirstName = Input.FirstName;
                 user.LastName = Input.LastName;
+                user.PhoneNumber = Input.PhoneNumber;
                 user.Email = Input.Email;
                 user.UserName = Input.Email;
 
