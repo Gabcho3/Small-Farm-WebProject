@@ -9,14 +9,14 @@ This project is a C# web application based on **MVC structure** made for **ASP.N
 - **Product Listings**: Manufacturers can create listings for their products, including descriptions, images, available quantity and price information;
 - **Order System**: Manufacturers can manage orders and update its statuses.
 
-## Technologies used
-**- .Net Core 6.0
-- ASP.NET Core
-- Enity Framework Core
-- MS SQL Server
-- NUnit and Moq
-- HTML, CSS, Bootstrap
-- JS**
+## Technologies used 
+- **.Net Core 6.0**
+- **ASP.NET Core**
+- **Enity Framework Core**
+- **MS SQL Server**
+- **NUnit and Moq**
+- **HTML, CSS, Bootstrap**
+- **JS**
 
 ## Users
 There are 3 types of users with different access to the application's functionality:
