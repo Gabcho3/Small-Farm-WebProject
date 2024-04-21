@@ -49,7 +49,7 @@ else
                 @if (Model.Category == "Drink")
                 {
                     <span class="input-group-text bg-success">Liters</span>
-                    <span class="input-group-text bg-secondary">@Model.AvailableQuantity.ToString("f2") liters left</span>
+                    <span id="kgLeft" class="input-group-text bg-secondary">@Model.AvailableQuantity.ToString("f2") liters left</span>
                 }
                 else
                 {
