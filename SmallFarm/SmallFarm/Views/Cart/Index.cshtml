@@ -27,11 +27,14 @@ else
         <div>
             @foreach (var product in Model)
             {
+                var base64 = Convert.ToBase64String(product.Image);
+                var imgSrc = $"data:image/gif;base64,{base64}";
+
                 productCount++;
                 <div class="card" style="width:540px;">
                     <div class="row g-0">
                         <div class="col-md-4">
-                            <img src="@product.ImageUrl" class="img-fluid rounded-start" style="margin-top:30%;height:130px;width:100%" alt="Image of @product.Name">
+                            <img src="@imgSrc" class="img-fluid rounded-start" style="margin-top:30%;height:130px;width:100%" alt="Image of @product.Name">
                         </div>
                         <div class="col-md-8">
                             <div class="card-body" style="display:flex;flex-direction:column;gap:5px">

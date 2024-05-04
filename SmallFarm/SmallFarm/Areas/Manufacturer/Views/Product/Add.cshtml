@@ -1,15 +1,11 @@
-﻿@using Microsoft.AspNetCore.Identity
-@inject UserManager<ApplicationUser> UserManager
-
-@using SmallFarm.Core.Models.Product
-@using SmallFarm.Data.Entities
+﻿@using SmallFarm.Core.Models.Product
 @model ProductFormModel
 
 @{
     ViewData["Title"] = "Add Product";
 }
 
-<form asp-controller="Product" asp-action="Add" class="row g-3" method="post">
+<form asp-controller="Product" asp-action="Add" class="row g-3" method="post" enctype="multipart/form-data">
 
     <div class="mx-auto col-12">
         <label class="form-label" for="inputName">Product Name</label>
@@ -55,10 +51,10 @@
             }
         </select>
     </div>
-
+    
     <div class="col-12">
-        <label class="form-label" for="imageInput">Image URL</label>
-        <input class="form-control" type="text" id="imageInput" asp-for="ImageUrl">
+        <label class="form-label">Upload Image</label>
+        <input class="form-control" type="file" asp-for="Image"/>
     </div>
 
     <div class="">

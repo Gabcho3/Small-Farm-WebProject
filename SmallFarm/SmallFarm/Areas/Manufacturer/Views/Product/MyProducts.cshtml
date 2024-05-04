@@ -19,8 +19,11 @@
         {
             counterId++;
 
+            var base64 = Convert.ToBase64String(product.Image);
+            var imgSrc = $"data:image/gif;base64,{base64}";
+
             <div class="card text-bg-success mb-3 col-1 bg-info" style="width: 18rem;padding:0;">
-                <img src="@product.ImageUrl" class="card-img-top" alt="Image of @product.Name" style="height:7em">
+                <img src="@imgSrc" class="card-img-top" alt="Image of @product.Name" style="height:7em">
                 <h3 class="card-header bg-success text-light text-center">@product.Name</h3>
                 <div class="accordion accordion-flush" id="accordionFlush-@counterId">
                     <div class="accordion-item">

@@ -23,9 +23,12 @@
         <div class="d-flex justify-content-center pt-4">
             @foreach (var product in randomProducts)
             {
+                var base64 = Convert.ToBase64String(product.Image);
+                var imgSrc = $"data:image/gif;base64,{base64}";
+
                 <div class="card text-bg-success bg-info me-3" style="width:12.5rem;padding:0;">
                     <a asp-controller="Product" asp-action="Details" asp-route-id="@product.Id" style="text-decoration:none">
-                        <img src="@product.ImageUrl" class="card-img-top" alt="Image of @product.Name" style="height:100px">
+                        <img src="@imgSrc" class="card-img-top" alt="Image of @product.Name" style="height:100px">
 
                         <h5 class="card-header bg-success text-light text-center">@product.Name</h5>
 

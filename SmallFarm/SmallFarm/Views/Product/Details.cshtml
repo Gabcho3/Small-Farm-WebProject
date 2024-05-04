@@ -16,6 +16,9 @@
 
     var otherProducts = await productService.GetManufacturerProductsAsync(@Model.Manufacturer);
     otherProducts = otherProducts.OrderBy(p => p.Name).ToList();
+
+    var base64 = Convert.ToBase64String(Model.Image);
+    var imgSrc = $"data:image/gif;base64,{base64}";
 }
 
 @if (!Model.IsActive)
@@ -36,7 +39,7 @@ else
     </div>
 
     <div class="card ms-auto me-auto mt-5" style="max-width:18em;border-radius:30px">
-        <img src="@Model.ImageUrl" class="card-img-top" style="height:150px;border-top-left-radius:30px;border-top-right-radius:30px" alt="Image of @Model.Name">
+        <img src="@imgSrc" class="card-img-top" style="height:150px;border-top-left-radius:30px;border-top-right-radius:30px" alt="Image of @Model.Name">
         <div class="card-body text-center">
             <h5 class="card-title">@Model.Name</h5>
             <p class="card-text">@Model.Description</p>
