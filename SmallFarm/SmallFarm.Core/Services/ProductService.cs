@@ -118,6 +118,15 @@ namespace SmallFarm.Core.Services
         {
             var productToAdd = mapper.Map<Product>(productForm);
 
+            byte[] imageToByte;
+            using (var memoryStream = new MemoryStream())
+            {
+                await productForm.Image.CopyToAsync(memoryStream);
+                imageToByte = memoryStream.ToArray();
+            }
+
+            productToAdd.Image = imageToByte;
+
             await context.AddAsync(productToAdd);
             await context.SaveChangesAsync();
         }
@@ -126,10 +135,18 @@ namespace SmallFarm.Core.Services
         {
             var productToEdit = await context.Products.FindAsync(id);
 
-            productToEdit!.Name = productForm.Name!;
+            byte[] imageToByte;
+            using (var memoryStream = new MemoryStream())
+            {
+                await productForm.Image.CopyToAsync(memoryStream);
+                imageToByte = memoryStream.ToArray();
+            }
+
+            productToEdit!.Image = imageToByte;
+
+            productToEdit.Name = productForm.Name!;
             productToEdit.Description = productForm.Description;
             productToEdit.PricePerKg = productForm.PricePerKg;
-            productToEdit.ImageUrl = productForm.ImageUrl;
             productToEdit.Quantity = (double)productForm.Quantity;
             productToEdit.CategoryId = productForm.CategoryId;
 

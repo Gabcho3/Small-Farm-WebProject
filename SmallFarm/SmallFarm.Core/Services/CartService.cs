@@ -40,7 +40,7 @@ namespace SmallFarm.Core.Services
                     Description = c.Product.Description,
                     AvailableQuantity = c.Product.Quantity,
                     PricePerKg = c.Product.PricePerKg,
-                    ImageUrl = c.Product.ImageUrl,
+                    Image = c.Product.Image,
                     Manufacturer = c.Product.Manufacturer.Name,
                     Quantity = c.Quantity,
                     UserId = clientId,

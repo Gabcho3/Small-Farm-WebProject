@@ -1,5 +1,4 @@
 ﻿using AutoMapper;
-using SmallFarm.Core.Contracts;
 using SmallFarm.Core.Models.City;
 using SmallFarm.Core.Models.Manufacturer;
 using SmallFarm.Core.Models.Product;
@@ -24,7 +23,8 @@ namespace SmallFarm.Core.Helpers
             CreateMap<City, CityViewModel>();
 
             //Products
-            CreateMap<ProductFormModel, Product>();
+            CreateMap<ProductFormModel, Product>()
+                .ForMember(dest => dest.Image, opt => opt.Ignore());
             CreateMap<Product, ProductFormModel>();
 
             CreateMap<Product, ProductViewModel>()
