@@ -7,6 +7,8 @@ using SmallFarm.Core.Services;
 using SmallFarm.Data;
 using SmallFarm.Tests.Mocks;
 using System;
+using System.Drawing;
+using Microsoft.AspNetCore.Http;
 
 namespace SmallFarm.Tests.Services
 {
@@ -92,7 +94,7 @@ namespace SmallFarm.Tests.Services
                 Id = guid,
                 CategoryId = 1,
                 Name = "Tomatoes",
-                ImageUrl = "https://th.bing.com/th/id/R.8168ff88e3da339e43444ebdf93ad6e1?rik=7H91jkiNq9v%2f5w&riu=http%3a%2f%2fwww.photos-public-domain.com%2fwp-content%2fuploads%2f2018%2f04%2fvine-ripened-tomatoes.jpg&ehk=ATJqIcbIis%2bmjm4LYOaPn8g%2f2PeIqETL9tpQvVivRdc%3d&risl=1&pid=ImgRaw&r=0",
+                Image = new FormFile(Stream.Null, baseStreamOffset: 0, length: 0, name: string.Empty, fileName: string.Empty),
                 PricePerKg = 10,
                 Quantity = 10,
                 ManufacturerId = manufacturerId
@@ -115,7 +117,7 @@ namespace SmallFarm.Tests.Services
                 Id = product.Id,
                 CategoryId = product.CategoryId,
                 Name = product.Name + "Test",
-                ImageUrl = product.ImageUrl,
+                Image = new FormFile(Stream.Null, baseStreamOffset: 0, length: 0, name: string.Empty, fileName: string.Empty),
                 PricePerKg = product.PricePerKg,
                 Quantity = (decimal)product.Quantity,
                 ManufacturerId = product.ManufacturerId
