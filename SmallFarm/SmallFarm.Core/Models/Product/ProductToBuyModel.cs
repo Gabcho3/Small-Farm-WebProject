@@ -18,7 +18,7 @@ namespace SmallFarm.Core.Models.Product
         [Precision(18, 2)]
         public decimal PricePerKg { get; set; }
 
-        public byte[] Image { get; set; } = null!;
+        public byte[] Image { get; set; }
 
         public string Manufacturer { get; set; } = null!;
 

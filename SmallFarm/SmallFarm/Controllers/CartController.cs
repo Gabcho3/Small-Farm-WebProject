@@ -51,7 +51,7 @@ namespace SmallFarm.Controllers
                 return Redirect("/Identity/Account/Register");
             }
 
-            if (!ModelState.IsValid)
+            if (!ModelState.IsValid && model.Image != null)
             {
                 return RedirectToAction("Details", "Product", new { model.Id });
             }

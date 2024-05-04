@@ -25,7 +25,8 @@ namespace SmallFarm.Core.Helpers
             //Products
             CreateMap<ProductFormModel, Product>()
                 .ForMember(dest => dest.Image, opt => opt.Ignore());
-            CreateMap<Product, ProductFormModel>();
+            CreateMap<Product, ProductFormModel>()
+                .ForMember(dest => dest.Image, opt => opt.Ignore());
 
             CreateMap<Product, ProductViewModel>()
                 .ForMember(dest => dest.Manufacturer,
