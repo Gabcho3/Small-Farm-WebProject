@@ -1,5 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using System.ComponentModel.DataAnnotations;
+using AutoMapper.Configuration.Annotations;
+using Microsoft.AspNetCore.Http;
 using SmallFarm.Core.Models.ProductCategory;
 using static SmallFarm.Common.DataConstants.ProductConstants;
 using static SmallFarm.Common.ValidationErrors.GeneralValidationErrors;
@@ -29,7 +31,7 @@ namespace SmallFarm.Core.Models.Product
         public decimal PricePerKg { get; set; }
 
         [Required]
-        public string ImageUrl { get; set; }
+        public IFormFile Image { get; set; } = null!;
 
         public List<ProductCategoryViewModel> ProductCategories { get; set; } = new List<ProductCategoryViewModel>();
 

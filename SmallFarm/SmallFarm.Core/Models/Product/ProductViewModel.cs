@@ -1,4 +1,5 @@
 ﻿using System.ComponentModel.DataAnnotations;
+using Microsoft.AspNetCore.Http;
 
 namespace SmallFarm.Core.Models.Product
 {
@@ -16,7 +17,7 @@ namespace SmallFarm.Core.Models.Product
         //Price Per Kilogram
         public decimal Price { get; set; }
 
-        public string ImageUrl { get; set; }
+        public byte[] Image { get; set; }
 
         public string Manufacturer { get; set; }
 
