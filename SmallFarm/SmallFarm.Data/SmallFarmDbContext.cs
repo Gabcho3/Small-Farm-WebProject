@@ -41,7 +41,6 @@ namespace SmallFarm.Data
                 .WithMany()
                 .OnDelete(DeleteBehavior.Restrict);
 
-
             builder.ApplyConfiguration(new ApplicationUserConfiguration());
             builder.ApplyConfiguration(new ProductCategoryConfiguration());
             builder.ApplyConfiguration(new CityConfiguration());

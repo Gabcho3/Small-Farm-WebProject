@@ -29,7 +29,7 @@ namespace SmallFarm.Data.Entities
         [Precision(18, 2)]
         public decimal PricePerKg { get; set; }
 
-        public string ImageUrl { get; set; }
+        public byte[] Image { get; set; } = Array.Empty<byte>();
 
         public bool IsActive { get; set; } = true;
 

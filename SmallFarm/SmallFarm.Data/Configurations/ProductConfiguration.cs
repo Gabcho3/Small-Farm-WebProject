@@ -23,8 +23,7 @@ namespace SmallFarm.Data.Configurations
                     Quantity = 10,
                     PricePerKg = 3.90m,
                     ManufacturerId = Guid.Parse("f61b7997-5b5b-4b60-89f2-eba32d1a3d29"),
-                    ImageUrl =
-                        "https://cdn.pixabay.com/photo/2016/08/12/22/38/apple-1589874_1280.jpg"
+                    Image = File.ReadAllBytes("../SmallFarm/wwwroot/Images/apples.jpg")
                 },
 
                 new()
@@ -35,8 +34,7 @@ namespace SmallFarm.Data.Configurations
                     Quantity = 20,
                     PricePerKg = 3.10m,
                     ManufacturerId = Guid.Parse("f61b7997-5b5b-4b60-89f2-eba32d1a3d29"),
-                    ImageUrl =
-                        "https://cdn.pixabay.com/photo/2016/09/03/20/48/bananas-1642706_1280.jpg"
+                    Image = File.ReadAllBytes("../SmallFarm/wwwroot/Images/bananas.jpg")
                 },
                 new()
                 {
@@ -46,8 +44,7 @@ namespace SmallFarm.Data.Configurations
                     Quantity = 25,
                     PricePerKg = 1.60m,
                     ManufacturerId = Guid.Parse("f61b7997-5b5b-4b60-89f2-eba32d1a3d29"),
-                    ImageUrl =
-                        "https://cdn.pixabay.com/photo/2016/05/07/16/09/milk-1377564_1280.jpg"
+                    Image = File.ReadAllBytes("../SmallFarm/wwwroot/Images/milk.jpg")
                 },
                 new()
                 {
@@ -57,8 +54,7 @@ namespace SmallFarm.Data.Configurations
                     Quantity = 9,
                     PricePerKg = 3.30m,
                     ManufacturerId = Guid.Parse("f61b7997-5b5b-4b60-89f2-eba32d1a3d29"),
-                    ImageUrl =
-                        "https://cdn.pixabay.com/photo/2022/09/05/09/50/tomatoes-7433786_1280.jpg"
+                    Image = File.ReadAllBytes("../SmallFarm/wwwroot/Images/tomatoes.jpg")
                 },
                 new()
                 {
@@ -68,8 +64,7 @@ namespace SmallFarm.Data.Configurations
                     Quantity = 7,
                     PricePerKg = 1.90m,
                     ManufacturerId = Guid.Parse("f61b7997-5b5b-4b60-89f2-eba32d1a3d29"),
-                    ImageUrl =
-                        "https://cdn.pixabay.com/photo/2015/07/17/13/44/cucumbers-849269_1280.jpg"
+                    Image = File.ReadAllBytes("../SmallFarm/wwwroot/Images/cucumbers.jpg")
                 },
                 new()
                 {
@@ -79,8 +74,7 @@ namespace SmallFarm.Data.Configurations
                     Quantity = 12,
                     PricePerKg = 5.20m,
                     ManufacturerId = Guid.Parse("f61b7997-5b5b-4b60-89f2-eba32d1a3d29"),
-                    ImageUrl =
-                        "https://cdn.pixabay.com/photo/2014/08/06/20/32/potatoes-411975_1280.jpg"
+                    Image = File.ReadAllBytes("../SmallFarm/wwwroot/Images/potatoes.jpg")
                 },
             };
         }
