@@ -82,6 +82,8 @@ namespace SmallFarm.Controllers
 
             await orderService.ConfirmAsync(Guid.Parse(id));
 
+            TempData["Confirmed"] = 1;
+
             return RedirectToAction("Index", new{id = userManager.GetUserId(User) });
         }
     }

@@ -1,10 +1,16 @@
 ﻿@using Microsoft.AspNetCore.Identity
 @using SmallFarm.Core.Contracts
+@using SmallFarm.Core.Services
 @using SmallFarm.Data.Entities
 @using SmallFarm.Extensions
 @inject SignInManager<ApplicationUser> SignInManager
 @inject UserManager<ApplicationUser> UserManager
 @inject ICartService CartService
+@inject IOrderService OrderService
+
+@{
+    string userId = UserManager.GetUserId(User);
+}
 
 <ul class="navbar-nav">
     @if (SignInManager.IsSignedIn(User))
@@ -12,13 +18,18 @@
         @if (!User.IsAdmin() && !User.IsManufacturer())
         {
             <li class="nav-item">
-                <a asp-controller="Order" asp-action="Index" asp-route-id="@UserManager.GetUserId(User)" class="text-success">
+                <a asp-controller="Order" asp-action="Index" asp-route-id="@userId" class="text-success" id="icon-container">
                     <i class="far fa-credit-card fs-5 me-2" style="margin-top:0.6em"></i>
+                    
+                    @if (TempData["Confirmed"] != null)
+                    {
+                        <span id="notification-badge">@TempData["Confirmed"]</span>
+                    }
                 </a>
             </li>
 
             <li class="nav-item">
-                <a asp-controller="Cart" asp-action="Index" asp-route-id="@UserManager.GetUserId(User)" class="text-success" id="icon-container">
+                <a asp-controller="Cart" asp-action="Index" asp-route-id="@userId" class="text-success" id="icon-container">
                     <i class="fas fa-shopping-cart fs-5 me-2" style="margin-top:0.6em"></i>
                     <span id="notification-badge">@CartService.GetProductsInCartCount(UserManager.GetUserId(User))</span>
                 </a>
