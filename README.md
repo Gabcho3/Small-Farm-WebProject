@@ -120,9 +120,9 @@ This page is almost the same as [home page](#home-page) but it contains manufact
 [Back to table of contents](#table-of-contents)
 
 ## Add product page
-On this page manufacturer can add product with all details needed. As there is still no uploading image system, manufacturer have to provide image url for product.
+On this page manufacturer can add product with all details needed. He also has to upload image file of the product.
 
-![image](https://github.com/Gabcho3/Small-Farm-WebProject/assets/109502170/e842926e-a7f2-45e8-83c7-e3a4c3fe8ea9)
+![image](https://github.com/Gabcho3/Small-Farm-WebProject/assets/109502170/b853921c-26e4-47af-8012-bfbc08e01681)
 
 [Back to table of contents](#table-of-contents)
 
