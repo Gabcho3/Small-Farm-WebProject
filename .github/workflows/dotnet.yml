@@ -21,6 +21,7 @@ jobs:
       with:
         dotnet-version: 6.0.x
     - name: Restore dependencies
+      working-directory: ./SmallFarm/SmallFarm
       run: dotnet restore
     - name: Build
       run: dotnet build --no-restore
