@@ -24,6 +24,8 @@ jobs:
       working-directory: ./SmallFarm/SmallFarm
       run: dotnet restore
     - name: Build
+      working-directory: ./SmallFarm/SmallFarm
       run: dotnet build --no-restore
     - name: Test
+      working-directory: ./SmallFarm/SmallFarm
       run: dotnet test --no-build --verbosity normal
