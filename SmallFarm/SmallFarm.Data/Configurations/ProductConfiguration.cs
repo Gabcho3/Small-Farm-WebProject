@@ -23,7 +23,11 @@ namespace SmallFarm.Data.Configurations
                     Quantity = 10,
                     PricePerKg = 3.90m,
                     ManufacturerId = Guid.Parse("f61b7997-5b5b-4b60-89f2-eba32d1a3d29"),
-                    Image = File.ReadAllBytes("../SmallFarm/wwwroot/Images/apples.jpg")
+                    Image = File.ReadAllBytes(Path.Combine(
+                        Directory.GetCurrentDirectory(),
+                        "wwwroot",
+                        "Images",
+                        "apples.jpg"))
                 },
 
                 new()
@@ -34,7 +38,11 @@ namespace SmallFarm.Data.Configurations
                     Quantity = 20,
                     PricePerKg = 3.10m,
                     ManufacturerId = Guid.Parse("f61b7997-5b5b-4b60-89f2-eba32d1a3d29"),
-                    Image = File.ReadAllBytes("../SmallFarm/wwwroot/Images/bananas.jpg")
+                    Image = File.ReadAllBytes(Path.Combine(
+                        Directory.GetCurrentDirectory(),
+                        "wwwroot",
+                        "Images",
+                        "bananas.jpg"))
                 },
                 new()
                 {
@@ -44,7 +52,11 @@ namespace SmallFarm.Data.Configurations
                     Quantity = 25,
                     PricePerKg = 1.60m,
                     ManufacturerId = Guid.Parse("f61b7997-5b5b-4b60-89f2-eba32d1a3d29"),
-                    Image = File.ReadAllBytes("../SmallFarm/wwwroot/Images/milk.jpg")
+                    Image = File.ReadAllBytes(Path.Combine(
+                        Directory.GetCurrentDirectory(),
+                        "wwwroot",
+                        "Images",
+                        "milk.jpg"))
                 },
                 new()
                 {
@@ -54,7 +66,11 @@ namespace SmallFarm.Data.Configurations
                     Quantity = 9,
                     PricePerKg = 3.30m,
                     ManufacturerId = Guid.Parse("f61b7997-5b5b-4b60-89f2-eba32d1a3d29"),
-                    Image = File.ReadAllBytes("../SmallFarm/wwwroot/Images/tomatoes.jpg")
+                    Image = File.ReadAllBytes(Path.Combine(
+                        Directory.GetCurrentDirectory(),
+                        "wwwroot",
+                        "Images",
+                        "tomatoes.jpg"))
                 },
                 new()
                 {
@@ -64,7 +80,11 @@ namespace SmallFarm.Data.Configurations
                     Quantity = 7,
                     PricePerKg = 1.90m,
                     ManufacturerId = Guid.Parse("f61b7997-5b5b-4b60-89f2-eba32d1a3d29"),
-                    Image = File.ReadAllBytes("../SmallFarm/wwwroot/Images/cucumbers.jpg")
+                    Image = File.ReadAllBytes(Path.Combine(
+                        Directory.GetCurrentDirectory(),
+                        "wwwroot",
+                        "Images",
+                        "cucumbers.jpg"))
                 },
                 new()
                 {
@@ -74,7 +94,11 @@ namespace SmallFarm.Data.Configurations
                     Quantity = 12,
                     PricePerKg = 5.20m,
                     ManufacturerId = Guid.Parse("f61b7997-5b5b-4b60-89f2-eba32d1a3d29"),
-                    Image = File.ReadAllBytes("../SmallFarm/wwwroot/Images/potatoes.jpg")
+                    Image = File.ReadAllBytes(Path.Combine(
+                        Directory.GetCurrentDirectory(),
+                        "wwwroot",
+                        "Images",
+                        "potatoes.jpg"))
                 },
             };
         }
